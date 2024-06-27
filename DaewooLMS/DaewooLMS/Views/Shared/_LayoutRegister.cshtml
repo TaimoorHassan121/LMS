@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"] - LMSProject</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/AgencyAssets/css/vendors.css">
+    <link rel="stylesheet" href="~/AgencyAssets/css/main.css">
+    <link rel="stylesheet" href="~/AgencyAssets/css/theme.css">
+    <link rel="stylesheet" type="text/css" href="~/app-assets/css/plugins/extensions/toastr.css">
+    <link rel="stylesheet" type="text/css" href="~/app-assets/vendors/css/extensions/toastr.css">
+    @* <title>@ViewBag.Title</title> *@
+</head>
+<body>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - LMSProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">BY SMTH</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAAz77U5XQuEME6TpftaMdX0bBelQxXRlM"></script>
+    <script src="https://unpkg.com/@@googlemaps/markerclusterer/dist/index.min.js"></script>
+    @*
+    <script src="js/vendors.js"></script>
+    <script src="js/main.js"></script> *@
+
+    <script src="~/AgencyAssets/js/vendors.js"></script>
+    <script src="~/AgencyAssets/js/main.js"></script>
+
+
+    <script src="~/app-assets/vendors/js/extensions/sweetalert2.all.min.js"></script>
+    <script src="~/app-assets/vendors/js/extensions/polyfill.min.js"></script>
+
+    <script src="~/app-assets/vendors/js/extensions/toastr.min.js"></script>
+    <script src="~/app-assets/js/scripts/extensions/toastr.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

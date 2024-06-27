@@ -6,14 +6,112 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\AgencyAssets\img\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\activities\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\activities\2\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\app\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\avatars\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\avatars\testimonials\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\backgrounds\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\blog\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\blog\2\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\blog\grids\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\blog\list-2\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\blog\sidebar\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\blog\single\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\booking-pages\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\cars\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\cars\slider\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\cars\slider\slides\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\cities\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\cities\1\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\cruise-list\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\cruise-list\single\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\cruises\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\dashboard\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\destinations\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\destinations\1\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\destinations\2\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\destinations\3\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\destinations\4\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\destinations\5\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\featureIcons\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\features\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\flightIcons\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\gallery\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\gallery\1\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\hotels\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\hotels\2\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\hotels\3\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\hotels\4\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\lists\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\lists\activity\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\lists\activity\1\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\lists\activity\2\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\lists\activity\3\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\lists\activity\single\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\lists\car\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\lists\car\1\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\lists\car\2\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\lists\cruise\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\lists\cruise\single\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\lists\hotel\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\lists\hotel\1\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\lists\hotel\2\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\lists\rental\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\lists\rental\1\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\lists\rental\3\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\lists\rental\single\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\lists\tour\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\lists\tour\single\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\map-filter\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\masthead\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\masthead\10\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\masthead\1\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\masthead\2\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\masthead\3\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\masthead\4\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\masthead\5\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\masthead\6\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\masthead\7\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\masthead\8\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\masthead\9\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\misc\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\newsletter\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\pages\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\pages\about\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\pages\become-expert\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\pages\contact\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\pages\destinations\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\pages\help\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\rentals\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\stays\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\stays\1\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\team\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\testimonials\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\testimonials\1\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\testimonials\2\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\tours\.DS_Store" />
+    <None Include="wwwroot\AgencyAssets\img\video\.DS_Store" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.32" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.31" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.31" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.31" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.32" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.32" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.31" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.31" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.31" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.32" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.32" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.32">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\EventImages\" />
   </ItemGroup>
 
 </Project>

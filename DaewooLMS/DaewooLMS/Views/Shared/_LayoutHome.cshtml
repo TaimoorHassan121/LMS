@@ -1,0 +1,491 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor Accessor
+@{
+
+    var imageUrl = User.Claims.Where(a => a.Type == "Emp_Pic")
+                .Select(x => x.Value)
+                .FirstOrDefault();
+
+    var Emp_name = User.Claims.Where(a => a.Type == "Emp_Name")
+        .Select(x => x.Value)
+        .FirstOrDefault();
+
+}
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+        <meta name="viewport" content="width=device-width" />
+        <link href="~/LMSBootstrape/css/bootstrap.min.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="~/app-assets/vendors/css/vendors.min.css">
+        <link rel="stylesheet" type="text/css" href="~/app-assets/css/colors.css">
+        <link rel="stylesheet" type="text/css" href="~/app-assets/css/components.css">
+        <link rel="stylesheet" type="text/css" href="~/app-assets/css/pages/widgets.css">
+        <link rel="stylesheet" type="text/css" href="~/app-assets/css/core/menu/menu-types/vertical-menu.css">
+
+
+
+        <link rel="stylesheet" type="text/css" href="~/app-assets/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="~/app-assets/css/bootstrap-extended.css">
+        <link rel="stylesheet" type="text/css" href="~/app-assets/css/colors.css">
+        <link rel="stylesheet" type="text/css" href="~/app-assets/css/components.css">
+        <link rel="stylesheet" type="text/css" href="~/app-assets/css/themes/dark-layout.css">
+        <link rel="stylesheet" type="text/css" href="~/app-assets/css/themes/semi-dark-layout.css">
+
+
+    <link rel="stylesheet" type="text/css" href="~/app-assets/css/core/menu/menu-types/vertical-menu.css">
+    <link rel="stylesheet" type="text/css" href="~/app-assets/css/pages/page-user-profile.css">
+
+    <link rel="stylesheet" type="text/css" href="~/app-assets/css/pages/app-invoice.css">
+    <link rel="stylesheet" type="text/css" href="~/app-assets/vendors/css/forms/select/select2.min.css">
+
+    <link rel="stylesheet" type="text/css" href="~/app-assets/vendors/css/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="~/app-assets/vendors/css/extensions/sweetalert2.min.css">
+
+    <link rel="stylesheet" type="text/css" href="~/app-assets/css/plugins/extensions/toastr.css">
+    <link rel="stylesheet" type="text/css" href="~/app-assets/vendors/css/extensions/toastr.css">
+
+
+        <link href="~/app-assets/css/contact.css" rel="stylesheet" />
+
+        <link rel="icon" href="/static_files/images/favicon.png" />
+
+        <link rel="icon" href="/static_files/images/favicon.png" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@600&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/dd5559ee21.js" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
+        <style>
+            .largeHeading {
+                font-size: 7em;
+                text-shadow: 1px 2px 14px rgba(0, 0, 0, 0.3)
+            }
+
+            #hero {
+                background: url('https://htmljstemplates.com/static_files/images/fcbgn.jpg') no-repeat;
+                background-size: cover;
+            }
+
+            .style1 {
+                font-family: 'Bebas Neue', cursive;
+            }
+
+            a > .style1 {
+                font-size: 1.2em;
+                line-height: 1em;
+            }
+
+            .style2 {
+                font-family: 'Cinzel', serif;
+                font-size: 0.85em;
+                letter-spacing: 3px;
+            }
+
+            .navbar {
+                padding: 0;
+                background: rgb(4, 12, 86);
+                /*background: -moz-linear-gradient(-45deg, rgba(4, 12, 86, 1) 0%, rgba(4, 12, 86, 1) 13%, rgba(4, 12, 86, 1) 13%, rgba(14, 114, 244, 1) 61%, rgba(14, 114, 244, 1) 100%);*/
+                /* FF3.6-15 */
+                /*background: -webkit-linear-gradient(-45deg, rgba(4, 12, 86, 1) 0%, rgba(4, 12, 86, 1) 13%, rgba(4, 12, 86, 1) 13%, rgba(14, 114, 244, 1) 61%, rgba(14, 114, 244, 1) 100%);*/
+                /* Chrome10-25,Safari5.1-6 */
+                /*background: linear-gradient(135deg, rgba(4, 12, 86, 1) 0%, rgba(4, 12, 86, 1) 13%, rgba(4, 12, 86, 1) 13%, rgba(14, 114, 244, 1) 61%, rgba(14, 114, 244, 1) 100%);*/
+                /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#040c56', endColorstr='#0e72f4', GradientType=1);*/
+                /* IE6-9 fallback on horizontal gradient */
+            }
+
+            .nav-item1> a {
+                color: #fff !important
+            }
+
+            @@media screen and (max-width:1080px) {
+                .nav-item1{
+                    transform: skewX(-20deg);
+                    /*transition: all 200ms linear;*/
+                    box-shadow: inset 8px 2px 16px rgba(0, 0, 0, 0.2);
+                    padding: 10px;
+                }
+
+                    .nav-item1 a {
+                        /*transition: all 200ms linear;*/
+                        transform: skewX(20deg)
+                    }
+
+                    .nav-item1:nth-child(2n+1) {
+                        border-left: 1px solid #eaeaea;
+                        border-right: 1px solid #eaeaea;
+                    }
+
+                    .nav-item1:nth-last-child(1) {
+                        border-left: 1px solid #eaeaea;
+                        border-right: none !important;
+                    }
+
+                .customSubMenu {
+                    display: none;
+                    margin-left: -4px;
+                    position: absolute;
+                    width: 100%;
+                    z-index: 1;
+                }
+
+                .hasSubMenu:hover > .customSubMenu {
+                    display: block !important
+                }
+
+                .subLink {
+                    transform: skewX(40deg);
+                    padding: 12px;
+                    background: #fff;
+                    margin-top: 8px;
+                    width: 100%;
+                }
+
+                    .subLink a {
+                        display: inline-block;
+                        transform: skewX(-25deg);
+                        color: #000;
+                        text-decoration: none;
+                    }
+            }
+
+            @@media screen and (max-width:719px) {
+                .nav-item1 a {
+                    background: rgba(0, 0, 0, 0.1);
+                    color: #fff
+                }
+            }
+
+
+
+            @@media screen and (max-width:980px) {
+                .nav-item1{
+                    transform: skewX(-20deg);
+                    /*transition: all 200ms linear;*/
+                    box-shadow: inset 8px 2px 16px rgba(0, 0, 0, 0.2);
+                    padding: 7px;
+                }
+
+                    .nav-item1 a {
+                        /*transition: all 200ms linear;*/
+                        transform: skewX(20deg)
+                    }
+
+                    .nav-item1:nth-child(2n+1) {
+                        border-left: 1px solid #eaeaea;
+                        border-right: 1px solid #eaeaea;
+                    }
+
+                    .nav-item1:nth-last-child(1) {
+                        border-left: 1px solid #eaeaea;
+                        border-right: none !important;
+                    }
+
+                .customSubMenu {
+                    display: none;
+                    margin-left: -4px;
+                    position: absolute;
+                    width: 100%;
+                    z-index: 1;
+                }
+
+                .hasSubMenu:hover > .customSubMenu {
+                    display: block !important
+                }
+
+                .subLink {
+                    transform: skewX(40deg);
+                    padding: 12px;
+                    background: #fff;
+                    margin-top: 8px;
+                    width: 100%;
+                }
+
+                    .subLink a {
+                        display: inline-block;
+                        transform: skewX(-25deg);
+                        color: #000;
+                        text-decoration: none;
+                    }
+            }
+
+            @@media screen and (max-width:719px) {
+                .nav-item1 a {
+                    background: rgba(0, 0, 0, 0.1);
+                    color: #fff
+                }
+            }
+
+
+
+
+
+            @@media screen and (min-width:719px) {
+                .nav-item1{
+                    transform: skewX(-20deg);
+                    /*transition: all 200ms linear;*/
+                    box-shadow: inset 8px 2px 16px rgba(0, 0, 0, 0.2);
+                    padding-left: 20px;
+                    padding-right: 20px;
+                    padding-top: 10px;
+                }
+
+                    .nav-item1 a {
+                        /*transition: all 200ms linear;*/
+                        transform: skewX(20deg)
+                    }
+
+                    .nav-item1:nth-child(2n+1) {
+                        border-left: 1px solid #eaeaea;
+                        border-right: 1px solid #eaeaea;
+                    }
+
+                    .nav-item1:nth-last-child(1) {
+                        border-left: 1px solid #eaeaea;
+                        border-right: none !important;
+                    }
+
+                .customSubMenu {
+                    display: none;
+                    margin-left: -4px;
+                    position: absolute;
+                    width: 100%;
+                    z-index: 1;
+                }
+
+                .hasSubMenu:hover > .customSubMenu {
+                    display: block !important
+                }
+
+                .subLink {
+                    transform: skewX(40deg);
+                    padding: 12px;
+                    background: #fff;
+                    margin-top: 8px;
+                    width: 100%;
+                }
+
+                    .subLink a {
+                        display: inline-block;
+                        transform: skewX(-25deg);
+                        color: #000;
+                        text-decoration: none;
+                    }
+            }
+
+            @@media screen and (max-width:719px) {
+                .nav-item1 a {
+                    background: rgba(0, 0, 0, 0.1);
+                    color: #fff
+                }
+            }
+
+
+            .nav-item1.active,
+            .nav-item1:hover {
+                background: #fff;
+            }
+
+                .nav-item1.active > a,
+                .nav-item1:hover > a {
+                    color: #000 !important
+                }
+        </style>
+
+
+
+
+    
+
+
+    <title>@ViewBag.Title</title>
+</head>
+<body class="" style="background-color:whitesmoke">
+
+    <div>
+        <div class="shadow position-sticky top-0 w-100" style="z-index:1">
+            <nav class="navbar navbar-expand-md navbar-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand px-3" href="#">
+                        <img src="~/images/imageedit_1_9794225097.png" height="80" />
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item1 text-center " id="nav-home">
+                                <a class="nav-link" aria-current="page" href="/Home/Index">
+                                    <div class="style1">Home</div>
+                                </a>
+                            </li>
+                      @*       <li class="nav-item1 text-center" id="nav-profile">
+                                <a class="nav-link" aria-current="page" href="/Home/Profile">
+                                    <div class="style1">My Board</div>
+                                </a>
+                            </li> *@
+                            <li class="nav-item1 text-center" id="nav-courses">
+                                <a class="nav-link" aria-current="page" href="/Home/Digital_Liberary">
+                                    <div class="style1"> Digital Library</div>
+                                </a>
+                            </li>
+                        @*     <li class="nav-item1 text-center position-relative hasSubMenu" id="nav-courses">
+                                <a class="nav-link" aria-current="page" href="">
+                                    <div class="style1">Courses/Videos</div>
+                                </a>
+                                <div class="customSubMenu">
+                                    <div class="subLink"><a href="/Home/Courses"><i class="fa-solid fa-futbol me-1"></i> Course</a></div>
+                                    <div class="subLink"><a href="/Home/Videos"><i class="fa-solid fa-futbol me-1"></i> Videos</a></div>
+                                </div>
+                            </li> *@
+                            <li class="nav-item1 text-center position-relative hasSubMenu" id="nav-training">
+                                <a class="nav-link" aria-current="page" href="#">
+                                    <div class="style1">Training</div>
+                                </a>
+                                <div class="customSubMenu">
+                                    <div class="subLink"><a href="/Home/TechnicalTraining"><i class="fa-solid fa-futbol me-1"></i> Technical</a></div>
+                                    <div class="subLink"><a href="/Home/BehaviourlTraining"><i class="fa-solid fa-futbol me-1"></i> Behaviourl</a></div>
+                                </div>
+                            </li>
+                            <li class="nav-item1 text-center" id="nav-community">
+                                <a class="nav-link" aria-current="page" href="/Home/DaewooCommunity">
+                                    <div class="style1">Daewoo Community</div>
+                                </a>
+                            </li>
+                            <li class="nav-item1 text-center" id="nav-events">
+                                <a class="nav-link" aria-current="page" href="/Home/Events">
+                                    <div class="style1">Events</div>
+                                </a>
+                            </li>
+                            <li class="nav-item1 text-center" id="nav-support">
+                                <a class="nav-link" aria-current="page" href="/Home/Support">
+                                    <div class="style1">Support</div>
+                                </a>
+                            </li>
+                            <li class="nav-item1 text-center position-relative hasSubMenu" id="nav-HR">
+                                <a class="nav-link" aria-current="page" href="#">
+                                    <div class="style1">HR HUB</div>
+                                </a>
+                                <div class="customSubMenu">
+                                    <div class="subLink"><a href="/Home/HRHUB"><i class="fa-solid fa-futbol me-1"></i> HR Policies</a></div>
+                                    <div class="subLink"><a href="/Home/HRDevelopPolicies"><i class="fa-solid fa-futbol me-1"></i> Develop Policies</a></div>
+                                </div>
+                            </li>
+                            <li class="nav-item1 text-center" id="wellbeing">
+                                <a class="nav-link" aria-current="page" href="#">
+                                    <div class="style1">Employee WellBeing</div>
+                                </a>
+                            </li>
+                    @*         <li class="nav-item1 text-center" id="nav-signout">
+                                <a class="nav-link" aria-current="page" href="/Home/Logout">
+                                    <div class="style1">Sign Out</div>
+                                </a>
+                            </li> *@
+                            <li class="nav-item1 text-center position-relative hasSubMenu" id="nav-profile">
+                                <a class="nav-link" aria-current="page" href="#">
+                                    <div class="style1"><img class="round" src="@(string.IsNullOrEmpty(imageUrl)?"/images/taimoordumy.png": "/images/"+imageUrl)" alt="avatar" height="40" width="40"></div>
+                                </a>
+                                <div class="customSubMenu">
+                                    <div class="subLink"><a href="/Home/Profile"><i class="fa-solid fa-futbol me-1"></i> My Board</a></div>
+                                    <div class="subLink"><a href="/Home/Logout"><i class="fa-solid fa-futbol me-1"></i> Logout</a></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        @RenderBody()
+
+        <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const navItems = document.querySelectorAll(".nav-item1");
+
+                    // Function to set active item
+                    function setActiveItem(item) {
+                        navItems.forEach(nav => nav.classList.remove("active"));
+                        item.classList.add("active");
+                        localStorage.setItem("activeNavItem", item.id);
+                    }
+
+                    // Add click event to each nav item
+                    navItems.forEach(item => {
+                        item.addEventListener("click", function () {
+                            setActiveItem(this);
+                        });
+                    });
+
+                    // On page load, set the active item from localStorage
+                    const activeNavItemId = localStorage.getItem("activeNavItem");
+                    if (activeNavItemId) {
+                        const activeNavItem = document.getElementById(activeNavItemId);
+                        if (activeNavItem) {
+                            setActiveItem(activeNavItem);
+                        }
+                    }
+                });
+       
+      
+        </script>
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
+
+        <script src="~/app-assets/js/ContactUs.js"></script>
+
+
+
+        <script src="~/LMSBootstrape/js/bootstrap.js"></script>
+        <script src="~/LMSBootstrape/js/bootstrap.bundle.js"></script>
+        <script src="~/LMSBootstrape/js/bootstrap.min.js"></script>
+        <script src="~/app-assets/js/scripts/cards/widgets.js"></script>
+
+        <!-- BEGIN: Vendor JS-->
+        <script src="~/app-assets/vendors/js/vendors.min.js"></script>
+        <script src="~/app-assets/fonts/liviconsevo/js/liviconsevo.tools.js"></script>
+        <script src="~/app-assets/fonts/liviconsevo/js/liviconsevo.defaults.js"></script>
+        <script src="~/app-assets/fonts/liviconsevo/js/liviconsevo.min.js"></script>
+
+        <script src="~/app-assets/js/core/app-menu.js"></script>
+        <script src="~/app-assets/js/core/app.js"></script>
+        <script src="~/app-assets/js/scripts/components.js"></script>
+        <script src="~/app-assets/js/scripts/footer.js"></script>
+        <!-- END: Theme JS-->
+        <!-- BEGIN: Page JS-->
+        <script src="~/app-assets/js/scripts/pages/page-user-profile.js"></script>
+        <script src="~/app-assets/js/scripts/pages/app-invoice.js"></script>
+        <script src="~/app-assets/vendors/js/forms/select/select2.full.min.js"></script>
+        <script src="~/app-assets/js/scripts/forms/select/form-select2.js"></script>
+        <!--<script src="~/app-assets/js/scripts/pages/app-file-manager.js"></script>-->
+
+
+
+        <script src="~/app-assets/vendors/js/extensions/sweetalert2.all.min.js"></script>
+        <script src="~/app-assets/vendors/js/extensions/polyfill.min.js"></script>
+
+        <script src="~/app-assets/vendors/js/extensions/toastr.min.js"></script>
+        <script src="~/app-assets/js/scripts/extensions/toastr.js"></script>
+        <!-- END: Page JS-->
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAlVi_v9OYbBjm9zsRtCuoIdC5u6qBENw8"></script>
+        <script src="https://unpkg.com/@@googlemaps/markerclusterer/dist/index.min.js"></script>
+        <!-- footer start  -->
+        @*@RenderSection("Scripts", required: false)*@
+
+    </div>
+
+</body>
+</html>
