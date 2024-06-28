@@ -19,7 +19,7 @@ namespace DaewooLMS.Models
         public DateTime End_DateTime { get; set; }
         public DateTime Add_Update_DateTime { get; set; }
         public string CRUD_Status { get; set; }
-        public string Authorize_Person { get; set; }
+        public long Authorize_Person { get; set; }
         public bool status { get; set; }
     }
 }

@@ -571,3 +571,8 @@ D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Vide
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Videos\Details.cshtml.g.cs
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Videos\Edit.cshtml.g.cs
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Videos\Index.cshtml.g.cs
+D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Events\Create.cshtml.g.cs
+D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Events\Delete.cshtml.g.cs
+D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Events\Details.cshtml.g.cs
+D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Events\Edit.cshtml.g.cs
+D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Events\Index.cshtml.g.cs

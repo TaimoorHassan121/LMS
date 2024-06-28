@@ -23,6 +23,7 @@ using DaewooLMS.Models.ViewModel;
 
 namespace DaewooLMS.Controllers
 {
+    [Authorize(Policy = "UserCookieScheme", Roles = "Employee")]
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -264,7 +265,7 @@ namespace DaewooLMS.Controllers
             emp_Chat.Departments = QuizDepartment;
 
 
-            ViewData["QuizDepartmentID"] = new SelectList(_context.Departments, "QuizDepartmentID", "QuizDepartmentName");
+            ViewData["DepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "DepartmentName");
 
             return View(emp_Chat);
         }

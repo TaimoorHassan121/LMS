@@ -359,31 +359,18 @@ Safari 7+ */
              $.ajax({
                  type: 'POST',
                 url: '/Home/DaewooCommunityADD?id=' + emp_ID + '&name=' + empName + '&designation=' + designation + '&message=' + Message + '&emp_pic=' + Emp_Pic,
-
+                success: function (response) {
+                    Swal.fire('Submitted!', 'Your message has been sent.', 'success');
+                    $('#message').val('');
+                },
+                error: function (xhr, status, error) {
+                    Swal.fire('Error!', 'There was a problem sending your message.', 'error');
+                }
              });
          });
      });
 
-    //  function addMessage()
-    //  // console.log();
-    // var emp_ID = document.getElementById("Emp_ID").value
-    // var empName = document.getElementById("Emp_Name").value;
-    // var designation = document.getElementById("Emp_Designation").value;
-    // var Message = document.getElementById("message").value;
 
-    // if (designation == "") {
-    //     alert("Please Enter Designation.")
-    //  }
-    // if (Message == "") {
-    //     alert("Please Enter Message.")
-    // }
-
-
-    //  $.ajax({
-    //      type: POST;
-    //      URL: "/Home/DaewooCommunity?id=" + emp_ID + "&name" + empName + "&designation" + designation + "&message" + Message;
-
-    //  });
 
 
  </script>

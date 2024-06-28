@@ -1,0 +1,141 @@
+﻿@model IEnumerable<DaewooLMS.Models.Event>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-body">
+    <div class="row">
+    </div>
+    <!-- Zero configuration table -->
+    <section id="basic-datatable">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Department List</h5>
+                        <a style="float:right" class="btn btn-primary" asp-action="Create">
+                            <i class="bx bx-plus-medical"></i>
+                        </a>
+                    </div>
+                    <div class="card-body card-dashboard">
+
+                        <div class="table-responsive">
+                            <table class="table zero-configuration">
+                                <thead>
+                                    <tr>
+                                        <th>Event Title</th>
+                                        <th>Objetive</th>
+                                        <th>Participent</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>Add Date</th>
+                                        <th>Status</th>                              
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                              
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.Event_Title</td>
+                                            <td>@item.Objactive</td>
+                                            <td>@item.Participent</td>
+                                            <td>@item.start_DateTime</td>
+                                            <td>@item.End_DateTime</td>
+                                            <td>@item.Add_DateTime</td>
+                                            <td>@item.status</td>
+                                   
+                                            <td>
+                                                <a asp-action="Edit" class="btn btn-success btn-sm" asp-route-id="@item.EventID">Edit</a>
+                                                <a asp-action="Details" class="btn btn-info btn-sm" asp-route-id="@item.EventID">Details</a>
+                                                <a asp-action="Delete" class="btn btn-danger btn-sm" asp-route-id="@item.EventID">Delete</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/ Zero configuration table -->
+
+</div>
+
+@* <h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Event_Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Objactive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Participent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Event_PIC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.start_DateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.End_DateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Add_DateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Event_Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Objactive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Participent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Event_PIC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.start_DateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.End_DateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Add_DateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.status)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EventID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.EventID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.EventID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table> *@
