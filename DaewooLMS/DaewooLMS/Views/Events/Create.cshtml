@@ -75,19 +75,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-12 col-md-6">
-                                        <fieldset class="form-group">
-                                            <label>Event Pic</label>
-                                            <div class="custom-file">
-                                                <input asp-for="Event_PIC" type="file" name="eventImg" class="custom-file-input" id="inputGroupFile01"
-                                                       onchange="document.getElementById('FrontImage').src=window.URL.createObjectURL(this.files[0])" />
-                                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                            </div>
-                                            <span asp-validation-for="Event_PIC" class="text-danger"></span>
-                                            <img id="FrontImage" src="~/Images/No-image.jpg" alt="Employee Image" width="150" height="150"
-                                                 style="border:1px;margin-top:-10px;margin-left:120px;" />
-                                        </fieldset>
-                                    </div>
+                           
 
 
                                     <div class="col-6">
@@ -106,6 +94,7 @@
                                         </div>
                                     </div>
 
+                             
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label class="control-label">Add DateTime</label>
@@ -113,6 +102,21 @@
                                             <span asp-validation-for="Add_DateTime" class="text-danger"></span>
                                         </div>
                                     </div>
+
+                                    <div class="col-sm-12 col-md-6">
+                                        <fieldset class="form-group">
+                                            <label>Profile Pic</label>
+                                            <div class="custom-file">
+                                                <input asp-for="Event_PIC" type="file" name="profilepic" class="custom-file-input" id="inputGroupFile01"
+                                                       onchange="document.getElementById('FrontImage').src=window.URL.createObjectURL(this.files[0])" />
+                                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                            </div>
+                                            <span asp-validation-for="Event_PIC" class="text-danger"></span>
+                                            <img id="FrontImage" src="~/Images/No-image.jpg" alt="Employee Image" width="150" height="150"
+                                                 style="border:1px;margin-top:-10px;margin-left:120px;" />
+                                        </fieldset>
+                                    </div>
+
 
 
                                     <div class="col-6">

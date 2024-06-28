@@ -58,7 +58,7 @@ namespace DaewooLMS.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EventID,Event_Title,Objactive,Participent,Event_PIC,start_DateTime,End_DateTime,Add_DateTime,status")] Event @event, IFormFile eventImg, Event_Logs logEvent)
+        public async Task<IActionResult> Create([Bind("EventID,Event_Title,Objactive,Participent,Event_PIC,start_DateTime,End_DateTime,Add_DateTime,status")] Event @event, IFormFile profilepic, Event_Logs logEvent)
         {
             if (ModelState.IsValid)
             {
@@ -66,20 +66,19 @@ namespace DaewooLMS.Controllers
                   .Where(x => x.Type == "User_EmpId")
                   .Select(x => Convert.ToInt64(x.Value))
                   .FirstOrDefault();
-                if (eventImg != null)
+                if (profilepic != null)
                 {
-                    var image = ContentDispositionHeaderValue.Parse(eventImg.ContentDisposition).FileName.Trim();
-                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "EventImages", eventImg.FileName);
+                    var image = ContentDispositionHeaderValue.Parse(profilepic.ContentDisposition).FileName.Trim();
+                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "EventImages", profilepic.FileName);
                     using (System.IO.Stream stream = new FileStream(path, FileMode.Create))
                     {
-                        eventImg.CopyTo(stream);
+                        profilepic.CopyTo(stream);
                     }
-                    @event.Event_PIC = eventImg.FileName;
+                    @event.Event_PIC = profilepic.FileName;
                 }
 
-                logEvent.EventID = @event.EventID;
-                logEvent.Event_PIC= @event.Event_PIC;
-                logEvent.Event_Title = @event.Event_Title;  
+                logEvent.Event_PIC = @event.Event_PIC;
+                logEvent.Event_Title = @event.Event_Title;
                 logEvent.Objactive = @event.Objactive;
                 logEvent.Participent = @event.Participent;
                 logEvent.start_DateTime = @event.start_DateTime;
@@ -89,6 +88,7 @@ namespace DaewooLMS.Controllers
                 logEvent.CRUD_Status = "Create";
                 logEvent.Add_Update_DateTime = @event.Add_DateTime;
                 _context.Add(@event);
+                var EventDb = _context.Events.LastOrDefault();
                 _context.Add(logEvent);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
