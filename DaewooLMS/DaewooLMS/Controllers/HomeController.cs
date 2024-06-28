@@ -19,7 +19,7 @@ using System.IO;
 using System.Net.Http.Headers;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
-using LMSProject.Models.ViewModel;
+using DaewooLMS.Models.ViewModel;
 
 namespace DaewooLMS.Controllers
 {

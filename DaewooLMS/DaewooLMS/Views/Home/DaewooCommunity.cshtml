@@ -1,5 +1,5 @@
-﻿@using Microsoft.AspNetCore.Http
-@model LMSProject.Models.ViewModel.Emp_ChatVM
+﻿@* @using Microsoft.AspNetCore.Http *@
+@model DaewooLMS.Models.ViewModel.Emp_ChatVM
 @{
     ViewData["Title"] = "DaewooCommunity";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
@@ -214,7 +214,7 @@ Safari 7+ */
                                             <label for="password-vertical">Designation & Department </label>
                                     <input type="text" id="Desig-deprt"  class="form-control" placeholder="" readonly>
                                     <input type="hidden" id="Emp_Designation" asp-for="employee.Designation">
-                                    <input type="hidden" asp-for="Departments.QuizDepartmentName" id="Department" name="Departments.DepartmentName" />
+                                    <input type="hidden" asp-for="Departments.DepartmentName" id="Department" name="Departments.DepartmentName" />
                                  
 
                                         </div>

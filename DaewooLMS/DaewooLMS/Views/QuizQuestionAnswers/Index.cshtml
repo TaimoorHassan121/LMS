@@ -1,0 +1,170 @@
+﻿@model IEnumerable<DaewooLMS.Models.QuizQuestionAnswer>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<div class="content-body">
+    <div class="row">
+
+    </div>
+    <!-- Zero configuration table -->
+    <section id="basic-datatable">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Quiz List</h5>
+                        <a style="float:right" class="btn btn-primary" asp-action="Create">
+                            <i class="bx bx-plus-medical"></i>
+                        </a>
+                    </div>
+                    <div class="card-body card-dashboard">
+
+                        <div class="table-responsive">
+                            <table class="table zero-configuration">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Question No
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Question)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Answer)
+                                        </th>
+                                        <th>
+                                            Department
+                                        </th>
+                                        <th>
+                                            Status
+                                        </th>
+                                        <th>
+                                            Date
+                                        </th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.QuizQno)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Question)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Answer)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DepartmentID)
+                                            </td>
+                                            <td>
+                                                @item.QStatus
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.QuizDate)
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.QuizID">Edit</a> |
+                                                <a asp-action="Details" asp-route-id="@item.QuizID">Details</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.QuizID">Delete</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/ Zero configuration table -->
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<h1>Index</h1>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.QuizQno)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Question)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Answer)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Departments)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.QStatus)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.QuizDate)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuizQno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Question)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Answer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Departments.DepartmentID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuizDate)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.QuizID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.QuizID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.QuizID">Delete</a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+
+
+    <script>
+        let QuizData = @Html.Raw(Json.Serialize(Model));
+    </script>*@

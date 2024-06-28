@@ -1,0 +1,184 @@
+﻿@model IEnumerable<DaewooLMS.Models.Emp_Chat_M>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-body">
+    <div class="row">
+    </div>
+    <!-- Zero configuration table -->
+    <section id="basic-datatable">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Main Chat List</h5>
+                 @*        <a style="float:right" class="btn btn-primary" asp-action="Create">
+                            <i class="bx bx-plus-medical"></i>
+                        </a> *@
+                    </div>
+                    <div class="card-body card-dashboard">
+
+                        <div class="table-responsive">
+                            <table class="table zero-configuration">
+                                <thead>
+                                    <tr>
+                                        <th> Emp ID</th>
+                                        <th> Emp Name</th>
+                                        <th> Designation</th>
+                                        <th> Message</th>
+                                        <th> Emp Pic</th>
+                                        <th> isseen</th>
+                                        <th> Status</th>
+                                        <th> Action</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.Emp_ID</td>
+                                            <td>@item.Emp_Name</td>
+                                            <td>@item.Emp_Designation</td>
+                                            <td>@item.message</td>
+                                            <td><img class="round" src="/images/@item.Emp_Pic" alt="avatar" height="50" width="50"></td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <select class=" form-control text-uppercase" id="isactive-@item.ChatID" data-active="@(item.IsSeen.ToString().ToLower())" onchange="changeStatus(this,@item.ChatID)" value="@item.IsSeen">
+                                                        <option value="true">Publish</option>
+                                                        <option value="false">Stop</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>@item.Status</td>
+
+                                            <td>
+                                                @* <a asp-action="Edit" asp-route-id="@item.ChatID">Edit</a> | 
+                                                <a asp-action="Details" asp-route-id="@item.ChatID">Details</a> |
+                                            <a asp-action="Delete" asp-route-id="@item.ChatID">Delete</a>*@
+                                                <a asp-action="Details" class="btn btn-info btn-sm mb-1" asp-route-id="@item.ChatID">Details</a>
+                                                <a asp-action="Delete" class="btn btn-danger btn-sm" asp-route-id="@item.ChatID">Delete</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/ Zero configuration table -->
+
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Select all select elements with id starting with "isactive-"
+        var selectElements = document.querySelectorAll('select[id^="isactive-"]');
+
+        selectElements.forEach(function (selectElement) {
+            var isActive = selectElement.getAttribute('data-active') === 'true';
+            selectElement.value = isActive ? 'true' : 'false';
+        });
+    });
+</script>
+
+
+<script>
+
+    function changeStatus(isactive, id) {
+        console.log(isactive.value)
+        var statusValue = isactive.value;
+
+        $.ajax({
+            type: 'POST',
+            url: '/Emp_Chat_M/ChangeChatStatusM?id=' + id,
+
+        });
+    }
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+@* <h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Emp_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Emp_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Emp_Designation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.message)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsSeen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MsgDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Emp_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Emp_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Emp_Designation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.message)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsSeen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MsgDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ChatID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ChatID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ChatID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table> *@

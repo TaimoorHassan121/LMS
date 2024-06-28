@@ -1,0 +1,66 @@
+﻿@model IEnumerable<DaewooLMS.Models.QuizLog>
+@{
+    ViewData["Title"] = "QuizLOG";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="content-body">
+
+    <!-- Zero configuration table -->
+    <section id="basic-datatable">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>All QuizLOG List</h5>
+                    </div>
+                    <div class="card-body card-dashboard">
+
+                        <div class="table-responsive">
+                            <table class="table zero-configuration">
+                                <thead>
+                                    <tr>
+                                        <th>Question </th>
+                                        <th>Answer</th>
+                                        <th>Department</th>
+                                        <th> option 1</th>
+                                        <th> option 2</th>
+                                        <th> option 3</th>
+                                        <th> option 4</th>
+                                        <th> option 5</th>
+                                        <th> Add Date</th>
+                                        <th> Update Date</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.QuestionId</td>
+                                            <td>@item.Answer</td>
+                                            <td>@item.Department</td>
+                                            <td>@item.option1</td>
+                                            <td>@item.option2</td>
+                                            <td>@item.option3</td>
+                                            <td>@item.option4</td>
+                                            <td>@item.option5</td>
+                                            <td>@item.Quiz_AddDate.ToString("dd-MM-yyyy")</td>
+                                            <td>@item.Quiz_UpdateDate.ToString("dd-MM-yyyy")</td>
+                                        </tr>
+                                    }
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/ Zero configuration table -->
+
+</div>
+
+

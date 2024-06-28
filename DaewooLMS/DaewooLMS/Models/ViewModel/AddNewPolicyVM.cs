@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using DaewooLMS.Models;
+using System.Collections.Generic;
 
-namespace LMSProject.Models.ViewModel
+namespace DaewooLMS.Models.ViewModel
 {
     public class AddNewPolicyVM
     {

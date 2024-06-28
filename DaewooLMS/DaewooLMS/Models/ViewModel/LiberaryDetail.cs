@@ -1,8 +1,7 @@
-﻿//using DocumentFormat.OpenXml.Office2010.ExcelAc;
-//using LMSProject.Migrations;
+﻿
 using System.Collections.Generic;
 
-namespace LMSProject.Models.ViewModel
+namespace DaewooLMS.Models.ViewModel
 {
     public class LiberaryDetail
     {

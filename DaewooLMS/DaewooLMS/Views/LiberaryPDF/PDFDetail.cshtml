@@ -1,0 +1,47 @@
+﻿@model DaewooLMS.Models.ViewModel.LiberaryDetail
+@{
+    ViewData["Title"] = "PDFDetail";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@* <h1>PDFDetail</h1> *@
+<style>
+    .no-underline {
+        text-decoration: none;
+    }
+</style>
+
+<div class="container mt-5 ">
+    <h1 class=" mb-5"> @Model.LiberaryDataName</h1>
+
+    <div class="row app-file-recent-access h-100">
+        @foreach (var item in Model.LiberaryDataList)
+        {
+
+            <div class="col-md-2 col-6">
+
+                <div class="row h-100">
+                    <div class="col-md-12 col-sm-6">
+
+                        <div class="card height-80-per ">
+                            <a href="~/CoursePDF/@item.Pdf_File" class="no-underline text-dark" target="_blank">
+                                <div class="app-file-content-logo card-img-top card-header">
+                                    <img class="bx bx-dots-vertical-rounded app-file-edit-icon d-block float-right">
+                                    <img class="d-block mx-auto" src="~/images/pdf-file.png" height="50" width="50" alt="Card image cap">
+                                </div>
+                                <div class="card-body p-50 mb-2">
+                                    <div class="app-file-recent-details">
+                                        <div class="app-file-name font-size-small font-weight-bold">@item.Pdf_Name</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        }
+
+    </div>
+</div>
+

@@ -1,0 +1,203 @@
+﻿@model IEnumerable<DaewooLMS.Models.LibraryData>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .col-width-20 {
+        width: 20%;
+    }
+
+    .col-width-15 {
+        width: 15%;
+    }
+
+    .col-width-10 {
+        width: 10%;
+    }
+</style>
+
+<div class="content-body">
+    <div class="row">
+    </div>
+    <!-- Zero configuration table -->
+    <section id="basic-datatable">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>PDF Liberary List</h5>
+                        <a style="float:right" class="btn btn-primary" asp-action="Create">
+                            <i class="bx bx-plus-medical"></i>
+                        </a>
+                    </div>
+                    <div class="card-body card-dashboard">
+
+                        <div class="table-responsive">
+                            <table class="table zero-configuration">
+                                <thead>
+                                    <tr>
+                                        <th>File Name</th>
+                                        <th>PDF File</th>
+                                        <th>Trade</th>
+                                        <th>Department</th>
+                                        <th>IsActive</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td >@item.Pdf_Name</td>
+                                            <td >@item.Pdf_File</td>
+                                            <td >@item.Trade</td>
+                                            <td>@item.Departments.DepartmentName</td>
+                                            <td >
+                                                <div class="input-group">
+                                                    <select class=" form-control text-uppercase" id="isactive-@item.PDFID" data-active="@(item.IsActive.ToString().ToLower())" onchange="changeStatus(this,@item.PDFID)" value="@item.IsActive">
+                                                        <option value="true">Active</option>
+                                                        <option value="false">Non Active</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>@item.Status</td>
+                                       
+                                            <td>
+                                    @*             <a asp-action="Edit" asp-route-id="@item.PDFID">Edit</a> |
+                                                <a asp-action="Details" asp-route-id="@item.PDFID">Details</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.PDFID">Delete</a> *@
+                                                <a asp-action="Edit" class="btn btn-success btn-sm" asp-route-id="@item.PDFID">Edit</a>
+                                                <a asp-action="Details" class="btn btn-info  btn-sm" asp-route-id="@item.PDFID">Details</a>
+                                                <a asp-action="Delete" class="btn btn-danger  btn-sm" asp-route-id="@item.PDFID">Delete</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/ Zero configuration table -->
+
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Select all select elements with id starting with "isactive-"
+        var selectElements = document.querySelectorAll('select[id^="isactive-"]');
+
+        selectElements.forEach(function (selectElement) {
+            var isActive = selectElement.getAttribute('data-active') === 'true';
+            selectElement.value = isActive ? 'true' : 'false';
+        });
+    });
+</script>
+
+@* <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var selectElement = document.getElementById('isactive');
+        var isActive = selectElement.getAttribute('data-active') === 'true';
+
+        if (isActive) {
+            selectElement.value = 'true';
+        } else {
+            selectElement.value = 'false';
+        }
+    });
+</script> *@
+
+<script>
+
+    function changeStatus(isactive, id) {
+        console.log(isactive.value)
+        var statusValue = isactive.value;
+
+        $.ajax({
+            type: 'POST',
+            url: '/LibraryDatas/ChangeStatusPDF?id=' + id,
+
+        });
+    }
+
+
+
+</script>
+
+
+
+
+
+
+@* <h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Pdf_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pdf_File)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Trade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Departments)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Emp_Date)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pdf_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pdf_File)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Trade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Departments.DepartmentID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Emp_Date)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PDFID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PDFID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PDFID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table> *@

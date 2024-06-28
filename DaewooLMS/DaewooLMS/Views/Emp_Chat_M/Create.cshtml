@@ -1,0 +1,188 @@
+﻿@model DaewooLMS.Models.Emp_Chat_M
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-body">
+    <!-- Basic Vertical form layout section start -->
+    <section id="basic-vertical-layouts">
+        <div class="row match-height">
+
+            <div class="col-md-12 col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Add Message</h5>
+                    </div>
+                    <div class="card-body">
+                        <form asp-action="create" method="post" enctype="multipart/form-data">
+                            <div class="form-body">
+
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="row">
+
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>Emp ID </label>
+                                            <div class="position-relative has-icon-left">
+                                                <input asp-for="Emp_ID" type="text" id="QuizNo" min="0" max="6" class="form-control" placeholder="Enter Course Name" autocomplete="off" required>
+
+                                            </div>
+                                            <span asp-validation-for="Emp_ID" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>Employee Name</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input asp-for="Emp_Name" type="text" id="first-name-icon" class="form-control" placeholder="Enter Course Type" autocomplete="off" required>
+
+                                            </div>
+                                            <span asp-validation-for="Emp_Name" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>Employee Designation</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input asp-for="Emp_Designation" type="text" id="first-name-icon" class="form-control" placeholder="Enter Course Type" autocomplete="off" required>
+
+                                            </div>
+                                            <span asp-validation-for="Emp_Name" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>Employee Designation</label>
+                                            <div class="position-relative has-icon-left">
+                                                <textarea asp-for="Emp_Designation" type="text" id="first-name-icon" class="form-control" rows="3" placeholder="Enter Message" autocomplete="off"></textarea>
+                                                @* <input asp-for="Emp_Designation" type="text" id="first-name-icon" class="form-control" placeholder="Enter Course Type" autocomplete="off" required> *@
+
+                                            </div>
+                                            <span asp-validation-for="Emp_Name" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+
+
+                              
+
+
+
+
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Date</label>
+                                            <input asp-for="MsgDate" type="datetime-local" id="qdDate" class="form-control" />
+                                            <span asp-validation-for="MsgDate" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>IsSeen</label>
+                                            <select type="text" asp-for="IsSeen" class="select form-control">
+                                                <option value="true">Active</option>
+                                                <option value="false">Non Active</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <div class="form-group form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" asp-for="Status" value="true" checked />
+                                                </label>
+                                            </div>
+                                            <span asp-validation-for="Status" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <input type="submit" value="Create" class="btn btn-primary mr-1" />
+
+                                        <button asp-action="Index" class="btn btn-light-secondary">Back</button>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Basic Vertical form layout section end -->
+
+
+
+</div>
+
+<script type="text/javascript">
+    document.querySelector('.custom-file-input').addEventListener('change', function (e) {
+        var fileName = document.getElementById("inputGroupFile01").files[0].name;
+        var nextSibling = e.target.nextElementSibling
+        nextSibling.innerText = fileName;
+    })
+</script>
+
+
+
+@* <h1>Create</h1>
+
+<h4>Emp_Chat_M</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Emp_ID" class="control-label"></label>
+                <input asp-for="Emp_ID" class="form-control" />
+                <span asp-validation-for="Emp_ID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Emp_Name" class="control-label"></label>
+                <input asp-for="Emp_Name" class="form-control" />
+                <span asp-validation-for="Emp_Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Emp_Designation" class="control-label"></label>
+                <input asp-for="Emp_Designation" class="form-control" />
+                <span asp-validation-for="Emp_Designation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="message" class="control-label"></label>
+                <input asp-for="message" class="form-control" />
+                <span asp-validation-for="message" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsSeen" /> @Html.DisplayNameFor(model => model.IsSeen)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="MsgDate" class="control-label"></label>
+                <input asp-for="MsgDate" class="form-control" />
+                <span asp-validation-for="MsgDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div> *@
+

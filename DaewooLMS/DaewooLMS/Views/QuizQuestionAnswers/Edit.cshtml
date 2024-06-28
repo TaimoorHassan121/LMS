@@ -1,0 +1,451 @@
+﻿@model DaewooLMS.Models.QuizQuestionAnswer
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-header row">
+    <div class="content-header-left col-12 mb-2 mt-1">
+        <div class="breadcrumbs-top">
+            <h5 class="content-header-title float-left pr-1 mb-0">Question</h5>
+            <div class="breadcrumb-wrapper d-none d-sm-block">
+                <ol class="breadcrumb p-0 mb-0 pl-1">
+                    <li class="breadcrumb-item">
+                        <a href="index"><i class="bx bx-home-alt"></i></a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="index">Index</a>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        <a>Create</a>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-body">
+    <!-- Basic Vertical form layout section start -->
+    <section id="basic-vertical-layouts">
+        <div class="row match-height">
+
+            <div class="col-md-12 col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Add Question</h5>
+                    </div>
+                    <div class="card-body">
+                        <form asp-action="Edit">
+                            <div class="form-body">
+
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <input type="hidden" asp-for="QuizID" />
+                                <div class="row">
+
+                                    <div class="col-3">
+                                        <div class="form-group">
+                                            <label>Question No</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input asp-for="QuizQno" type="text" id="QuizNo" class="form-control" placeholder="Enter Q NO " readonly>
+
+                                            </div>
+                                            <span asp-validation-for="QuizQno" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Department</label>
+                                            <select asp-for="DepartmentID" class="form-control" id="Department" onchange="changeDepartment(this)" asp-items="ViewBag.DepartmentID" disabled>
+                                                <option value="">Select Department</option>
+                                            </select>
+                                            <input type="hidden" asp-for="DepartmentID">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label>Enter Question</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input asp-for="Question" type="text" id="myInput" oninput="myFunction()" class="form-control" placeholder="Enter Question ">
+
+                                            </div>
+                                            <span asp-validation-for="Question" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-4" id="Opt0">
+                                        <div class="form-group">
+                                            <label>Update Option 1</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input type="text" id="Option0" oninput="myOption(this)"  class="form-control" value="" placeholder="Enter Option ">
+                                                <input type="hidden" name="name" id="optionNo0" value="" />
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Opt0btn">
+                                        <label> Option 1</label>
+                                        <div class="form-group">
+                                            <input value="Edit Option 1" id="Option0" onclick="EnterOption(this)" class="btn btn-primary btn-sm" />
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-4">
+                                        <div class="form-group" id="Opt1">
+                                            <label>Update Option 2</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input type="text" id="Option1" oninput="myOption(this)" class="form-control" value="" placeholder="Enter Option ">
+                                                <input type="hidden" name="name" id="optionNo1" value="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Opt1btn">
+                                        <label> Option 2</label>
+                                        <div class="form-group">
+                                            <input value="Edit Option 2" id="Option1" onclick="EnterOption(this)" class="btn btn-primary btn-sm" />
+                                        </div>
+                                    </div>
+                                    <div class="col-4" id="Opt2">
+                                        <div class="form-group">
+                                            <label>Update Option 3</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input type="text" id="Option2" oninput="myOption(this)" class="form-control" value="" placeholder="Enter Option ">
+                                                <input type="hidden" name="name" id="optionNo2" value="" />
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Opt2btn">
+                                        <label> Option 3</label>
+                                        <div class="form-group">
+                                            <input value="Edit Option 3" id="Option2" onclick="EnterOption(this)" class="btn btn-primary btn-sm" />
+                                        </div>
+                                    </div>
+                                    <div class="col-4" id="Opt3" >
+                                        <div class="form-group">
+                                            <label>Update Option 4</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input type="text" id="Option3" oninput="myOption(this)" class="form-control" value="" placeholder="Enter Option ">
+                                                <input type="hidden" name="name" id="optionNo3" value="" />
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Opt3btn">
+                                        <label> Option 4</label>
+                                        <div class="form-group">
+                                            <input value="Edit Option 4" id="Option3" onclick="EnterOption(this)" class="btn btn-primary btn-sm" />
+                                        </div>
+                                    </div>
+                                   
+
+                                    <div class="col-4" id="Opt4">
+                                        <div class="form-group">
+                                            <label>Update Option 5</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input type="text" id="Option4" oninput="myOption(this)" class="form-control" placeholder="Enter Option ">
+                                                <input type="hidden" name="name" id="optionNo4" value=""/>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2" id="Opt4btn">
+                                        <label> Option 5</label>
+                                        <div class="form-group">
+                                            <input value="Edit Option 5" id="Option4" onclick="EnterOption(this)" class="btn btn-primary btn-sm" />
+                                        </div>
+                                    </div>
+                               
+                                    @*<div class="col-6"></div>*@
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>Enter Answer</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input asp-for="Answer" type="text" id="myAns" oninput="myAnswer()" class="form-control" placeholder="Enter Answer ">
+
+                                            </div>
+                                            <span asp-validation-for="Answer" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Date</label>
+                                            <input asp-for="QuizDate" type="datetime-local" id="qdDate" class="form-control" />
+                                            <span asp-validation-for="QuizDate" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <div class="form-group form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" asp-for="QStatus" value="true" checked />
+                                                </label>
+                                            </div>
+                                            <span asp-validation-for="QStatus" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <input type="submit" value="Create" id="submit" class="btn btn-primary mr-1"  />
+
+                                        <button asp-action="Index" class="btn btn-light-secondary">Back</button>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Basic Vertical form layout section end -->
+
+    <section id="basic-vertical-layouts">
+        <div class="row match-height">
+
+            <div class="col-md-12 col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Add Question</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="demo"><span> </span> </div>
+                        <div id="option0"><span> </span> </div>
+                        <div id="option1"><span> </span> </div>
+                        <div id="option2"><span> </span> </div>
+                        <div id="option3"><span> </span> </div>
+                        <div id="option4"><span> </span> </div>
+                        <div id="Answer"><span> </span> </div>
+                        <div id="demoOption"><span></span> </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+</div>
+
+<script>
+
+
+    function changeDepartment(eve) {
+        console.log(eve.value);
+        let Department = document.getElementById("Department");
+        let QuestionTest = document.getElementById("myInput");
+        let QuizNo = document.getElementById("QuizNo");
+        QuizNo.value = '';
+        if (Department.value == "") {
+            QuestionTest.readOnly = true;
+            QuizNo.value = '';
+            return alert("First Select Department")
+        }
+
+             $.ajax({
+                 type: 'GET',
+                 url: "/QuizQuestionAnswers/QuizData?id=" + eve.value,
+                success: function (response) {
+                    console.log(response);
+                    let QuizNo = document.getElementById("QuizNo");
+                    QuizNo.value = '';
+                    if (response.length == 0) {
+                        QuizNo.value += 1
+                        //QuestionTest.readOnly = false;
+                    }
+                    else {
+
+                        MaxQuizNo = Math.max(response.length)
+                        QuizNo.value += (MaxQuizNo + 1);
+                        //QuestionTest.readOnly = false;
+                        //var maxquizNo = Math.max(response[]);
+                    }
+                }
+            });
+
+    }
+
+
+
+    function myFunction() {
+        let text = document.getElementById("myInput").value;
+        document.getElementById("demo").innerHTML = "You Question: " + text;
+    }
+    function myOption(eve) {
+        console.log(eve.value);
+        var optID = eve.id;
+        let text = document.getElementById(optID).value;
+        if (optID =="Option0")
+            document.getElementById("option0").innerHTML = "You Option No 1: " + text;
+        if (optID == "Option1")
+            document.getElementById("option1").innerHTML = "You Option No 2: " + text;
+        if (optID == "Option2")
+            document.getElementById("option2").innerHTML = "You Option No 3: " + text;
+        if (optID == "Option3")
+            document.getElementById("option3").innerHTML = "You Option No 4: " + text;
+        if (optID == "Option4")
+            document.getElementById("option4").innerHTML = "You Option No 5: " + text;
+    }
+    function myAnswer() {
+        let text = document.getElementById("myAns").value;
+        document.getElementById("Answer").innerHTML = "You Option: " + text;
+    }
+    function EnterOption(eve) {
+        console.log(eve.value);
+        var optID = eve.id;
+        let text = document.getElementById(optID);
+        let QuizNo = document.getElementById("QuizNo").value;
+        let Department = document.getElementById("Department").value;
+        let optvalue;
+        if (optID == "Option0") { let optionNo = document.getElementById("optionNo0"); optvalue = parseInt(optionNo.textContent); }
+        if (optID == "Option1") { let optionNo = document.getElementById("optionNo1"); optvalue = parseInt(optionNo.textContent); }
+        if (optID == "Option2") { let optionNo = document.getElementById("optionNo2"); optvalue = parseInt(optionNo.textContent); }
+        if (optID == "Option3") { let optionNo = document.getElementById("optionNo3"); optvalue = parseInt(optionNo.textContent); }
+        if (optID == "Option4") { let optionNo = document.getElementById("optionNo4"); optvalue = parseInt(optionNo.textContent); }
+ 
+        if (text == '') {
+            alert("Please Add Option")
+            return;
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: "/QuizQuestionAnswers/EditOption?OptionEntry=" + text.value + "&QuizNo=" + QuizNo + "&depart=" + Department + "&OptNo=" + optvalue,
+            //success: function (response) {
+            //    console.log(response)
+            //    for (i = 1; i = optvalue; i++) {
+            //        document.getElementById("option" + i).innerHTML = "You Option No "+i+  " : " + response.options;
+            //        optionNo.value = optvalue + 1;
+            //        if (optionNo.value > 2) {
+            //            document.getElementById("submit").disabled = false;
+            //        }
+            //        return;
+            //    }
+
+
+
+
+
+            //}
+        });
+        //text.value = "";
+        alert("Option Save Successfully")
+    }
+</script>
+<script>
+
+    window.onload = function () {
+        // Get the current date and time
+         var QuizData = @Html.Raw(Json.Serialize(Model));
+        const now = new Date();
+
+        for (i = 0; i < 5; i++) {
+            document.getElementById("Opt"+i).style.display = 'none';
+            document.getElementById("Opt"+i+"btn").style.display = 'none';
+        }
+
+
+        let text = document.getElementById("myInput").value;
+        document.getElementById("demo").innerHTML = "You Question: " + text;
+        let myAns = document.getElementById("myAns").value;
+        document.getElementById("Answer").innerHTML = "You Answer: " + myAns;
+
+        let Department = document.getElementById("Department");
+        let QuizNo = document.getElementById("QuizNo");
+
+        $.ajax({
+            type: 'GET',
+            url: "/QuizQuestionAnswers/QuizOption?departId=" + Department.value + "&QuizNo=" + QuizNo.value,
+            success: function (response) {
+                console.log(response);
+
+                for (i = 0; i < response.length; i++) {
+                    var no = i + 1;
+
+                    document.getElementById("Opt" + i).style.display = 'block';
+                    document.getElementById("Opt" + i + "btn").style.display = 'block';
+                    document.getElementById("Option" + i).value = response[i].options
+                    document.getElementById("option" + i).innerHTML = "You Option No " + no + " : " + response[i].options;
+                    document.getElementById("optionNo" + i).innerHTML = response[i].optionNo;
+                }
+
+
+            }
+        });
+
+
+
+
+
+
+
+        // Format the date and time to match the input type 'datetime-local'
+        const formattedDate = now.toISOString().slice(0, 16);
+
+        // Set the value of the input field
+        document.getElementById('qdDate').value = formattedDate;
+
+    }
+
+</script>
+
+
+
+
+@*<h1>Edit</h1>
+
+    <h4>QuizQuestionAnswer</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="QuizID" />
+                <div class="form-group">
+                    <label asp-for="QuizQno" class="control-label"></label>
+                    <input asp-for="QuizQno" class="form-control" />
+                    <span asp-validation-for="QuizQno" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Question" class="control-label"></label>
+                    <input asp-for="Question" class="form-control" />
+                    <span asp-validation-for="Question" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Answer" class="control-label"></label>
+                    <input asp-for="Answer" class="form-control" />
+                    <span asp-validation-for="Answer" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DepartmentID" class="control-label"></label>
+                    <select asp-for="DepartmentID" class="form-control" asp-items="ViewBag.DepartmentID"></select>
+                    <span asp-validation-for="DepartmentID" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="QStatus" /> @Html.DisplayNameFor(model => model.QStatus)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label asp-for="QuizDate" class="control-label"></label>
+                    <input asp-for="QuizDate" class="form-control" />
+                    <span asp-validation-for="QuizDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+
