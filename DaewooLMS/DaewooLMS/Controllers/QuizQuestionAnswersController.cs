@@ -202,5 +202,75 @@ namespace DaewooLMS.Controllers
         {
             return _context.QuizQuestionAnswer.Any(e => e.QuizID == id);
         }
+
+        public async Task<IActionResult> EnterOption([Bind("OptID,Options,QuizID,Department,OptDate")] string OptionEntry, int QuizNo, int depart, int OptValue, QuizOptions QuizOptions)
+        {
+            var OptionDb = QuizOptions;
+            OptionDb.Options = OptionEntry;
+            OptionDb.Department = depart;
+            OptionDb.QuizNo = QuizNo;
+            OptionDb.OptionNo = OptValue;
+            OptionDb.OptDate = DateTime.Now;
+            if (ModelState.IsValid)
+            {
+                _context.Add(QuizOptions);
+                await _context.SaveChangesAsync();
+                return Ok(QuizOptions);
+            }
+
+            return Ok();
+
+
+
+        }
+        public async Task<IActionResult> EditOption(string OptionEntry, int QuizNo, int depart, int OptNo, QuizOptions QuizOptions)
+        {
+
+            var opt = _context.QuizOptions.Where(a => a.QuizNo == QuizNo && a.Department == depart && a.OptionNo == OptNo).SingleOrDefault();
+
+            opt.Options = OptionEntry;
+            opt.Department = depart;
+            opt.QuizNo = QuizNo;
+            opt.OptionNo = OptNo;
+            opt.OptDate = DateTime.Now;
+            if (ModelState.IsValid)
+            {
+                _context.Update(opt);
+                await _context.SaveChangesAsync();
+                return Ok(opt);
+            }
+
+            return Ok();
+
+
+
+        }
+        [HttpGet]
+        public IActionResult QuizData(int id)
+        {
+            var lMSContext = _context.QuizQuestionAnswer.Include(q => q.Departments).ToList();
+
+            var data = lMSContext.Where(a => a.DepartmentID == id).ToList();
+
+
+
+            return Ok(data);
+        }
+        [HttpGet]
+        public IActionResult QuizOption(int departId, int QuizNo)
+        {
+            var Options = _context.QuizOptions.Where(q => q.Department == departId && q.QuizNo == QuizNo).ToList();
+            var data = Options;
+
+            return Ok(data);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> QuizLOG()
+        {
+            var QuizLog = await _context.QuizLogs.ToListAsync();
+            ViewData["DepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "DepartmentName");
+            return View(QuizLog);
+        }
     }
 }

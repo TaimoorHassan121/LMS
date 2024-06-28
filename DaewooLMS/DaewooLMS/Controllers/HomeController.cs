@@ -131,7 +131,7 @@ namespace DaewooLMS.Controllers
         [AllowAnonymous]
         public IActionResult Register()
         {
-            ViewData["QuizDepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "DepartmentName");
+            ViewData["DepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "DepartmentName");
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
             return View();
         }
