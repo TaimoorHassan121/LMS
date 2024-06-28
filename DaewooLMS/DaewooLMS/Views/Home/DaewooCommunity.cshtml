@@ -1,0 +1,389 @@
+﻿@using Microsoft.AspNetCore.Http
+@model LMSProject.Models.ViewModel.Emp_ChatVM
+@{
+    ViewData["Title"] = "DaewooCommunity";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+@{
+    long Emp_ID = User.Claims
+     .Where(x => x.Type == "Emp_ID")
+     .Select(x => Convert.ToInt64(x.Value))
+     .FirstOrDefault();
+}
+<style>
+    .toast-success {
+        background-color: #28a745 !important;
+        opacity: 0.9 !important; /* Adjust the opacity */
+    }
+
+    .toast-warning {
+        background-color: #ffc107 !important;
+        opacity: 0.9 !important;
+    }
+
+    .toast-error {
+        background-color: #dc3545 !important;
+        opacity: 0.9 !important;
+    }
+
+    .toast-info {
+        background-color: #17a2b8 !important;
+        opacity: 1 !important;
+    }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+    .gradient-custom { /* fallback for old browsers */
+        background: #4facfe; /* Chrome 10-25,
+Safari 5.1-6 */
+        background: -webkit-linear-gradient(to bottom right, rgba(79, 172, 254, 1), rgba(0, 242, 254, 1)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+,
+Safari 7+ */
+        background: linear-gradient(to bottom right, rgba(79, 172, 254, 1), rgba(0, 242, 254, 1))
+    }
+</style>
+
+<div class="container-fluid">
+
+
+    <div class="row bg-primary">
+        <div class="col-12 m-0 p-0 bg-secondary">
+            @*<img src="~/images/daewoo-express-gold.jpg" class=" bg-cover" style="height:20rem;width:100%" />*@
+            @*<img src="~/images/13.png" class=" bg-cover" style="height:45rem;width:100%" />*@
+            <img src="~/images/Empowering Growth Through E-Learning.png" class=" bg-cover" style="height:43rem;width:100%"  />
+        </div>
+
+    </div>
+
+    <div class="row border-black d-flex justify-content-around">
+
+        <div class="col-xl-2 col-md-2 col-sm-12 user-profile-card">
+            <div class=" mx-auto mt-2 d-flex justify-content-center">
+                <div class="avatar bg-rgba-primary p-50">                
+                    <img src="~/images/TaimoorDumy.png" class="img-fluid" alt="img placeholder" height="100" width="100" />
+                </div>
+            </div>
+            <div class=" text-center">
+                <h5>Kuwar Ashar</h5>
+                <p class="fw-bold">Hr Manager</p>
+            </div>
+        </div>
+
+        <div class="col-xl-2 col-md-2 col-sm-12 user-profile-card">
+            <div class=" mx-auto mt-2 d-flex justify-content-center">
+                <div class="avatar bg-rgba-primary p-50">
+                    <img src="~/images/AreejDummy.jpg" class="img-fluid" alt="img placeholder" height="100" width="100" />
+                </div>
+            </div>
+            <div class=" text-center">
+                <h5>Ms. Areej</h5>
+                <p class="fw-bold">HR </p>
+            </div>
+        </div>
+
+        <div class="col-xl-2 col-md-2 col-sm-12 user-profile-card">
+            <div class=" mx-auto mt-2  d-flex justify-content-center" >
+                <div class="avatar bg-rgba-primary p-50 ">
+                    <img src="~/images/TaimoorDumy.png" class="img-fluid" alt="img placeholder" height="100" width="100" />
+                </div>
+            </div>
+            <div class=" text-center">
+                <h5>Osama</h5>
+                <p class="fw-bold">HR</p>
+            </div>
+        </div>
+
+        <div class="col-xl-2 col-md-2 col-sm-12 user-profile-card">
+            <div class=" mx-auto mt-2 d-flex justify-content-center">
+                <div class="avatar bg-rgba-primary p-50">
+                    @*<img class="img-fluid" src="../../../app-assets/images/profile/user-uploads/social-2.jpg" alt="img placeholder" height="134" width="134">*@
+                    @*<img class="img-fluid" src="~/images/CEODaewoo.jpg" alt="img placeholder" height="100" width="100" />*@
+                    <img src="~/images/mypic.jpg" class="img-fluid" alt="img placeholder" height="100" width="100" />
+                </div>
+            </div>
+            <div class=" text-center">
+                <h5>Taimoor Hassan</h5>
+                <p class="fw-bold">Developer</p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="row mt-5">
+            <div class="col-xl-9 col-md-9 col-sm-12 ">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="mt-5 text-capitalize fs-3 fw-bold">Dicussion</div>
+                        <hr />
+                    </div>
+                    <div class="card-body">
+                        <section class="gradient-custom">
+                            <div class="container-fluid my-2 py-2">
+                                <div class="row d-flex justify-content-center">
+
+                                    <div class="card">
+                                        <div class="card-body p-4">
+
+                                            <div class="row">
+                                                <div class="col">
+                                                @foreach (var item in Model.Emp_Chat_M)
+                                                {
+                                                    <div class="d-flex flex-start mb-5">
+
+                                                        <img class="rounded-circle shadow-1-strong me-3"
+                                                             src="~/images/@item.Emp_Pic" alt="avatar" width="65"
+                                                             height="65" />
+                                                        <div class="flex-grow-1 flex-shrink-1">
+
+                                                            <div>
+                                                                <input type="hidden" id="ChatID_M" asp-for="@item.ChatID" />
+                                                                <div class="d-flex justify-content-between align-items-center">
+                                                                    <p class="mb-1">
+                                                                        <span class="small"> <span class="text-info fw-bold"> @item.Emp_Name</span><span class="text-warning fw-bold" id="Emp_ChatID_M-@item.ChatID" value="@item.Emp_ID"> @item.Emp_ID </span> - @item.MsgDate.ToString("dd/MM/yyyy") hours ago  </span>
+                                                                    </p>
+
+                                                                    <button class="btn btn-primary" id="reply" onclick="Reply(@item.ChatID)"><i class="fas fa-reply fa-xs"></i><span class="small">Reply</button>
+                                                                    @* <a href="#!"><i class="fas fa-reply fa-xs"></i><span class="small"> reply</span></a> *@
+                                                                </div>
+                                                                <p class=" mb-0">
+                                                                    @item.message
+                                                                </p>
+                                                            </div>
+                                                            @foreach (var reply in Model.Emp_Chat_Reply.Where(a => a.ChatM_ID == @item.ChatID))
+                                                            {
+                                                                <div class="d-flex flex-start mt-4">
+                                                                    <a class="me-3" href="#">
+                                                                        <img class="rounded-circle shadow-1-strong"
+                                                                             src="~/images/@reply.Emp_Pic_Reply" alt="avatar"
+                                                                             width="65" height="65" />
+                                                                    </a>
+                                                                    <div class="flex-grow-1 flex-shrink-1">
+                                                                        <div>
+                                                                            <div class="d-flex justify-content-between align-items-center">
+                                                                                <div class="text-primary fw-bold small" id="Emp_Name_Reply">
+                                                                                     @reply.Emp_Name <span class="text-warning fw-bold small">@reply.Emp_Reply_ID </span> <span class="small"> - 3 hours ago</span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <p class=" mb-0">
+                                                                             @reply.Reply_Message
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                        
+
+                                                        </div>
+                                                    </div>
+                                                }
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+  
+            <div class="col-xl-3 col-md-3 col-sm-12 ">
+                <div class="card">
+                    <div class="card-body">
+                   @*  <form class="form form-vertical" asp-action="DaewooCommunity" enctype="multipart/form-data"> *@
+                            <div class="form-body">
+                                <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="password-vertical">Employee ID</label>
+                                        <input type="number" id="Emp_ID" asp-for="employee.Emp_ID" class="form-control" placeholder="" readonly>
+                                    </div>
+                                </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="first-name-vertical">Employee Name</label>
+                                    <input type="text" id="Emp_Name" asp-for="employee.Emp_Name" class="form-control" placeholder="" readonly>
+                                        </div>
+                                    </div>
+                            
+
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="password-vertical">Designation & Department </label>
+                                    <input type="text" id="Desig-deprt"  class="form-control" placeholder="" readonly>
+                                    <input type="hidden" id="Emp_Designation" asp-for="employee.Designation">
+                                    <input type="hidden" asp-for="Departments.QuizDepartmentName" id="Department" name="Departments.DepartmentName" />
+                                 
+
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="password-vertical">Message</label>
+                                        <textarea type="text" id="message" rows="5"  class="form-control"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 d-flex justify-content-end">
+
+                                <input type="submit" value="Ask Question" onclick="addMessage()" id="addMessage" class="btn btn-primary mr-1" />
+                                        @* <button type="submit" class="btn btn-primary mr-1 btn-lg">Ask Question</button> *@
+
+                                    </div>
+                                </div>
+                            </div>
+                        @* </form> *@
+                    </div>
+                </div>
+              
+
+            </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+<div class="container-fluid m-0 p-0 d-flex justify-content-around" style="background-color: #2B3268;font-family:'Times New Roman', Times, serif ">
+    <h1 class="text-center p-3 text-capitalize " style="color: #fcbe38 ">"There is no power for change greater than a community" <sub class="h6 text-info">(MAGARAET 3)</sub></h1>
+</div>
+
+
+
+ <script>
+
+    var employee = @Html.Raw(Json.Serialize(Model.employee));
+    var Chat_M = @Html.Raw(Json.Serialize(Model.Emp_Chat_M));
+
+    window.onload = function () {
+        var deprt = document.getElementById("Department").value;
+        var designation = employee.designation;
+        var serializedData = designation + "," + deprt;
+        document.getElementById('Desig-deprt').value = serializedData;
+        // const now = new Date();
+
+        // // Get the timezone offset in minutes and convert to milliseconds
+        // const timezoneOffset = now.getTimezoneOffset() * 60000;
+
+        // // Adjust the time to the local time zone
+        // const localDate = new Date(now.getTime() - timezoneOffset);
+
+        // // Format the date and time to match the input type 'datetime-local'
+        // const formattedDate = localDate.toISOString().slice(0, 16);
+
+        // // Set the value of the input field
+        // document.getElementById('qdDate').value = formattedDate;
+    }
+
+
+
+        function Reply(index) {
+
+        var currentEmpID = Emp_ID.value
+        // var EmpID_Chat_M = Chat_M[index].emp_ID;
+        var EmpID_Chat_M = document.getElementById("Emp_ChatID_M-" + index + "").textContent.trim();
+        var Emp_Name = employee.emp_Name;
+        var ChatID_M = index
+        var Emp_pic = employee.emp_Pic;
+
+            Swal.fire({
+                title: 'Enter Your Reply Here!',
+            html: `<textarea id="Reply_M" class="swal2-textarea" placeholder="Type your message here..." rows="5" cols="50"></textarea>`,
+            confirmButtonText: 'Submit',
+                text: "That thing is still around?",
+                confirmButtonClass: 'btn btn-primary',
+                buttonsStyling: false,
+            preConfirm: () => {
+                const message = document.getElementById('Reply_M').value;
+                if (!message) {
+                    Swal.showValidationMessage('You need to write something!');
+                    return false;
+                }
+                // successMag();
+                return message;
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Send the message to the server using AJAX
+                $.ajax({
+                    type: 'POST',
+                    url: '/Home/DaewooCommunityReply?CurrentEmpId=' + currentEmpID + '&CurrentEmpId=' + currentEmpID + '&Emp_ChatID_M=' + EmpID_Chat_M + '&Chat_ID_M=' + ChatID_M + '&message=' + message + '&Emp_Pic=' + Emp_pic + '&Emp_Name=' + Emp_Name, // Replace with your controller endpoint
+                    data: {
+                        message: result.value
+                    },
+                    success: function (response) {
+                        Swal.fire('Submitted!', 'Your message has been sent.', 'success');
+                    },
+                    error: function (xhr, status, error) {
+                        Swal.fire('Error!', 'There was a problem sending your message.', 'error');
+                    }
+                });
+            }
+        });
+                
+        }
+
+        function successMag() {
+
+            var isRtl = $('html').attr('data-textdirection') === 'rtl';
+   
+        toastr['success']('Your Message Send Successfully', 'Daewoo Community', {
+                rtl: isRtl
+            });
+        }
+
+
+
+    
+
+     $(document).ready(function () {
+         $('#addMessage').click(function () {
+             var emp_ID = $('#Emp_ID').val();
+             var empName = $('#Emp_Name').val();
+             var designation = $('#Emp_Designation').val();
+             var Message = $('#message').val();
+             var Emp_Pic = employee.emp_Pic;
+             if (designation == "") {
+                return alert("Please Enter Designation.")
+             }
+             if (Message == "") {
+                 return alert("Please Enter Message.")
+             }
+             $.ajax({
+                 type: 'POST',
+                url: '/Home/DaewooCommunityADD?id=' + emp_ID + '&name=' + empName + '&designation=' + designation + '&message=' + Message + '&emp_pic=' + Emp_Pic,
+
+             });
+         });
+     });
+
+    //  function addMessage()
+    //  // console.log();
+    // var emp_ID = document.getElementById("Emp_ID").value
+    // var empName = document.getElementById("Emp_Name").value;
+    // var designation = document.getElementById("Emp_Designation").value;
+    // var Message = document.getElementById("message").value;
+
+    // if (designation == "") {
+    //     alert("Please Enter Designation.")
+    //  }
+    // if (Message == "") {
+    //     alert("Please Enter Message.")
+    // }
+
+
+    //  $.ajax({
+    //      type: POST;
+    //      URL: "/Home/DaewooCommunity?id=" + emp_ID + "&name" + empName + "&designation" + designation + "&message" + Message;
+
+    //  });
+
+
+ </script>

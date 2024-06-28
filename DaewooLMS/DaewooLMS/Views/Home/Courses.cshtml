@@ -1,0 +1,428 @@
+﻿
+@{
+    ViewData["Title"] = "Courses";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+
+
+
+
+
+<div class="container  ">
+    <h1 class="display-3  my-3" @*style="margin-top:8rem"*@>Digital Library</h1>
+    <div class="row">
+
+        <div class="col-md-2 ">
+            <a href="/LearningDetail/Admin">
+                <div class="card hover-overlay ripple  " >
+                    <img src="~/images/1admin.png" />
+                </div>
+            </a>
+   
+        </div>
+
+        <div class="col-md-2">
+            <a href="/LearningDetail/Accouning">
+                <div class="card">
+                    @* <img class="img-fluid card-img bg-warning" src="~/images/account.png" /> *@
+                    <img class="img-fluid card-img bg-warning" src="~/images/2account.png" />
+                </div>
+            </a>
+ 
+        </div>
+
+        <div class="col-md-2">
+            <a href="/LearningDetail/HumanResource">
+                <div class="card">
+                    @* <img class="img-fluid card-img" src="~/images/hr.png"> *@
+                    <img src="~/images/15hr.png" />
+                </div>
+            </a>
+ 
+        </div>
+
+        <div class="col-md-2">
+            <a href="/LearningDetail/MIS">
+                <div class="card">
+                    @* <img class="img-fluid card-img" src="~/images/mis.png" alt="Deer in nature"> *@
+                    <img src="~/images/10mis.png" />
+                </div>
+            </a> 
+        </div>
+
+        <div class="col-md-2">
+            <a href="/LearningDetail/Marketing_Services">
+                <div class="card hover-overlay ripple shadow-1-strong " data-mdb-ripple-color="light">
+                    @* <img class="img-fluid card-img rounded-3" src="~/images/market&service.png" alt="Deer in nature"> *@
+                    <img src="~/images/9market&service.png" />
+                </div>
+            </a>
+
+        </div>
+
+        <div class="col-md-2">
+            <a href="/LearningDetail/SupplyChain_Procurement">
+                <div class="card">
+                    @* <img class="img-fluid card-img bg-warning" src="~/images/supply&precurment.png" alt="supply&precurment"> *@
+                    <img src="~/images/12supply&precurment.png" />
+                </div>
+            </a>
+
+        </div>
+    </div>
+    <div class="row mt-3 mb-4">
+ 
+
+        <div class="col-md-2">
+            <a href="/LearningDetail/Operation">
+                <div class="card">
+                    @* <img class="img-fluid card-img" src="~/images/operation.jpg" alt="operation"> *@
+                    <img src="~/images/11operation.png" />
+                </div>
+            </a>
+
+        </div>
+
+        <div class="col-md-2">
+            <a href="/LearningDetail/InternalAudit">
+                <div class="card">
+                    @* <img class="img-fluid card-img" src="~/images/internalaudit.png" alt="internalaudit"> *@
+                    <img src="~/images/6internalaudit.png" />
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-2">
+            <a href="/LearningDetail/Fuleing">
+                <div class="card hover-overlay ripple shadow-1-strong " data-mdb-ripple-color="light">
+                    @* <img class="img-fluid card-img rounded-3" src="~/images/fuleing.png" alt="Deer in nature"> *@
+                    <img src="~/images/4fuleing.png" />
+                </div>
+            </a>
+
+        </div>
+
+        <div class="col-md-2">
+            <a href="/LearningDetail/Govt_Relation_PR_Protocole">
+                <div class="card">
+                    <img class="img-fluid card-img bg-warning" src="~/images/govt_relation.png" alt="Deer in nature">
+
+                </div>
+            </a>
+
+        </div>
+
+        <div class="col-md-2">
+            <a href="/LearningDetail/Vigilance_Monitoring">
+                <div class="card">
+                    <img class="img-fluid card-img" src="~/images/vigilance&monitoring.png" alt="Deer in nature">
+
+                </div>
+            </a>
+
+        </div>
+
+        <div class="col-md-2">
+            <a href="/LearningDetail/WorkShop">
+                <div class="card">
+                    <img class="img-fluid card-img" src="~/images/workshop.png" alt="Deer in nature">
+
+                </div>
+            </a>
+        </div>
+    </div>
+@*     <div class="row mt-3 mb-4">
+     
+    </div> *@
+    <div class="row mt-3 mb-4">  
+
+        <div class="col-md-2">
+            <a href="/LearningDetail/Commercial_Property">
+                <div class="card">
+                    <img class="img-fluid card-img bg-warning" src="~/images/comercialproperty.png" alt="Deer in nature">
+                  
+                </div>
+            </a>
+
+        </div>
+
+        <div class="col-md-2">
+            <a href="/LearningDetail/InvestmentPlaning">
+                <div class="card">
+                    <img class="img-fluid card-img" src="~/images/investment&planing.png" alt="Deer in nature">
+
+                </div>
+            </a>
+
+        </div>
+
+        <div class="col-md-2">
+            <a href="/LearningDetail/Legal">
+                <div class="card">
+                    <img class="img-fluid card-img" src="~/images/leagel.png" alt="Deer in nature">
+
+                </div>
+            </a>
+        </div>
+    </div>
+       
+</div>
+
+<div class="container-fluid m-0 p-0 d-flex justify-content-around" style="background-color: #2B3268;font-family:'Times New Roman', Times, serif ">
+
+
+    <h1 class="text-center p-3  text-capitalize" style="color: #fcbe38 ">"Today's lessons pave tomorrow's way."</h1>
+
+
+</div>
+
+
+@*<section>
+    <div class="container py-5">
+        <h1 class="text-center mb-5"><strong>Courses</strong></h1>
+
+        <div class="row">
+            <div class="col-lg-4 col-md-12 mb-4">
+                <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
+                    <a href="#!">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/new/img(1).webp"
+                             class="w-100" />
+                        <div class="overlay-content">
+                            <p class="card-text text-ellipsis">
+                                Sugar plum tiramisu sweet. Cake jelly marshmallow cotton candy chupa
+                                chups.
+                            </p>
+                        </div>
+                        <div class="overlay-status">
+                            <p class="mb-25"><small>Last updated 3 mins ago</small></p>
+                            <a href="javascript:void(0);" class="btn btn-success">Check More </a>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/new/img(2).webp"
+                         class="w-100" />
+                    <a href="#!">
+                        <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
+                            <div class="d-flex justify-content-start align-items-start h-100">
+                                <h5><span class="badge bg-light pt-2 ms-3 mt-3 text-dark">$239</span></h5>
+                            </div>
+                        </div>
+                        <div class="hover-overlay">
+                            <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/new/img(3).webp"
+                         class="w-100" />
+                    <a href="#!">
+                        <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
+                            <div class="d-flex justify-content-start align-items-start h-100">
+                                <h5><span class="badge bg-light pt-2 ms-3 mt-3 text-dark">$147</span></h5>
+                            </div>
+                        </div>
+                        <div class="hover-overlay">
+                            <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 col-md-12 mb-4">
+                <div class="bg-image hover-zoom ripple shadow-1-strong rounded ripple-surface">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/new/img(4).webp"
+                         class="w-100" />
+                    <a href="#!">
+                        <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
+                            <div class="d-flex justify-content-start align-items-start h-100">
+                                <h5><span class="badge bg-light pt-2 ms-3 mt-3 text-dark">$83</span></h5>
+                            </div>
+                        </div>
+                        <div class="hover-overlay">
+                            <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/new/img(5).webp"
+                         class="w-100" />
+                    <a href="#!">
+                        <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
+                            <div class="d-flex justify-content-start align-items-start h-100">
+                                <h5><span class="badge bg-light pt-2 ms-3 mt-3 text-dark">$106</span></h5>
+                            </div>
+                        </div>
+                        <div class="hover-overlay">
+                            <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/new/img(6).webp"
+                         class="w-100" />
+                    <a href="#!">
+                        <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
+                            <div class="d-flex justify-content-start align-items-start h-100">
+                                <h5><span class="badge bg-light pt-2 ms-3 mt-3 text-dark">$58</span></h5>
+                            </div>
+                        </div>
+                        <div class="hover-overlay">
+                            <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<section id="card-caps">
+    <div class="row">
+        <div class="col-xl-3 col-md-6 col-sm-12">
+            <div class="card">
+                <img class="card-img img-fluid" src="../../../app-assets/images/slider/08.jpg" alt="Card image">
+                <div class="card-img-overlay overlay-success d-flex justify-content-between flex-column">
+                    <div class="overlay-content">
+                        <p class="card-text text-ellipsis">
+                            Sugar plum tiramisu sweet. Cake jelly marshmallow cotton candy chupa
+                            chups.
+                        </p>
+                    </div>
+                    <div class="overlay-status">
+                        <p class="mb-25"><small>Last updated 3 mins ago</small></p>
+                        <a href="javascript:void(0);" class="btn btn-success">Check More </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 col-sm-12">
+            <div class="card">
+                <img class="card-img img-fluid" src="../../../app-assets/images/slider/07.jpg" alt="Card image">
+                <div class="card-img-overlay overlay-dark bg-overlay d-flex justify-content-between flex-column">
+                    <div class="overlay-content">
+                        <h4 class="card-title mb-50">Online Messages</h4>
+                        <p class="card-text text-ellipsis">
+                            Sugar plum tiramisu sweet. Cake jelly marshmallow cotton candy chupa
+                            chups.
+                        </p>
+                    </div>
+                    <div class="overlay-status">
+                        <p class="mb-25"><small>Last updated 3 mins ago</small></p>
+                        <a href="javascript:void(0);" class="white">Check More </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 col-sm-12">
+            <div class="card">
+                <img class="card-img img-fluid" src="../../../app-assets/images/slider/08.jpg" alt="Card image">
+                <div class="card-img-overlay overlay-dark d-flex justify-content-between flex-column">
+                    <div class="overlay-content">
+                        <p class="card-text text-ellipsis">
+                            Sugar plum tiramisu sweet. Cake jelly marshmallow cotton candy chupa
+                            chups.
+                        </p>
+                    </div>
+                    <div class="overlay-status">
+                        <p class="mb-25"><small>Last updated 3 mins ago</small></p>
+                        <a href="javascript:void(0);" class="btn btn-outline-info">Check More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 col-sm-12">
+            <div class="card">
+                <img class="card-img img-fluid" src="../../../app-assets/images/slider/07.jpg" alt="Card image">
+                <div class="card-img-overlay overlay-warning d-flex justify-content-between flex-column">
+                    <div class="overlay-content">
+                        <h4 class="card-title mb-50">Image Overlay</h4>
+                        <p class="card-text text-ellipsis">
+                            Sugar plum tiramisu sweet. Cake jelly marshmallow cotton candy chupa
+                            chups.
+                        </p>
+                    </div>
+                    <div class="overlay-status">
+                        <p class="mb-25"><small>Last updated 3 mins ago</small></p>
+                        <a href="javascript:void(0);" class="white">Check More </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>*@
+<!-- Card Captions and Overlay section end -->
+
+
+
+@*<div class="col-lg-4 col-md-12 mb-4">
+    <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
+        <a href="#!">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/new/img(1).webp"
+                 class="w-100" />
+
+            <div class="overlay-content">
+                <p class="card-text text-ellipsis">
+                    Sugar plum tiramisu sweet. Cake jelly marshmallow cotton candy chupa
+                    chups.
+                </p>
+            </div>
+            <div class="overlay-status">
+                <p class="mb-25"><small>Last updated 3 mins ago</small></p>
+                <a href="javascript:void(0);" class="btn btn-success">Check More </a>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="col-xl-3 col-md-6 col-sm-12">
+    <div class="card">
+        <img class="card-img img-fluid" src="../../../app-assets/images/slider/08.jpg" alt="Card image">
+        <div class="card-img-overlay overlay-success d-flex justify-content-between flex-column">
+            <div class="overlay-content">
+                <p class="card-text text-ellipsis">
+                    Sugar plum tiramisu sweet. Cake jelly marshmallow cotton candy chupa
+                    chups.
+                </p>
+            </div>
+            <div class="overlay-status">
+                <p class="mb-25"><small>Last updated 3 mins ago</small></p>
+                <a href="javascript:void(0);" class="btn btn-success">Check More </a>
+            </div>
+        </div>
+    </div>
+</div>*@

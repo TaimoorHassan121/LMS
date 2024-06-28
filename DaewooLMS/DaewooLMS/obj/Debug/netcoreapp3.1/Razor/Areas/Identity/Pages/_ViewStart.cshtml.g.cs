@@ -12,7 +12,29 @@ namespace AspNetCore
     using global::Microsoft.AspNetCore.Mvc;
     using global::Microsoft.AspNetCore.Mvc.Rendering;
     using global::Microsoft.AspNetCore.Mvc.ViewFeatures;
+#nullable restore
+#line 1 "D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\Areas\Identity\Pages\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Identity;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 2 "D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\Areas\Identity\Pages\_ViewImports.cshtml"
+using DaewooLMS.Areas.Identity;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\Areas\Identity\Pages\_ViewImports.cshtml"
+using DaewooLMS.Areas.Identity.Pages;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"Sha256", @"ff2f0c08e4c4522597448f1c553985a289ff77266246dda050b688aa47c4d670", @"/Areas/Identity/Pages/_ViewStart.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"Sha256", @"4ef2f26c9f8765a1e952f3f22aaf88fe066ff7b69ed741c5853555dfb7964cfc", @"/Areas/Identity/Pages/_ViewImports.cshtml")]
     #nullable restore
     public class Areas_Identity_Pages__ViewStart : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     #nullable disable

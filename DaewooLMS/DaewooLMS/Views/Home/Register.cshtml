@@ -1,0 +1,273 @@
+﻿
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_LayoutRegister.cshtml";
+}
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<section class="layout-pt-lg " style="background-color:#321621;opacity:.8" id="login-or-register-step-4">
+    <div class="container">
+        <div class="row justify-center">
+            <div class="col-lg-6 justify-center text-center">
+                <div class="content-title pb-30">
+                    <h2 class="text-white">Step into the realm of knowledge and unleash your potential!</h2>
+                    @* <p class="fw-500">These popular destinations have alot to offer.</p> *@
+                </div>
+                <div class="pt-30">
+                    <img src="~/images/register.jpeg" />
+                    @* <img src="/AgencyAssets/img/general/Frame.png" alt="img" class="p-50"> *@
+                </div>
+            </div>
+            
+            <div class="col-xl-6 col-lg-7 col-md-9">
+                <div class="px-50 py-50 sm:px-20 sm:py-20 bg-white shadow-4 rounded-4">
+                    <div class="row y-gap-20">
+                
+                       
+                        <div class="col-12">
+                            <h1 class="text-22 fw-500 text-green-1">Register YourSelf</h1>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-input ">
+                                <input type="number" required name="AgencyName" min="0" max="6" id="empID">
+                                <label class="lh-1 text-14 text-light-1">Employee ID</label>
+                            </div>
+                            <span id="AgencyName-Error" style="color:Red"></span>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-input ">
+                                <input type="text" name="Email" id="empName">
+                                <label class="lh-1 text-14 text-light-1">Employee Name</label>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-input ">
+                                <input type="text" required name="" id="mobNumber">
+                                <label class="lh-1 text-14 text-light-1"> Mobile Number </label>
+                            </div>
+                            <span id="AgencyContactNumber-Error" style="color:Red"></span>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-input ">
+                                <input type="text" required name="" id="passward">
+                                <label class="lh-1 text-14 text-light-1"> Enter Passward </label>
+                            </div>
+                            <span id="AgencyContactNumber-Error" style="color:Red"></span>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-input ">
+                                <select  class="select2" class="form-control" id="Department" onchange="changeDepartment(this)" asp-items="ViewBag.DepartmentID">
+                                    <option value="">Select Department</option>
+                                </select>
+                                <label class="lh-1 text-14 text-light-1">Department</label>
+                                <span id="CityId-Error" style="color:Red"></span>
+
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-input ">
+                                <input type="text" required name="" id="designation">
+                                <label class="lh-1 text-14 text-light-1"> Designation </label>
+                            </div>
+                            <span id="AgencyContactNumber-Error" style="color:Red"></span>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-input ">
+                                <select id="Gender" name="Gender">
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                                <label class="lh-1 text-14 text-light-1">Gender</label>
+                            </div>
+                            <span id="Gender-Error" style="color:Red"></span>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6">
+                            <fieldset class="form-group">
+                                <label>Profile Pic</label>
+                                <div class="custom-file">
+                                    <input  type="file" name="profilepic" class="custom-file-input" id="inputGroupFile01"
+                                           onchange="document.getElementById('FrontImage').src=window.URL.createObjectURL(this.files[0])" />
+                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                </div>
+                                <span  class="text-danger"></span>
+                                <img id="FrontImage" src="~/Images/No-image.jpg" alt="Employee Image" width="150" height="150"
+                                     style="border:1px;margin-top:10px;margin-left:120px;" />
+                            </fieldset>
+                        </div>
+
+                        <div class="col-12">
+                         @*    <div class="row">
+                                <p class="pb-3">Profile Pic</p>
+                                <div class="col-3 px-10 py-10">
+                                    <img id="" src="/AgencyAssets/img/general/image.png" alt="img">
+                                </div>
+                                <div class="col-6">
+                                    <div class="upload-btn-wrapper">
+                                        <button class="btn bg-light-white rounded-4">Upload Image</button>
+                                        <input type="file" name="myfile" onchange="getFile(this,'agency-logo-input','agency-logo-img')" />
+                                        <input type="hidden" name="AgencyLogo" id="agency-logo-input" value="" />
+                                    </div>
+                                </div>
+                            </div> *@
+
+                            <div class="col-12 pt-60">
+
+                                <a href="javascript:void(0)" class="button py-20 bg-green-3 text-white hover-dark-green form-next-btn rounded-12" id="submit-button">
+                                    Get Started
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+@section Scripts{
+<script>
+    window.onload = function () {
+        // Get the current date and time
+
+            const now = new Date();
+
+            // Get the timezone offset in minutes and convert to milliseconds
+            const timezoneOffset = now.getTimezoneOffset() * 60000;
+
+            // Adjust the time to the local time zone
+            const localDate = new Date(now.getTime() - timezoneOffset);
+
+            // Format the date and time to match the input type 'datetime-local'
+            const formattedDate = localDate.toISOString().slice(0, 16);
+
+            // Set the value of the input field
+            document.getElementById('qdDate').value = formattedDate;
+    }
+</script>
+<script>
+    function getFile(event, id_input, id_img) {
+        fileChangeEvent(event.files[0], id_input, id_img)
+    }
+    function fileChangeEvent(file, id_input, id_img) {
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const imageShow = document.getElementById(id_img);
+                const imgInput = document.getElementById(id_input);
+                const imgBase64Path = e.target.result;
+                imgInput.setAttribute("value", imgBase64Path);
+                imageShow.setAttribute("src", imgBase64Path);
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+    ///image remove
+    function fileRemove(id_input, id_img) {
+        document.getElementById(id_img).setAttribute("src", "/AgencyAssets/img/avatars/avatar-2.png");
+        document.getElementById(id_input).setAttribute("value", "");
+    }
+</script>
+<script>
+        document.getElementById('empID').addEventListener('input', function (e) {
+            const input = e.target;
+            const value = input.value;
+
+            // Remove non-digit characters
+            input.value = value.replace(/\D/g, '');
+
+            // Trim to 6 digits if necessary
+            if (input.value.length > 6) {
+                input.value = input.value.slice(0, 6);
+            }
+        });
+
+
+
+    </script>
+<script type="text/javascript">
+        document.querySelector('.custom-file-input').addEventListener('change', function (e) {
+            var fileName = document.getElementById("inputGroupFile01").files[0].name;
+            var nextSibling = e.target.nextElementSibling
+            nextSibling.innerText = fileName;
+        })
+</script>
+
+<script>
+        $(document).ready(function () {
+            $('#submit-button').click(function () {
+                var emp_ID = $('#empID').val();
+                var empName = $('#empName').val();
+                var mobileNo = $('#mobNumber').val();
+                var passward = $('#passward').val();
+                var Department = $('#Department').val();
+                var designation = $('#designation').val();
+                var gender = $('#Gender').val();
+                var designation = $('#designation').val();
+                var PP = document.getElementById("inputGroupFile01").value;
+                var profilePic = document.getElementById("inputGroupFile01");            
+
+                if (designation == "") return alert("Please Enter Designation.");
+                if (emp_ID == "")  return alert("Please Enter Employee ID Like (22464).")
+                if (empName == "") return alert("Please Enter Employee Name Like Abdullah.")
+                if (mobileNo == "") return alert("Please Enter Mobile No Like asd@123.")
+                if (PP == "") return alert("Please select a Picture");
+                // if (Department == "") return alert("Please Enter Department Like Admin.")
+
+                const file = profilePic.files[0];
+                const formData = new FormData();
+                formData.append('profilepic', file, file.name);
+                formData.append('id', emp_ID);
+                formData.append('name', empName);
+                formData.append('mob', mobileNo);
+                formData.append('pwd', passward);
+                formData.append('deprt', Department);
+                formData.append('design', designation);
+                formData.append('gender', gender);
+
+
+                // var URL = '/Home/Register?id=' + emp_ID + '&name=' + empName + '&mob=' + mobileNo + '&pwd=' + passward + '&deprt=' + Department + '&design=' + designation + '&gender=' + gender + '&profilepic=' + file;
+                var URL = '/Home/Register';
+                $.ajax({
+                    type: 'POST',
+                    url: URL,
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+
+                        Swal.fire('Submitted!', 'Your message has been sent.', 'success');
+                        window.location.href = ("/Home/Login");
+
+                    },
+                    error: function (error) {
+                        Swal.fire('Error!', 'An error occurred while submitting your data.', 'error');
+                    }
+                });
+            });
+        });
+
+
+</script>
+
+
+}

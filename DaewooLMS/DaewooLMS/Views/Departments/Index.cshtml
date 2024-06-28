@@ -1,0 +1,91 @@
+﻿@model IEnumerable<DaewooLMS.Models.Department>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-body">
+    <div class="row">
+
+    </div>
+    <!-- Zero configuration table -->
+    <section id="basic-datatable">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>QuizDepartment List</h5>
+                        <a style="float:right" class="btn btn-primary" asp-action="Create">
+                            <i class="bx bx-plus-medical"></i>
+                        </a>
+                    </div>
+                    <div class="card-body card-dashboard">
+
+                        <div class="table-responsive">
+                            <table class="table zero-configuration">
+                                <thead>
+                                    <tr>
+                                        <th>Sr#</th>
+                                        <th>
+                                            QuizDepartment Name
+                                        </th>
+
+                                        <th>
+                                            Date
+                                        </th>
+                                        <th>
+                                            Status
+                                        </th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        var i = 1;
+                                    }
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.DepartmentID</td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DepartmentName)
+                                            </td>
+
+                                            <td>
+                                                @item.Date.ToString("dd-MM-yyyy")
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Status)
+                                            </td>
+                                            <td>
+                                                @* <a asp-action="Edit" asp-route-id="@item.QuizDepartmentID">Edit</a> |
+                                                <a asp-action="Details" asp-route-id="@item.QuizDepartmentID">Details</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.QuizDepartmentID">Delete</a> *@
+                                                <a asp-action="Edit" class="btn btn-success btn-sm" asp-route-id="@item.DepartmentID">Edit</a>
+                                                <a asp-action="Details" class="btn btn-info btn-sm" asp-route-id="@item.DepartmentID">Details</a>
+                                                <a asp-action="Delete" class="btn btn-danger btn-sm" asp-route-id="@item.DepartmentID">Delete</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/ Zero configuration table -->
+
+</div>
+
+
+
+
+
+
+
+
+

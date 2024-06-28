@@ -1,0 +1,240 @@
+﻿@model LMSProject.Models.ViewModel.AddNewPolicyVM
+@{
+    ViewData["Title"] = "newPolicy";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    int count = 1;
+}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+        </div>
+        <div class="content-body">
+            <!-- app invoice View Page -->
+            <section class="invoice-edit-wrapper" >
+                <div class="row">
+                    <!-- invoice view page -->
+                    <div class="col-xl-9 col-md-8 col-12" id="htmlContent">
+                        <div class="card" >
+                            <div class="card-body pb-0 mx-25">
+                                <!-- header section -->
+                                <div class="row mx-0">
+
+                                    <table class="table-bordered">
+                                        <tr>
+                                            <th class="col-2"><img src="\images\learning___development-removebg-preview.png" width="100" height="100" /></th>
+                                            <th class="col-8 text-center">HR Policies & Procedures</th>
+                                            <th>
+                                                Chapter# HR/00/00
+                                                Issue Date: @Model.NewHrPolicies.PolicyDate.ToString("dd-MM-yyyy")
+                                            </th>
+
+                                        </tr>
+                                    </table>
+                                </div>
+                                <!-- logo and title -->
+                                <div class="row my-4 py-50">
+                                
+                                    <h4 class="text-dark text-center fw-bold">@Model.NewHrPolicies.PolicyName</h4>
+                                </div>
+                                <!-- invoice address and contact -->
+                                <div class="row ">
+                                    <div class="col-1"></div>
+                                    <div class=" col-10" id="DownloadWord" style="font-family:Arial">
+                                        
+                                        @foreach(var item in Model.newaddPolicies)
+                                        {
+                                            
+                                            <div >
+                                                <span class="fw-bold">@count.</span> &emsp; <span class="fw-bold"><u>@item.PolicyHeading</u></span>&emsp;&emsp;
+                                                <span id="formatted-text" style="white-space: pre-wrap;word-wrap: break-word;">  @Html.Raw(item.PolicyDetail.Replace("\n", "\n"))</span>
+                                            </div>
+                                            <br />
+                                            count++;
+                                        }
+                                    </div>
+                                
+
+                                    <div class="col-1"></div>
+
+
+
+                                </div>
+                                <div class="row my-5">
+                                    <div class="col-2"></div>
+                                    <div class="col-8">
+                                        <table class="table-bordered">
+                                            <tr>
+                                                <td class="fw-bold text-center">
+                                                    Prepared By<br/>
+                                                    Human Resources Department
+                                                </td>
+                                                <td class="fw-bold text-center">
+                                                    Approved By<br />
+                                                    Chief Executive Officer
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width:250px;height:85px"> </td>
+                                                <td style="width:250px;height:85px"> </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-2"></div>
+
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- invoice action  -->
+                    <div class="col-xl-3 col-md-4 col-12">
+                        <div class="card invoice-action-wrapper shadow-none border">
+                            <div class="card-body">
+                                <div class="invoice-action-btn mb-1">
+                                    <button class="btn btn-primary btn-block"  onclick="downloadWord()">
+                                        <span>Download Document</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>
+<!-- END: Content-->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pizzip/3.1.1/pizzip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.22.2/docxtemplater.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+<script>
+    function downloadWord() {
+        var htmlContent = document.getElementById("htmlContent");
+        var htmltext = htmlContent.innerHTML;
+        var data =  htmltext ;
+        var json = JSON.stringify(data, null, 2);
+        // var htmlContent = '<h1>HTML to Word Document</h1>' + contentTable + contentImage;
+
+        fetch('/Home/ConvertHtmlToWord?HtmlContentModel=' + htmltext, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            // body: JSON.stringify({ htmlContent: htmlContent })
+        }).then(response => response.blob())
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = 'document.docx';
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+            })
+            .catch(error => console.error('Error:', error));
+    }
+</script>
+
+@* <script>
+
+
+    function downloadWord() {
+
+        var htmlContent = document.getElementById("htmlContent");
+        var htmltext = htmlContent.outerHTML;
+            $.ajax({
+                type: 'POST',
+            url: '/Home/ConvertHtmlToWord?HtmlInputModel=' + htmltext,
+                // contentType: 'application/json',
+                // data: JSON.stringify({ HtmlContent: htmlContent }),
+                success: function (response) {
+                    var blob = new Blob([response], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+                    var link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = 'Document.docx';
+                    link.click();
+                },
+                xhrFields: {
+                    responseType: 'blob'
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error:', error);
+                }
+            });
+        }
+</script> *@
+
+
+
+
+
+@* <script>
+    function downloadWord() {
+
+
+        var htmlContent = document.getElementById("htmlContent");
+
+        const invoiceWrapper = document.getElementById('DownloadWord').outerHTML;
+     
+        const html =  invoiceWrapper ;
+
+        const blob = new Blob(['\ufeff', html], {
+            type: 'application/msword'
+        });
+
+        const url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(html);
+        const link = document.createElement('a');
+        document.body.appendChild(link);
+        link.href = url;
+        link.download = 'invoice.doc';
+        link.click();
+        document.body.removeChild(link);
+    }
+</script> *@
+
+
+
+@* <script>
+    $(document).ready(function () {
+        $('#downloadWord').click(function () {
+            var html = document.getElementById("DownloadWord");
+            var htmlContent = html.innerHTML;
+
+            $.ajax({
+                type: 'POST',
+                url: '/Home/ConvertHtmlToWord?input=' + htmlContent,
+              
+                contentType: 'application/json',
+                data: JSON.stringify({ HtmlContent: htmlContent }),
+                xhrFields: {
+                    responseType: 'blob'
+                },
+                success: function (data) {
+                    var a = document.createElement('a');
+                    var url = window.URL.createObjectURL(data);
+                    a.href = url;
+                    a.download = 'output.docx';
+                    document.body.append(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    a.remove();
+                },
+                error: function () {
+                    alert('Failed to download document');
+                }
+            });
+        });
+    });
+</script> *@
+
+

@@ -1,0 +1,137 @@
+﻿@model DaewooLMS.Models.Department
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-header row">
+    <div class="content-header-left col-12 mb-2 mt-1">
+        <div class="breadcrumbs-top">
+            <h5 class="content-header-title float-left pr-1 mb-0">QuizDepartment</h5>
+            <div class="breadcrumb-wrapper d-none d-sm-block">
+                <ol class="breadcrumb p-0 mb-0 pl-1">
+                    <li class="breadcrumb-item">
+                        <a href="index"><i class="bx bx-home-alt"></i></a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a asp-action="Index">Index</a>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        <a>Edit</a>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-body">
+
+    <!-- Basic Vertical form layout section start -->
+    <section id="basic-vertical-layouts">
+        <div class="row match-height">
+
+            <div class="col-md-12 col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Edit QuizDepartment</h5>
+                    </div>
+                    <div class="card-body">
+                        <form asp-action="Edit" enctype="multipart/form-data" class="form form-vertical">
+                            <input type="hidden" asp-for="DepartmentID" />
+                            <div class="form-body">
+
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="row">
+
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>QuizDepartment Name</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input asp-for="DepartmentName" type="text" id="first-name-icon" class="form-control" placeholder="Enter QuizDepartment Name">
+
+                                            </div>
+                                            <span asp-validation-for="DepartmentName" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Date</label>
+                                            <input asp-for="Date" type="datetime-local" id="qdDate" class="form-control" />
+                                            <span asp-validation-for="Date" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <div class="form-group form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" asp-for="Status" value="true" checked />
+                                                </label>
+                                            </div>
+                                            <span asp-validation-for="Status" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <input type="submit" value="Edit" class="btn btn-primary mr-1" />
+
+                                        <button asp-action="Index" class="btn btn-light-secondary">Back</button>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Basic Vertical form layout section end -->
+
+
+
+</div>
+
+
+
+@*<h1>Edit</h1>
+
+    <h4>QuizDepartment</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="QuizDepartmentID" />
+                <div class="form-group">
+                    <label asp-for="QuizDepartmentName" class="control-label"></label>
+                    <input asp-for="QuizDepartmentName" class="form-control" />
+                    <span asp-validation-for="QuizDepartmentName" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="QDStatus" /> @Html.DisplayNameFor(model => model.QDStatus)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label asp-for="QDDate" class="control-label"></label>
+                    <input asp-for="QDDate" class="form-control" />
+                    <span asp-validation-for="QDDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+

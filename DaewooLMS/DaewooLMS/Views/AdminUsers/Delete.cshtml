@@ -1,0 +1,205 @@
+﻿@model DaewooLMS.Models.AdminUser
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-header row">
+    <div class="content-header-left col-12 mb-2 mt-1">
+        <div class="breadcrumbs-top">
+            <h5 class="content-header-title float-left pr-1 mb-0">Admin User</h5>
+            <div class="breadcrumb-wrapper d-none d-sm-block">
+                <ol class="breadcrumb p-0 mb-0 pl-1">
+                    <li class="breadcrumb-item">
+                        <a href="index"><i class="bx bx-home-alt"></i></a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="index">Index</a>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        <a>Admin User</a>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content-body">
+    <section id="basic-vertical-layouts">
+        <div class="row match-height">
+            <div class="col-md-12 col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="text-danger text-uppercase">Delete User</h2>
+                    </div>
+                    <div class="card-body">
+                        <dl class="row">
+                            <dt class="col-sm-2">
+                                Employee ID
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.User_EmpId)
+                            </dd>
+                            <dt class="col-sm-2">
+                                Name
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.User_Name)
+                            </dd>
+                            <dt class="col-sm-2">
+                                Desigantion
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.User_Designation)
+                            </dd>
+                            <dt class="col-sm-2">
+                                Department
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.User_Department)
+                            </dd>
+                            <dt class="col-sm-2">
+                                Role
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Role)
+                            </dd>
+                            <dt class="col-sm-2">
+                                Mobile No
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Mobile_No)
+                            </dd>
+                            <dt class="col-sm-2">
+                                E-Mail
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.User_Email)
+                            </dd>
+                            <dt class="col-sm-2">
+                                Passward
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.User_Passward)
+                            </dd>
+                            <dt class="col-sm-2">
+                                Status
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.User_Status)
+                            </dd>
+                            <dt class="col-sm-2">
+                                Date
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.User_Date)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.ProfilePhoto)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.ProfilePhoto)
+                            </dd>
+                        </dl>
+                        <form asp-action="Delete">
+                            <input type="hidden" asp-for="UserId" />
+                            <input type="submit" value="Delete" class="btn btn-danger" /> |
+                            <a asp-action="Index">Back to List</a>
+                        </form>
+                    </div>
+                 
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@* <h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>AdminUser</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdentityUser)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdentityUser.Id)
+        </dd class>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.User_EmpId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.User_EmpId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.User_Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.User_Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.User_Designation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.User_Designation)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.User_Department)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.User_Department)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Role)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Role)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Mobile_No)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Mobile_No)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.User_Email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.User_Email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.User_Passward)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.User_Passward)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.User_Status)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.User_Status)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.User_Date)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.User_Date)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ProfilePhoto)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ProfilePhoto)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="UserId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div> *@

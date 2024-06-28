@@ -1,0 +1,277 @@
+﻿@model DaewooLMS.Models.AdminUser
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<div class="content-body">
+    <!-- Basic Vertical form layout section start -->
+    <section id="basic-vertical-layouts">
+        <div class="row match-height">
+
+            <div class="col-md-12 col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-success text-uppercase ">Update User</h3>
+                    </div>
+                    <div class="card-body">
+                        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                            <div class="form-body">
+                                <input type="hidden" asp-for="UserId" />
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="row">
+                                    <input type="hidden" asp-for="IdentityUserId"  />
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>Employee ID</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input asp-for="User_EmpId" type="text" id="QuizNo" min="0" max="6" class="form-control" placeholder="Enter Employee ID" autocomplete="off" readonly>
+
+                                            </div>
+                                            <span asp-validation-for="User_EmpId" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>Employee Name</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input asp-for="User_Name" type="text" id="first-name-icon" class="form-control" placeholder="Enter Employee Name" autocomplete="off" readonly>
+
+                                            </div>
+                                            <span asp-validation-for="User_Name" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>E-Mail</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input asp-for="User_Email" type="email" id="first-name-icon" class="form-control" placeholder="Enter E-mail " autocomplete="off" required>
+
+                                            </div>
+                                            <span asp-validation-for="User_Email" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>Passward</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input asp-for="User_Passward" type="text" id="first-name-icon" class="form-control" placeholder="Enter Passward " autocomplete="off" required>
+
+                                            </div>
+                                            <span asp-validation-for="User_Passward" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>Department</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input asp-for="User_Department" type="text" id="first-name-icon" class="form-control" placeholder="Enter Department" autocomplete="off">
+
+                                            </div>
+                                            <span asp-validation-for="User_Department" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>Designation</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input asp-for="User_Designation" type="text"  id="first-name-icon" class="form-control" placeholder="Enter Designation" autocomplete="off">
+
+                                            </div>
+                                            <span asp-validation-for="User_Designation" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>Role</label>
+                                            <div class="position-relative has-icon-left">
+                                                <select asp-for="Role" class="form-control select2" id="role" asp-items="ViewBag.IdentityRoleId" required>
+                                                  <option value="">@Model.Role</option>
+                                                </select>
+                                            </div>
+                                            <span asp-validation-for="Role" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label>Mobile</label>
+                                            <div class="position-relative has-icon-left">
+                                                <input asp-for="Mobile_No" type="text" id="first-name-icon" class="form-control" placeholder="Enter Designation" autocomplete="off">
+
+                                            </div>
+                                            <span asp-validation-for="Mobile_No" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-6">
+                                        <fieldset class="form-group">
+                                            <label>Profile Pic</label>
+                                            <div class="custom-file">
+                                                <input asp-for="ProfilePhoto" type="file" name="profilepic"  class="custom-file-input" id="inputGroupFile01"
+                                                       onchange="document.getElementById('FrontImage').src=window.URL.createObjectURL(this.files[0])" />
+                                                <label class="custom-file-label" id="inputGroupFile01" for="inputGroupFile01">@Model.ProfilePhoto</label>
+                                            </div>
+                                            <span asp-validation-for="ProfilePhoto" class="text-danger"></span>
+                                            <img id="FrontImage" src="~/Images/@Model.ProfilePhoto" alt="Employee Image" width="150" height="150"
+                                                 style="border:1px;margin-top:-10px;margin-left:120px;" />
+                                        </fieldset>
+                                    </div>
+
+
+
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Date</label>
+                                            <input asp-for="User_Date" type="datetime-local" id="qdDate" class="form-control" />
+                                            <span asp-validation-for="User_Date" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <div class="form-group form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" asp-for="User_Status" value="true" checked />
+                                                </label>
+                                            </div>
+                                            <span asp-validation-for="User_Status" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <input type="submit" value="Create" class="btn btn-primary mr-1" />
+
+                                        <button asp-action="Index" class="btn btn-light-secondary">Back</button>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Basic Vertical form layout section end -->
+
+
+
+</div>
+<script type="text/javascript">
+
+    document.querySelector('.custom-file-input').addEventListener('change', function (e) {
+        var fileName = document.getElementById("inputGroupFile01").files[0].name;
+        var nextSibling = e.target.nextElementSibling
+        nextSibling.innerText = fileName;
+    })
+</script>
+
+
+<script>
+    window.onload = function () {
+
+        // var db = @Html.Raw(Json.Serialize(Model));
+
+        // var role = document.getElementById('role');
+        // var myrole = role.[0].value
+        // myrole = db.role;
+
+        
+        // Get the current date and time
+        const now = new Date();
+
+        // Format the date and time to match the input type 'datetime-local'
+        const formattedDate = now.toISOString().slice(0, 16);
+
+        // Set the value of the input field
+        document.getElementById('qdDate').value = formattedDate;
+    }
+
+</script>
+
+
+
+
+@* <h1>Edit</h1>
+
+<h4>AdminUser</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="UserId" />
+            <div class="form-group">
+                <label asp-for="IdentityUserId" class="control-label"></label>
+                <select asp-for="IdentityUserId" class="form-control" asp-items="ViewBag.IdentityUserId"></select>
+                <span asp-validation-for="IdentityUserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User_EmpId" class="control-label"></label>
+                <input asp-for="User_EmpId" class="form-control" />
+                <span asp-validation-for="User_EmpId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User_Name" class="control-label"></label>
+                <input asp-for="User_Name" class="form-control" />
+                <span asp-validation-for="User_Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User_Designation" class="control-label"></label>
+                <input asp-for="User_Designation" class="form-control" />
+                <span asp-validation-for="User_Designation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User_Department" class="control-label"></label>
+                <input asp-for="User_Department" class="form-control" />
+                <span asp-validation-for="User_Department" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Role" class="control-label"></label>
+                <input asp-for="Role" class="form-control" />
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mobile_No" class="control-label"></label>
+                <input asp-for="Mobile_No" class="form-control" />
+                <span asp-validation-for="Mobile_No" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User_Email" class="control-label"></label>
+                <input asp-for="User_Email" class="form-control" />
+                <span asp-validation-for="User_Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User_Passward" class="control-label"></label>
+                <input asp-for="User_Passward" class="form-control" />
+                <span asp-validation-for="User_Passward" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="User_Status" /> @Html.DisplayNameFor(model => model.User_Status)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="User_Date" class="control-label"></label>
+                <input asp-for="User_Date" class="form-control" />
+                <span asp-validation-for="User_Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProfilePhoto" class="control-label"></label>
+                <input asp-for="ProfilePhoto" class="form-control" />
+                <span asp-validation-for="ProfilePhoto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div> *@
+

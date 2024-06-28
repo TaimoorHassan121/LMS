@@ -17,7 +17,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyProductAttribute("DaewooLMS")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e5b48d59caca951387c025ca2abb376240e851cc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e0e2fbe66181ca1bd65e6c4307223ec7b7349c16")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DaewooLMS.Views")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
