@@ -32,7 +32,7 @@ namespace DaewooLMS.Data
         public DbSet<Emp_Chat_Reply> Emp_Chat_Replies { get; set; }
         public DbSet<LibraryData> LibraryDatas { get; set; }
         public DbSet<Videos> Videos { get; set; }
-        public DbSet<Event> Events { get; set; }
+        public DbSet<Events> Events { get; set; }
         public DbSet<Event_Logs> EventLogs { get; set; }
         public DbSet<Department> Departments { get; set; }
     }

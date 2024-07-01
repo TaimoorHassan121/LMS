@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DaewooLMS.Models
 {
-    public class Event
+    public class Events
     {
         [Key]
         public int EventID { get; set; }

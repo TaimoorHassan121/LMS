@@ -8,12 +8,14 @@ using Microsoft.EntityFrameworkCore;
 using DaewooLMS.Data;
 using DaewooLMS.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using System.IO;
 using System.Net.Http.Headers;
-using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DaewooLMS.Controllers
 {
+    [Authorize(Policy = "AdminCookieScheme", Roles = "Admin")]
     public class EventsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -37,14 +39,14 @@ namespace DaewooLMS.Controllers
                 return NotFound();
             }
 
-            var @event = await _context.Events
+            var events = await _context.Events
                 .FirstOrDefaultAsync(m => m.EventID == id);
-            if (@event == null)
+            if (events == null)
             {
                 return NotFound();
             }
 
-            return View(@event);
+            return View(events);
         }
 
         // GET: Events/Create
@@ -58,42 +60,49 @@ namespace DaewooLMS.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EventID,Event_Title,Objactive,Participent,Event_PIC,start_DateTime,End_DateTime,Add_DateTime,status")] Event @event, IFormFile profilepic, Event_Logs logEvent)
+        public async Task<IActionResult> Create([Bind("EventID,Event_Title,Objactive,Participent,Event_PIC,start_DateTime,End_DateTime,Add_DateTime,status")] Events events,Event_Logs event_Logs,IFormFile eventPic)
         {
             if (ModelState.IsValid)
             {
-                long AdminEmp_ID = HttpContext.User.Claims
-                  .Where(x => x.Type == "User_EmpId")
+
+                var AdminId = HttpContext.User.Claims
+                  .Where(x => x.Type == "UserID")
                   .Select(x => Convert.ToInt64(x.Value))
                   .FirstOrDefault();
-                if (profilepic != null)
+
+
+
+                if (eventPic != null)
                 {
-                    var image = ContentDispositionHeaderValue.Parse(profilepic.ContentDisposition).FileName.Trim();
-                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "EventImages", profilepic.FileName);
+                    var image = ContentDispositionHeaderValue.Parse(eventPic.ContentDisposition).FileName.Trim();
+                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "EventImages", eventPic.FileName);
                     using (System.IO.Stream stream = new FileStream(path, FileMode.Create))
                     {
-                        profilepic.CopyTo(stream);
+                        eventPic.CopyTo(stream);
                     }
-                    @event.Event_PIC = profilepic.FileName;
+                    events.Event_PIC = eventPic.FileName;
                 }
 
-                logEvent.Event_PIC = @event.Event_PIC;
-                logEvent.Event_Title = @event.Event_Title;
-                logEvent.Objactive = @event.Objactive;
-                logEvent.Participent = @event.Participent;
-                logEvent.start_DateTime = @event.start_DateTime;
-                logEvent.End_DateTime = @event.End_DateTime;
-                logEvent.status = @event.status;
-                logEvent.Authorize_Person = AdminEmp_ID;
-                logEvent.CRUD_Status = "Create";
-                logEvent.Add_Update_DateTime = @event.Add_DateTime;
-                _context.Add(@event);
-                var EventDb = _context.Events.LastOrDefault();
-                _context.Add(logEvent);
+                _context.Add(events);
+                await _context.SaveChangesAsync();
+
+
+                event_Logs.EventID = events.EventID;
+                event_Logs.Event_Title = events.Event_Title;
+                event_Logs.Objactive = events.Objactive;
+                event_Logs.Event_PIC = events.Event_PIC;
+                event_Logs.CRUD_Status = "Create";
+                event_Logs.Add_Update_DateTime = events.Add_DateTime;
+                event_Logs.start_DateTime = events.start_DateTime;
+                event_Logs.End_DateTime = events.End_DateTime;
+                event_Logs.Authorize_Person = AdminId;
+                event_Logs.status = events.status;
+
+                _context.Add(event_Logs);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(@event);
+            return View(events);
         }
 
         // GET: Events/Edit/5
@@ -104,12 +113,12 @@ namespace DaewooLMS.Controllers
                 return NotFound();
             }
 
-            var @event = await _context.Events.FindAsync(id);
-            if (@event == null)
+            var events = await _context.Events.FindAsync(id);
+            if (events == null)
             {
                 return NotFound();
             }
-            return View(@event);
+            return View(events);
         }
 
         // POST: Events/Edit/5
@@ -117,9 +126,9 @@ namespace DaewooLMS.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EventID,Event_Title,Objactive,Participent,Event_PIC,start_DateTime,End_DateTime,Add_DateTime,status")] Event @event, Event_Logs eventLog, IFormFile EventImg)
+        public async Task<IActionResult> Edit(int id, [Bind("EventID,Event_Title,Objactive,Participent,Event_PIC,start_DateTime,End_DateTime,Add_DateTime,status")] Events events, Event_Logs event_Logs, IFormFile eventPic)
         {
-            if (id != @event.EventID)
+            if (id != events.EventID)
             {
                 return NotFound();
             }
@@ -128,28 +137,46 @@ namespace DaewooLMS.Controllers
             {
                 try
                 {
-                    if (EventImg != null)
+                    var AdminId = HttpContext.User.Claims
+                      .Where(x => x.Type == "UserID")
+                      .Select(x => Convert.ToInt64(x.Value))
+                      .FirstOrDefault();
+                    if (eventPic != null)
                     {
-                        var image = ContentDispositionHeaderValue.Parse(EventImg.ContentDisposition).FileName.Trim();
-                        var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "EventImages", EventImg.FileName);
+                        var image = ContentDispositionHeaderValue.Parse(eventPic.ContentDisposition).FileName.Trim();
+                        var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "EventImages", eventPic.FileName);
                         using (System.IO.Stream stream = new FileStream(path, FileMode.Create))
                         {
-                            EventImg.CopyTo(stream);
+                            eventPic.CopyTo(stream);
                         }
-                        @event.Event_PIC = EventImg.FileName;
+                        events.Event_PIC = eventPic.FileName;
                     }
                     else
                     {
-                        var EventPic = _context.Events.Where(a => a.EventID == @event.EventID).SingleOrDefault();
-                        @event.Event_PIC = EventPic.Event_PIC;
+                        var EventPic = _context.Events.Where(a => a.EventID == events.EventID).SingleOrDefault();
+                        events.Event_PIC = EventPic.Event_PIC;
 
                     }
-                    _context.Update(@event);
+                   
+
+                    event_Logs.EventID = events.EventID;
+                    event_Logs.Event_Title = events.Event_Title;
+                    event_Logs.Objactive = events.Objactive;
+                    event_Logs.Event_PIC = events.Event_PIC;
+                    event_Logs.CRUD_Status = "Update";
+                    event_Logs.Add_Update_DateTime = events.Add_DateTime;
+                    event_Logs.start_DateTime = events.start_DateTime;
+                    event_Logs.End_DateTime = events.End_DateTime;
+                    event_Logs.Authorize_Person = AdminId;
+                    event_Logs.status = events.status;
+
+                    _context.Update(events);                  
+                    _context.Add(event_Logs);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EventExists(@event.EventID))
+                    if (!EventsExists(events.EventID))
                     {
                         return NotFound();
                     }
@@ -160,7 +187,7 @@ namespace DaewooLMS.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(@event);
+            return View(events);
         }
 
         // GET: Events/Delete/5
@@ -171,14 +198,14 @@ namespace DaewooLMS.Controllers
                 return NotFound();
             }
 
-            var @event = await _context.Events
+            var events = await _context.Events
                 .FirstOrDefaultAsync(m => m.EventID == id);
-            if (@event == null)
+            if (events == null)
             {
                 return NotFound();
             }
 
-            return View(@event);
+            return View(events);
         }
 
         // POST: Events/Delete/5
@@ -186,15 +213,28 @@ namespace DaewooLMS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var @event = await _context.Events.FindAsync(id);
-            _context.Events.Remove(@event);
+            var events = await _context.Events.FindAsync(id);
+            _context.Events.Remove(events);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EventExists(int id)
+        private bool EventsExists(int id)
         {
             return _context.Events.Any(e => e.EventID == id);
+        }
+
+        public async Task<IActionResult> ChangeStatusEvent(int id)
+        {
+            var EventDb = await _context.Events.FindAsync(id);
+            if (EventDb != null)
+            {
+                EventDb.status = !EventDb.status;
+                _context.Events.Update(EventDb);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            return RedirectToAction(nameof(Index));
         }
     }
 }

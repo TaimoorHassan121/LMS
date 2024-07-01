@@ -1,30 +1,11 @@
-﻿@model DaewooLMS.Models.Event
+﻿@model DaewooLMS.Models.Events
 
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="content-header row">
-    <div class="content-header-left col-12 mb-2 mt-1">
-        <div class="breadcrumbs-top">
-            <h5 class="content-header-title float-left pr-1 mb-0">Events</h5>
-            <div class="breadcrumb-wrapper d-none d-sm-block">
-                <ol class="breadcrumb p-0 mb-0 pl-1">
-                    <li class="breadcrumb-item">
-                        <a href="index"><i class="bx bx-home-alt"></i></a>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <a href="index">Index</a>
-                    </li>
-                    <li class="breadcrumb-item active">
-                        <a>Create</a>
-                    </li>
-                </ol>
-            </div>
-        </div>
-    </div>
-</div>
+
 <div class="content-body">
     <!-- Basic Vertical form layout section start -->
     <section id="basic-vertical-layouts">
@@ -33,10 +14,10 @@
             <div class="col-md-12 col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Add Event</h5>
+                        <h5>Add User</h5>
                     </div>
                     <div class="card-body">
-                        <form asp-action="create">
+                        <form asp-action="create" method="post" enctype="multipart/form-data">
                             <div class="form-body">
 
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -46,41 +27,44 @@
                                         <div class="form-group">
                                             <label>Event Title</label>
                                             <div class="position-relative has-icon-left">
-                                                <input asp-for="Event_Title" type="text" id="first-name-icon" class="form-control" placeholder="Enter Title">
+                                                <input asp-for="Event_Title" type="text"   class="form-control" placeholder="Enter Event Title" autocomplete="off" required>
 
                                             </div>
                                             <span asp-validation-for="Event_Title" class="text-danger"></span>
                                         </div>
                                     </div>
-
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label>Event Objactive</label>
                                             <div class="position-relative has-icon-left">
-                                                <input asp-for="Objactive" type="text" id="first-name-icon" class="form-control" placeholder="Enter Objactive Name">
+                                                <input asp-for="Objactive" type="text" id="first-name-icon" class="form-control" placeholder="Enter Objactive" autocomplete="off" required>
 
                                             </div>
                                             <span asp-validation-for="Objactive" class="text-danger"></span>
                                         </div>
                                     </div>
-
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label>Event Participent</label>
                                             <div class="position-relative has-icon-left">
-                                                <input asp-for="Participent" type="text" id="first-name-icon" class="form-control" placeholder="Enter Participent ">
+                                                <input asp-for="Participent" type="text" id="first-name-icon" class="form-control" placeholder="Enter Participent " autocomplete="off" required>
 
                                             </div>
                                             <span asp-validation-for="Participent" class="text-danger"></span>
                                         </div>
                                     </div>
 
-                           
-
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Date</label>
+                                            <input asp-for="Add_DateTime" type="datetime-local" id="qdDate" class="form-control" />
+                                            <span asp-validation-for="Add_DateTime" class="text-danger"></span>
+                                        </div>
+                                    </div>
 
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label class="control-label">start DateTime</label>
+                                            <label class="control-label">Start Date</label>
                                             <input asp-for="start_DateTime" type="datetime-local"  class="form-control" />
                                             <span asp-validation-for="start_DateTime" class="text-danger"></span>
                                         </div>
@@ -88,26 +72,18 @@
 
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label class="control-label">End DateTime</label>
-                                            <input asp-for="End_DateTime" type="datetime-local"  class="form-control" />
+                                            <label class="control-label">End Date</label>
+                                            <input asp-for="End_DateTime" type="datetime-local" class="form-control" />
                                             <span asp-validation-for="End_DateTime" class="text-danger"></span>
                                         </div>
                                     </div>
-
-                             
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <label class="control-label">Add DateTime</label>
-                                            <input asp-for="Add_DateTime" type="datetime-local" id="qdDate" class="form-control" />
-                                            <span asp-validation-for="Add_DateTime" class="text-danger"></span>
-                                        </div>
-                                    </div>
+                               
 
                                     <div class="col-sm-12 col-md-6">
                                         <fieldset class="form-group">
                                             <label>Profile Pic</label>
                                             <div class="custom-file">
-                                                <input asp-for="Event_PIC" type="file" name="profilepic" class="custom-file-input" id="inputGroupFile01"
+                                                <input asp-for="Event_PIC" type="file" name="eventPic" class="custom-file-input" id="inputGroupFile01"
                                                        onchange="document.getElementById('FrontImage').src=window.URL.createObjectURL(this.files[0])" />
                                                 <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                             </div>
@@ -118,6 +94,8 @@
                                     </div>
 
 
+
+                              
 
                                     <div class="col-6">
                                         <div class="form-group">
@@ -147,14 +125,9 @@
         </div>
     </section>
     <!-- Basic Vertical form layout section end -->
-
-
-
 </div>
 
-
 <script src="~/js/currentdatetime.js"></script>
-
 <script type="text/javascript">
     document.querySelector('.custom-file-input').addEventListener('change', function (e) {
         var fileName = document.getElementById("inputGroupFile01").files[0].name;
@@ -163,9 +136,18 @@
     })
 </script>
 
+
+
+
+
+
+
+
+
+
 @* <h1>Create</h1>
 
-<h4>Event</h4>
+<h4>Events</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">

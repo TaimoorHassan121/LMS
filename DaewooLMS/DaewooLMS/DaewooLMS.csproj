@@ -6,6 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20240701043752_eventtoevents.cs" />
+    <Compile Remove="Migrations\20240701043752_eventtoevents.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\AgencyAssets\img\.DS_Store" />
     <None Include="wwwroot\AgencyAssets\img\activities\.DS_Store" />
     <None Include="wwwroot\AgencyAssets\img\activities\2\.DS_Store" />

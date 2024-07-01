@@ -257,5 +257,18 @@ namespace DaewooLMS.Controllers
         {
             return _context.AdminUsers.Any(e => e.UserId == id);
         }
+
+        public async Task<IActionResult> ChangeStatusAdminUser(int id)
+        {
+            var AdminDB = await _context.AdminUsers.FindAsync(id);
+            if (AdminDB != null)
+            {
+                AdminDB.User_Status = !AdminDB.User_Status;
+                _context.AdminUsers.Update(AdminDB);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
