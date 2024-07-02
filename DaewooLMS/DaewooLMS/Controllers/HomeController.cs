@@ -118,6 +118,10 @@ namespace DaewooLMS.Controllers
         {
             await _signInManager.SignOutAsync();
             await HttpContext.SignOutAsync("UserCookies");
+            HttpContext.Response.Cookies.Delete(".AspNetCore.Cookies");
+            HttpContext.Response.Cookies.Delete("UserCookies");
+            HttpContext.Response.Cookies.Delete("UserCookies");
+            await HttpContext.SignOutAsync("UserCookies");
             _logger.LogInformation("User logged out.");
             if (returnUrl != null)
             {
@@ -314,9 +318,12 @@ namespace DaewooLMS.Controllers
 
 
         }
-        public IActionResult Events()
+        public async Task<IActionResult> Events()
         {
-            return View();
+
+            var events = await _context.Events.OrderByDescending(a=>a.EventID).ToListAsync();
+
+            return View(events);
         }
         public IActionResult Support()
         {

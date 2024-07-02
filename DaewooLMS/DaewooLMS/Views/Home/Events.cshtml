@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<DaewooLMS.Models.Events>
 @{
     ViewData["Title"] = "Events";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
@@ -14,75 +14,29 @@
 
 <div class="container mt-3 mb-5 ">
     <!--<h1--> @*style="margin-top:8rem"*@ <!--class="mb-0 p-0">Events</h1>-->
-    <div class="row mt-4">
-        <div class="col-md-4">
-            <div class="card">
-                <img src="~/images/Professional-Courses.gif" class="card-img-top" alt="...">
 
-                <div class="card-body">
-                    <h5 class="card-title">Training Name</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <img src="~/images/Professional-Courses.gif" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Training Name</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <img src="~/images/Professional-Courses.gif" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Training Name</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
+    @foreach (var item in Model)
+    {
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="~/EventImages/@item.Event_PIC" height="300" class="card-img-top" alt="...">
 
-    </div>
+                    <div class="card-body">
 
-    <div class="row mt-4">
-        <div class="col-md-4">
-            <div class="card">
-                <img src="~/images/Professional-Courses.gif" class="card-img-top" alt="...">
+                        <div class="text-capitalize fw-bold">Title : <span class="fs-5">@item.Event_Title</span> </div>
+                        <div class="text-capitalize fw-bold">Objective : <span class=" fs-5">@item.Objactive</span></div>
+                        <div class="text-capitalize fw-bold">Participent : <span class="fs-5">@item.Participent</span></div>
+                        <div class="text-capitalize fw-bold">Start Date Time : <span class="fs-5">@item.start_DateTime</span></div>
+                        <div class="text-capitalize fw-bold">End Date Time : <span class=" fs-5">@item.End_DateTime</span></div>
 
-                <div class="card-body">
-                    <h5 class="card-title">Training Name</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card">
-                <img src="~/images/Professional-Courses.gif" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Training Name</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <img src="~/images/Professional-Courses.gif" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Training Name</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
+    }
 
-    </div>
+
 </div>
 <div class="container-fluid m-0 p-0 " style="background-color: #2B3268;font-family:'Times New Roman', Times, serif ">
     <h1 class="text-center p-3 text-capitalize " style="color: #fcbe38 ">We Do not remember days; we rember moments <sub class="h6 text-info">(Cesare Pavese)</sub> </h1>

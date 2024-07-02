@@ -408,7 +408,6 @@ D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\DaewooLMS.MvcApp
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\DaewooLMS.MvcApplicationPartsAssemblyInfo.cache
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\DaewooLMS.RazorAssemblyInfo.cache
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\DaewooLMS.RazorAssemblyInfo.cs
-D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\DaewooLMS.sourcelink.json
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\DaewooLMS.TagHelpers.input.cache
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\DaewooLMS.TagHelpers.output.cache
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\DaewooLMS.RazorCoreGenerate.cache
@@ -425,13 +424,7 @@ D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\DaewooLMS.RazorT
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\DaewooLMS.RazorTargetAssemblyInfo.cs
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\DaewooLMS.Views.pdb
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\staticwebassets\DaewooLMS.StaticWebAssets.Manifest.cache
-D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\staticwebassets\DaewooLMS.StaticWebAssets.Pack.cache
-D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\staticwebassets\msbuild.DaewooLMS.Microsoft.AspNetCore.StaticWebAssets.props
-D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\staticwebassets\msbuild.build.DaewooLMS.props
-D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\staticwebassets\msbuild.buildMultiTargeting.DaewooLMS.props
-D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\staticwebassets\msbuild.buildTransitive.DaewooLMS.props
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\staticwebassets\DaewooLMS.StaticWebAssets.xml
-D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\DaewooLMS.csproj.Up2Date
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\DaewooLMS.dll
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\DaewooLMS.pdb
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\DaewooLMS.genruntimeconfig.cache
@@ -576,3 +569,5 @@ D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Even
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Events\Details.cshtml.g.cs
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Events\Edit.cshtml.g.cs
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Events\Index.cshtml.g.cs
+D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\scopedcss\bundle\DaewooLMS.styles.css
+D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\DaewooLMS.csproj.CopyComplete
