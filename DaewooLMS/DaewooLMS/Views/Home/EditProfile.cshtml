@@ -1,0 +1,120 @@
+﻿@model DaewooLMS.Models.Employee
+@{
+    ViewData["Title"] = "EditProfile";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="content-wrapper">
+        <div class="content-body mt-5">
+            <!-- Basic multiple Column Form section start -->
+            <section id="multiple-column-form ">
+                <div class="row match-height">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h1 class="">Edit Profile</h1>
+                            </div>
+                            <div class="card-body mt-5">
+                                <form class="form">
+                                    <div class="form-body">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-4"></div>
+                                                <div class="col-4">
+                                                    <form asp-action="EditProfile" method="post" enctype="multipart/form-data">
+                                                        <div class="form-body">
+                                                            <div class="row">
+                                                                <input type="hidden" asp-for="IdentityUserId" />
+                                                                <input type="hidden" asp-for="UserId" />
+                                                                <div class="col-12">
+                                                                    <div class="form-group">
+                                                                        <label>Employee Id</label>
+                                                                        <input type="text" asp-for="Emp_ID" id="first-name-vertical" class="form-control"  readonly>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <div class="form-group">
+                                                                        <label>Employee Name</label>
+                                                                        <input type="text" asp-for="Emp_Name" id="first-name-vertical" class="form-control"  placeholder="First Name">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <div class="form-group">
+                                                                        <label for="password-vertical">Password</label>
+                                                                        <input type="password" asp-for="User_Passward" id="password-vertical" class="form-control"  placeholder="Password">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <div class="form-group">
+                                                                        <label for="contact-info-vertical">Mobile</label>
+                                                                        <input type="number" asp-for="Mobile_No" id="contact-info-vertical" class="form-control" name="contact" placeholder="Mobile">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <div class="form-group">
+                                                                        <label class="control-label">Department</label>
+                                                                        <select asp-for="DepartmentID" class="form-control" id="Department" onchange="changeDepartment(this)" asp-items="ViewBag.DepartmentID">
+                                                                            <option value="">Select Department</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-12 col-md-12">
+                                                                    <fieldset class="form-group">
+                                                                        <label>Profile Pic</label>
+                                                                        <div class="custom-file">
+                                                                            <input asp-for="Emp_Pic" type="file" name="profilepic" class="custom-file-input" id="inputGroupFile01"
+                                                                                   onchange="document.getElementById('FrontImage').src=window.URL.createObjectURL(this.files[0])" />
+                                                                            <label class="custom-file-label" for="inputGroupFile01">@Model.Emp_Pic</label>
+                                                                        </div>
+                                                                        <span asp-validation-for="Emp_Pic" class="text-danger"></span>
+                                                                        <img id="FrontImage" src="~/Images/@Model.Emp_Pic" alt="Employee Image" width="150" height="150"
+                                                                             style="border:1px;margin-top:-10px;margin-left:120px;" />
+                                                                    </fieldset>
+                                                                </div>
+
+                                                                <div class="col-6">
+                                                                    <div class="form-group">
+                                                                        <div class="checkbox">
+                                                                            <input type="checkbox" class="checkbox-input" id="checkbox3">
+                                                                            <label for="checkbox3">Remember me</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div class="col-12 d-flex justify-content-end">
+                                                                    <input type="submit" value="Update" class="btn btn-primary mr-1" />
+
+                                                                    <button asp-action="Index" class="btn btn-light-secondary">Back</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                    
+
+
+                                                  
+                                                </div>
+                                               
+                                             
+                                                <div class="col-4"></div>
+                                            </div>
+                                        </div>
+                                   
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Basic multiple Column Form section end -->
+
+        </div>
+    </div>
+</div>
+
+
+
+

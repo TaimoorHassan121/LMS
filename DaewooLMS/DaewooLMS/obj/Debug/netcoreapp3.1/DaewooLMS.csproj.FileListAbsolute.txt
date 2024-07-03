@@ -569,5 +569,11 @@ D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Even
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Events\Details.cshtml.g.cs
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Events\Edit.cshtml.g.cs
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Events\Index.cshtml.g.cs
-D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\scopedcss\bundle\DaewooLMS.styles.css
-D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\DaewooLMS.csproj.CopyComplete
+D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\DaewooLMS.sourcelink.json
+D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\staticwebassets\DaewooLMS.StaticWebAssets.Pack.cache
+D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\staticwebassets\msbuild.DaewooLMS.Microsoft.AspNetCore.StaticWebAssets.props
+D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\staticwebassets\msbuild.build.DaewooLMS.props
+D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\staticwebassets\msbuild.buildMultiTargeting.DaewooLMS.props
+D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\staticwebassets\msbuild.buildTransitive.DaewooLMS.props
+D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\DaewooLMS.csproj.Up2Date
+D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Home\EditProfile.cshtml.g.cs

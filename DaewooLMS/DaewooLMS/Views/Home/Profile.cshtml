@@ -1,4 +1,4 @@
-﻿
+﻿@model DaewooLMS.Models.ViewModel.ProfileVM
 @{
     ViewData["Title"] = "Profile";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
@@ -59,6 +59,7 @@
 </style>
 
 
+
 <div class="container-fluid mt-3 position-relative"  @*style="background-color: #f8b896"*@>
     <div class="row mb-3" @*style="margin-top:8rem"*@>
         <div class="col-12">
@@ -76,20 +77,28 @@
                         <label class=" col-md-12" for="file">
                             <div class="fonticon-container " style="float:right">
                                 <div class="fonticon-wrap " for="file">
-                                    <i class="bx bxs-pencil pull-right"></i>
+                                    <i class="bx bxs-pencil pull-right" onclick="window.open('/Home/EditProfile/@Model.Employee.UserId')"> </i>
                                 </div>
-                                <input id="file" type="file" onchange="loadFile(event)" />
+                                @* <input id="file" type="file" onchange="loadFile(event)" /> *@
                             </div>
                         </label>
                     </div>
                     <div class="row">
                         <div class="col-12 align-content-center">
-                            <img src="~/images/Daewoo-Images.jpg" id="output" class=" profile-img mx-auto  d-block  " />
+                            @if(Model.Employee.Emp_Pic != null)
+                            {
+                                <img src="~/images/@Model.Employee.Emp_Pic" id="output" class=" profile-img mx-auto  d-block  " />
+                            }
+                            else
+                            {
+                                <img src="~/images/TaimoorDumy.png" id="output" class=" profile-img mx-auto  d-block  " />
+                            }
+
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-12 mt-4">
-                            <div class="fs-4 text-center text-capitalize fw-bold">Muhammad Taimoor Hassan</div>
+                            <div class="fs-4 text-center text-capitalize fw-bold">@Model.Employee.Emp_Name</div>
                         </div>
                     </div>
                     <div class="row">
@@ -97,16 +106,16 @@
                             <div class="container">
                                 <table style="width:100%">
                                     <tr>
-                                        <th>Name:</th>
-                                        <td>Bill Gates</td>
+                                        <th>ID:</th>
+                                        <td>@Model.Employee.Emp_ID</td>
                                     </tr>
                                     <tr>
-                                        <th>Telephone:</th>
-                                        <td>555 77 854</td>
+                                        <th>Department:</th>
+                                        <td>@Model.Employee.Department.DepartmentName</td>
                                     </tr>
                                     <tr>
-                                        <th>Telephone:</th>
-                                        <td>555 77 855</td>
+                                        <th>Mobile:</th>
+                                        <td>@Model.Employee.Mobile_No</td>
                                     </tr>
                                 </table>
                             </div>
@@ -373,15 +382,28 @@
         <div class="col-md-6 col-sm-12 col-xl-3 col-lg-6 ">
             <div class="card" style="border-radius:25px">
                 <div class="card-body">
-                    <h3>My Notes</h3>
-                    <p class="fs-5"> My contant is hereddasasd heree</p>
-                    <p class="fs-5"> My contant is here</p>
-                    <p class="fs-5"> My contant is here</p>
-                    <p class="fs-5"> My contant is here</p>
-                    <p class="fs-5"> My contant is here</p>
-                    <p class="fs-5"> My contant is here</p>
-                    <p class="fs-5"> My contant is here</p>
-                    <p class="fs-5"> My contant is here</p>
+                    @* <h3>My Notes</h3> *@
+              
+                        <div class="table-responsive">
+                            <table class="table zero-configuration" style="table-layout: fixed; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th style="width:70%;">My Note</th>
+                                        <th style="width:30%;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.myNotes)
+                                    {
+                                        <tr>
+                                        <td>@item.myNote</td>
+                                        <td>  <a asp-action="DeleteMyNote" class="btn btn-danger btn-sm" asp-route-id="@item.myNoteId">Delete</a> </td>
+                                        </tr>
+                                    }
+                                </tbody>
+
+                            </table>
+                        </div>
 
         
 
@@ -389,25 +411,20 @@
                     <!-- Textarea 2 rows height -->
                     <div data-mdb-input-init class="form-outline">
                         <label class="form-label" for="textAreaExample3">Message</label>
-                        <textarea class="form-control" id="textAreaExample3" rows="2"></textarea>
-                        <button type="submit" class="btn btn-primary mt-2"> Submit</button>
+                        <textarea class="form-control" id="myNotes" rows="3"></textarea>
+                        <button type="submit" class="btn btn-primary mt-2" onclick="AddMyNotes()"> Submit</button>
 
                     </div>
 
                 </div>
             </div>
-
         </div>
-
-
-
-
-
     </div>
-
-
-
 </div>
+
+
+
+
 <div class="container-fluid " style="background-color: #271a51">
     <div class="container">
         <div class="row ">
@@ -482,10 +499,6 @@
         var image = document.getElementById("output");
         image.src = URL.createObjectURL(event.target.files[0]);
     };
-
-
-
-
 </script>
 <script>
     let items = document.querySelectorAll('.carousel .carousel-item')
@@ -503,4 +516,32 @@
             next = next.nextElementSibling
         }
     })
+</script>
+
+<script>
+
+    function AddMyNotes(){
+        console.log();
+
+        var NoteMsg = document.getElementById('myNotes');
+        msgValue = NoteMsg.value;
+
+        if (msgValue == '') {
+            return alert('Please Enter Message Note!')
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '/Home/AddMyNotes?msg=' + msgValue,
+        
+        });
+        NoteMsg.innerHTML = "";
+        window.location.reload();
+    }
+
+    function EditProfile() {
+        // Modify the URL to navigate to
+        window.location.href = '/Home/EditProfile?employee=';
+    }
+
 </script>

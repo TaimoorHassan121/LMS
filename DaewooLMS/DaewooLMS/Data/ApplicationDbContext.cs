@@ -35,5 +35,7 @@ namespace DaewooLMS.Data
         public DbSet<Events> Events { get; set; }
         public DbSet<Event_Logs> EventLogs { get; set; }
         public DbSet<Department> Departments { get; set; }
+        public DbSet<myNotes> MyNotes { get; set; }
+        public DbSet<Support> Support { get; set; }
     }
 }

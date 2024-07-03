@@ -203,6 +203,54 @@ namespace DaewooLMS.Controllers
         }
         public IActionResult Profile()
         {
+            long Emp_ID = HttpContext.User.Claims
+             .Where(x => x.Type == "Emp_ID")
+             .Select(x => Convert.ToInt64(x.Value))
+             .FirstOrDefault();
+
+            ProfileVM profileVM = new ProfileVM();
+
+            var Profile = _context.Employees.Where(a=>a.Emp_ID == Emp_ID).Include(a=>a.Department).SingleOrDefault();
+            var myNote = _context.MyNotes.Where(a=>a.Emp_Id == Emp_ID).ToList();
+
+            profileVM.Employee = Profile;
+            profileVM.myNotes = myNote;
+
+
+            return View(profileVM);
+        }
+        [HttpGet]
+        public async Task<IActionResult> EditProfile(int id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var employee = await _context.Employees.FindAsync(id);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+            ViewData["DepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "DepartmentName", employee.DepartmentID);
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", employee.IdentityUserId);
+
+
+            return View(employee);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditProfile(Employee employee, IFormFile profilepic,int id)
+        {      
+
+            if (employee == null)
+            {
+                return NotFound();
+            }
+            ViewData["DepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "DepartmentName", employee.DepartmentID);
+            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", employee.IdentityUserId);
+
+
             return View();
         }
 
@@ -325,8 +373,27 @@ namespace DaewooLMS.Controllers
 
             return View(events);
         }
+        [HttpGet]
         public IActionResult Support()
         {
+            var Emp_name = User.Claims.Where(a => a.Type == "EmpName")
+                         .Select(x => x.Value)
+                         .FirstOrDefault();
+
+            return View();
+        }
+        public async Task<IActionResult> Support(long empId,string empName,string sub,string msg, Support support)
+        {
+
+            support.Emp_ID = empId;
+            support.Emp_Name = empName;
+            support.Subject = sub;
+            support.Message = msg;  
+            support.IsValid = true;
+            support.MsgDate = DateTime.Now;
+
+            _context.Add(support);
+            await _context.SaveChangesAsync();
             return View();
         }
         public IActionResult HRHUB()
@@ -395,39 +462,12 @@ namespace DaewooLMS.Controllers
             return View(policyVM);
         }
 
-        [HttpPost]
-        //public IActionResult ConvertHtmlToWord(string HtmlContentModel )
-        //{
-        //    if (HtmlContentModel == null || string.IsNullOrEmpty(HtmlContentModel))
-        //    {
-        //        return BadRequest("Invalid input.");
-        //    }
-        //    string htmlContent = @"
-        //    <h1>HTML to Word Document</h1>
-        //    <table border='1'>
-        //        <tr>
-        //            <th>Name</th>
-        //            <th>Age</th>
-        //        </tr>
-        //        <tr>
-        //            <td>John Doe</td>
-        //            <td>30</td>
-        //        </tr>
-        //        <tr>
-        //            <td>Jane Smith</td>
-        //            <td>25</td>
-        //        </tr>
-        //    </table>
-        //    <img src='~/images/sample.jpg' alt='Sample Image' />
-        //";
-
-        //}
-
         private async Task CreateCookies(Employee user)
         {
             var identity = new ClaimsIdentity("UserCookies", ClaimTypes.Name, ClaimTypes.Role);
             identity.AddClaim(new Claim(ClaimTypes.Role, "Employee"));
             identity.AddClaim(new Claim(ClaimTypes.Name, user.Emp_Name));
+            identity.AddClaim(new Claim("EmpName", user.Emp_Name));
             identity.AddClaim(new Claim("Emp_Pic", user.Emp_Pic));
             identity.AddClaim(new Claim("Emp_ID", user.Emp_ID.ToString() ?? ""));
             var principal = new ClaimsPrincipal(identity);
@@ -442,58 +482,56 @@ namespace DaewooLMS.Controllers
                 });
         }
 
-
-        //private IFormFile CreateFormFileFromFilePath(string filePath)
-        //{
-        //    var path1 = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
-        //    var formFile = CreateFormFileFromFilePath(path1);
-        //    if (filePath == null)
-        //    {
-        //        return null;
-        //    }
-
-        //    var fileBytes = System.IO.File.ReadAllBytes(filePath);
-        //    var fileName = Path.GetFileName(filePath);
-        //    var memoryStream = new MemoryStream(fileBytes);
-        //    var formFile = new FormFile(memoryStream, 0, fileBytes.Length, null, fileName)
-        //    {
-        //        Headers = new HeaderDictionary(),
-        //        ContentType = GetContentType(filePath)
-        //    };
-
-        //    return formFile;
-        //}
-
-        //private string GetContentType(string path)
-        //{
-        //    var types = GetMimeTypes();
-        //    var ext = Path.GetExtension(path).ToLowerInvariant();
-        //    return types.ContainsKey(ext) ? types[ext] : "application/octet-stream";
-        //}
-
-        //private Dictionary<string, string> GetMimeTypes()
-        //{
-        //    return new Dictionary<string, string>
-        //{
-        //    {".txt", "text/plain"},
-        //    {".pdf", "application/pdf"},
-        //    {".doc", "application/vnd.ms-word"},
-        //    {".docx", "application/vnd.ms-word"},
-        //    {".xls", "application/vnd.ms-excel"},
-        //    {".xlsx", "application/vnd.openxmlformats officedocument.spreadsheetml.sheet"},
-        //    {".png", "image/png"},
-        //    {".jpg", "image/jpeg"},
-        //    {".jpeg", "image/jpeg"},
-        //    {".gif", "image/gif"},
-        //    {".csv", "text/csv"}
-        //};
-        //}
         public IActionResult Privacy()
         {
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+      
+        public async Task<IActionResult> AddMyNotes(string msg, myNotes myNotes)
+        {
+
+            if(myNotes == null)
+            {
+                return View();
+            }
+            long Emp_ID = HttpContext.User.Claims
+                .Where(x => x.Type == "Emp_ID")
+                .Select(x => Convert.ToInt64(x.Value))
+                .FirstOrDefault();
+            myNotes.myNote = msg;
+            myNotes.status= true;
+            myNotes.Date = DateTime.Now;
+            myNotes.Emp_Id = Emp_ID;
+
+            _context.Add(myNotes);
+            await _context.SaveChangesAsync();
+            return View();
+        }
+
+        public async Task<IActionResult> DeleteMyNote(int id)
+        {
+
+            if(id == 0)
+            {
+                return View();
+            }
+
+            var myNoteDb = await _context.MyNotes.FindAsync(id);
+            _context.MyNotes.Remove(myNoteDb);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Profile));
+        }
+
+
+
+
+
+
+
+
+            [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

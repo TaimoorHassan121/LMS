@@ -301,42 +301,6 @@ namespace DaewooLMS.Migrations
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("DaewooLMS.Models.Event", b =>
-                {
-                    b.Property<int>("EventID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Add_DateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("End_DateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Event_PIC")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Event_Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Objactive")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Participent")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("start_DateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("status")
-                        .HasColumnType("bit");
-
-                    b.HasKey("EventID");
-
-                    b.ToTable("Events");
-                });
-
             modelBuilder.Entity("DaewooLMS.Models.Event_Logs", b =>
                 {
                     b.Property<int>("EventLogID")
@@ -380,6 +344,42 @@ namespace DaewooLMS.Migrations
                     b.HasKey("EventLogID");
 
                     b.ToTable("EventLogs");
+                });
+
+            modelBuilder.Entity("DaewooLMS.Models.Events", b =>
+                {
+                    b.Property<int>("EventID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Add_DateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("End_DateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Event_PIC")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Event_Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Objactive")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Participent")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("start_DateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("status")
+                        .HasColumnType("bit");
+
+                    b.HasKey("EventID");
+
+                    b.ToTable("Events");
                 });
 
             modelBuilder.Entity("DaewooLMS.Models.LibraryData", b =>
@@ -542,6 +542,36 @@ namespace DaewooLMS.Migrations
                     b.ToTable("QuizQuestionAnswer");
                 });
 
+            modelBuilder.Entity("DaewooLMS.Models.Support", b =>
+                {
+                    b.Property<int>("SupportID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("Emp_ID")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Emp_Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsValid")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("MsgDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Subject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SupportID");
+
+                    b.ToTable("Support");
+                });
+
             modelBuilder.Entity("DaewooLMS.Models.Terminal", b =>
                 {
                     b.Property<int>("Terminal_ID")
@@ -661,6 +691,30 @@ namespace DaewooLMS.Migrations
                     b.HasIndex("DepartmentID");
 
                     b.ToTable("Videos");
+                });
+
+            modelBuilder.Entity("DaewooLMS.Models.myNotes", b =>
+                {
+                    b.Property<int>("myNoteId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("Emp_Id")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("myNote")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("status")
+                        .HasColumnType("bit");
+
+                    b.HasKey("myNoteId");
+
+                    b.ToTable("MyNotes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

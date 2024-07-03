@@ -1,8 +1,21 @@
-﻿
+﻿@model DaewooLMS.Models.Support
 @{
     ViewData["Title"] = "Support";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
+
+    var Emp_name = User.Claims.Where(a => a.Type == "EmpName")
+                        .Select(x => x.Value)
+                        .FirstOrDefault();
+
+    long Emp_ID = User.Claims
+                .Where(x => x.Type == "Emp_ID")
+                .Select(x => Convert.ToInt64(x.Value))
+                .FirstOrDefault();
+
+
     }
+
+
 
 
 <style>
@@ -105,30 +118,24 @@
                     <h2 class="mb-5">Get in Touch</h2>
                 </div>
                 <div class="" id="form1 ">
-                    <form>
                         <div class="form-data " v-if="!submitted ">
                             <div class="forms-inputs " style="margin-bottom: 40px; ">
-                                <span> Full Name </span> <input autocomplete="off " placeholder="Your Name " type="text" v-model="email " v-bind:class="{ 'form-control':true, 'is-invalid' : !validEmail(email) && emailBlured} " v-on:blur="emailBlured=t rue ">
+                                <span>Employee Full Name </span> <input autocomplete="off" id="Emp_Name" value="@Emp_name" placeholder="Your Name " type="text" v-model="email " readonly>
                             </div>
                             <div class="forms-inputs " style="margin-bottom: 40px; ">
-                                <span> Email Address * </span> <input autocomplete="off " placeholder="Email Address " type="email" v-model="password " v-bind:class="{ 'form-control':true, 'is-invalid' : !validPassword(password) && passwordBlured} "
-                                                                      v-on:blur="passwordBlured=t rue ">
-                                <div class="invalid-feedback ">Password must be 8 character!</div>
+                                <span> Employee ID </span> <input autocomplete="off " placeholder="Emp_ID"  id="Emp_ID"  value="@Emp_ID"   type="email" v-model="password " readonly>
                             </div>
 
                             <div class="forms-inputs " style="margin-bottom: 40px; ">
-                                <span> Subject </span> <input autocomplete="off " placeholder="Major you want to study.... " type="text" v-model="password " v-bind:class="{ 'form-control':true, 'is-invalid' : !validPassword(password) && passwordBlured} "
-                                                              v-on:blur="passwordBlured=t rue ">
-                                <div class="invalid-feedback ">Password must be 8 character!</div>
+                                <span> Subject </span> <input autocomplete="off "  id="Subject"   placeholder="Enter You Subject Here" type="text">
                             </div>
 
                             <div class="forms-inputs " style="margin-bottom: 40px; ">
-                                <span> Message </span> <textarea style="padding-top: 15px; " class="form-control " rows="6 "></textarea>
-                                <div class="invalid-feedback ">Password must be 8 character!</div>
+                                <span> Message </span> <textarea style="padding-top: 15px; " id="Message" class="form-control " rows="6 "></textarea>
                             </div>
-                            <div class="bitton mb-3 "> <button type="submit" class="btn btn " required>Submit</button></div>
+
+                            <div class="bitton mb-3 "> <button type="submit" class="btn btn " onclick="supportMsg()" required>Submit</button></div>
                         </div>
-                    </form>
                 </div>
             </div>
             <div class="col-md-6 ">
@@ -143,7 +150,38 @@
     </div>
 </div>
 
-
 <div class="container-fluid m-0 p-0 " style="background-color: #2B3268;font-family:'Times New Roman', Times, serif ">
     <h1 class="text-center p-3  " style="color: #fcbe38 ">"Surrounde Yourself With Supportive Peopel"</h1>
 </div>
+
+<script>
+    
+    function supportMsg(){
+        console.log();
+        var empName = document.getElementById('Emp_Name').value;
+        var empID = document.getElementById('Emp_ID').value;
+        var Sub = document.getElementById('Subject');
+        var masg = document.getElementById('Message');
+        var Subject = Sub.value;
+        var msg = masg.value;
+
+        if (msg == null) {
+            return alert("Please Enter Your Message!")
+        }
+
+        $.ajax({
+            type:'POST',
+            url: '/Home/Support?empId=' + empID + '&empName=' + empName + '&sub=' + Subject + '&msg=' + msg,
+            success: function (response) {
+                Swal.fire('Submitted!', 'Your message has been sent.', 'success');
+            },
+
+        });
+        Sub.value = "";
+        masg.value = "";
+    }
+
+
+
+
+</script>                     
