@@ -37,5 +37,6 @@ namespace DaewooLMS.Data
         public DbSet<Department> Departments { get; set; }
         public DbSet<myNotes> MyNotes { get; set; }
         public DbSet<Support> Support { get; set; }
+        public DbSet<QuizAttempt> QuizAttempts { get; set; }
     }
 }

@@ -524,6 +524,58 @@ namespace DaewooLMS.Controllers
             return RedirectToAction(nameof(Profile));
         }
 
+        public async Task<IActionResult> QuizAttemp(QuizAttempt quizAttempt,string Department,string score,string status)
+        {
+
+            long Emp_ID = User.Claims
+                .Where(x => x.Type == "Emp_ID")
+                .Select(x => Convert.ToInt64(x.Value))
+                .FirstOrDefault();
+
+
+            var quizAtmp = _context.QuizAttempts.Where(a => a.Emp_ID == Emp_ID).OrderByDescending(a => a.QuizAtmp_ID).FirstOrDefault();
+         
+            if (quizAtmp != null)
+            {
+                if (quizAtmp.Score == "0" && status == "QuizStart")
+                {
+                    int attemp;
+                    attemp = quizAtmp.Quiz_Attempts + 1;
+                    quizAtmp.Quiz_Attempts = attemp;
+                    quizAtmp.Score = score;
+                    quizAtmp.StartDate = DateTime.Now;
+
+                    _context.QuizAttempts.Update(quizAtmp);
+                    await _context.SaveChangesAsync();
+                    return View();
+
+                }
+                if(status == "Submit")
+                {
+                    quizAtmp.Score = score;
+                    quizAtmp.EndDate = DateTime.Now;
+                    quizAtmp.Status = status;
+
+                    _context.QuizAttempts.Update(quizAtmp);
+                    await _context.SaveChangesAsync();
+                    return View();
+                }
+
+            }
+
+            quizAttempt.Emp_ID = Emp_ID;
+            quizAttempt.Quiz_Attempts = 1;
+            quizAttempt.Score = score;
+            quizAttempt.Emp_Department = Department;
+            quizAttempt.StartDate = DateTime.Now;
+            quizAttempt.EndDate = null;
+            quizAttempt.Status = status;
+
+            _context.QuizAttempts.Add(quizAttempt);
+            await _context.SaveChangesAsync();
+            return View();
+        }
+
 
 
 

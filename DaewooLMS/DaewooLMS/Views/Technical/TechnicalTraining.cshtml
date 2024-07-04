@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "TechnicalTraining";
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
+
 }
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
@@ -619,6 +620,7 @@
                                             <!-- Here I've inserted Question Count Number from JavaScript -->
                                         </div>
                                         <button class="next_btn">Next Que</button>
+                                        <button class="submitQuiz">Submit</button>
                                     </footer>
                                 </div>
 
@@ -632,7 +634,7 @@
                                         <!-- Here I've inserted Score Result from JavaScript -->
                                     </div>
                                     <div class="buttons">
-                                        <button class="restart">Replay Quiz</button>
+                                        @* <button class="restart">Replay Quiz</button> *@
                                         <button class="quit">Quit Quiz</button>
                                         <button class="btn btn-success" id="download_btn" onclick="downloadPDF()">Download Word</button>
                                     </div>
@@ -658,9 +660,8 @@
 
 <script type="text/javascript">
 
-
-
     var questions = @Html.Raw(Json.Serialize(Model.questionDatas));
+    var depart = @Html.Raw(Json.Serialize(Model.DepartmentName));
     // creating an array and passing the number, questions, options, and answers
     // let questions = [
     //     {
@@ -759,6 +760,8 @@
         queCounter(1); //passing 1 parameter to queCounter
         startTimer(15); //calling startTimer function
         startTimerLine(0); //calling startTimerLine function
+
+        quizAttemp(depart);
     }
 
     let timeValue = 15;
@@ -774,23 +777,23 @@
     const quit_quiz = result_box.querySelector(".buttons .quit");
 
     // if restartQuiz button clicked
-    restart_quiz.onclick = () => {
-        quiz_box.classList.add("activeQuiz"); //show quiz box
-        result_box.classList.remove("activeResult"); //hide result box
-        timeValue = 15;
-        que_count = 0;
-        que_numb = 1;
-        userScore = 0;
-        widthValue = 0;
-        showQuetions(que_count); //calling showQestions function
-        queCounter(que_numb); //passing que_numb value to queCounter
-        clearInterval(counter); //clear counter
-        clearInterval(counterLine); //clear counterLine
-        startTimer(timeValue); //calling startTimer function
-        startTimerLine(widthValue); //calling startTimerLine function
-        timeText.textContent = "Time Left"; //change the text of timeText to Time Left
-        next_btn.classList.remove("show"); //hide the next button
-    }
+    // restart_quiz.onclick = () => {
+    //     quiz_box.classList.add("activeQuiz"); //show quiz box
+    //     result_box.classList.remove("activeResult"); //hide result box
+    //     timeValue = 15;
+    //     que_count = 0;
+    //     que_numb = 1;
+    //     userScore = 0;
+    //     widthValue = 0;
+    //     showQuetions(que_count); //calling showQestions function
+    //     queCounter(que_numb); //passing que_numb value to queCounter
+    //     clearInterval(counter); //clear counter
+    //     clearInterval(counterLine); //clear counterLine
+    //     startTimer(timeValue); //calling startTimer function
+    //     startTimerLine(widthValue); //calling startTimerLine function
+    //     timeText.textContent = "Time Left"; //change the text of timeText to Time Left
+    //     next_btn.classList.remove("show"); //hide the next button
+    // }
 
     // if quitQuiz button clicked
     quit_quiz.onclick = () => {
@@ -809,6 +812,7 @@
 
 
     const next_btn = document.querySelector("footer .next_btn");
+    const submitQuiz = document.querySelector("footer .submitQuiz");
     const bottom_ques_counter = document.querySelector("footer .total_que");
 
     // if Next Que button clicked
@@ -838,7 +842,10 @@
         } else {
             clearInterval(counter); //clear counter
             clearInterval(counterLine); //clear counterLine
-            showResult(); //calling showResult function
+            next_btn.classList.remove("show")
+            submitQuiz.classList.add("show")
+
+            // showResult(); //calling showResult function
         }
     }
 
@@ -1034,5 +1041,50 @@
     // Add an event listener to the download button
     const downloadBtn = document.querySelector("#download_btn");
     downloadBtn.addEventListener("click", downloadWordDoc);
+
+
+    function quizAttemp(depart){
+        console.log();
+        let finalScore = 0;
+        var status = "QuizStart"
+        $.ajax({
+            type:'POST',
+            url: '/Home/QuizAttemp?Department=' + depart + '&score=' + finalScore + '&status=' + status,
+
+
+        });
+
+
+    }
+
+    submitQuiz.onclick = () => {
+
+        console.log();
+        let finalScore = 0;
+        let status = "Submit"
+        quiz = questions.length - 1;
+        if (que_count === quiz) {
+            finalScore = 'You Score is ' + userScore + ' out of ' + questions.length;
+        }
+        $.ajax({
+            type: 'POST',
+            url: '/Home/QuizAttemp?Department=' + depart + '&score=' + finalScore + '&status=' + status,
+
+
+        });
+
+
+        showResult(); //calling showResult function
+    }
+
+
+
+
+
+
+
+
+
+
 </script>
 
