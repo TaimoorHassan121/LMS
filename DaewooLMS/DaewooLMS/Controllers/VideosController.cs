@@ -10,9 +10,11 @@ using DaewooLMS.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using System.Net.Http.Headers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DaewooLMS.Controllers
 {
+    [Authorize(Policy = "AdminCookieScheme", Roles = "Admin")]
     public class VideosController : Controller
     {
         private readonly ApplicationDbContext _context;

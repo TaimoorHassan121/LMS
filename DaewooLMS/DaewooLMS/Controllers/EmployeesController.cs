@@ -15,9 +15,11 @@ using DaewooLMS.Areas.Identity.Pages.Account;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using System.Net.Http.Headers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DaewooLMS.Controllers
 {
+    [Authorize(Policy = "AdminCookieScheme", Roles = "Admin")]
     public class EmployeesController : Controller
     {
         private readonly ApplicationDbContext _context;

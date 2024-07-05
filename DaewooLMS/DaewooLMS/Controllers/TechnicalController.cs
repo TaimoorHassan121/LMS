@@ -4,9 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using static DaewooLMS.Models.ViewModel.TechnicalVibes;
 using System.Threading.Tasks;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DaewooLMS.Controllers
 {
+    [Authorize(Policy = "AdminCookieScheme", Roles = "Admin")]
     public class TechnicalController : Controller
     {
         private readonly ApplicationDbContext _context;

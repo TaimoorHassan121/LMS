@@ -102,7 +102,7 @@ namespace DaewooLMS.Areas.Identity.Pages.Account
 
                             await AdminCookies(staff);
                             _logger.LogInformation("User logged in.");
-                            return RedirectToAction("Index", "Events");
+                            return RedirectToAction("AdminIndex", "AdminUsers");
                             //return LocalRedirect(returnUrl);
                         }
                             if (result.RequiresTwoFactor)

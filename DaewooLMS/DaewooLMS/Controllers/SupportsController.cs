@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DaewooLMS.Data;
 using DaewooLMS.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DaewooLMS.Controllers
 {
+    [Authorize(Policy = "AdminCookieScheme", Roles = "Admin")]
     public class SupportsController : Controller
     {
         private readonly ApplicationDbContext _context;

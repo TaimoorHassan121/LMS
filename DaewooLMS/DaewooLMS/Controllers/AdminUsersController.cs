@@ -15,9 +15,12 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using System.Net.Http.Headers;
+using Microsoft.AspNetCore.Authorization;
+using DaewooLMS.Models.ViewModel;
 
 namespace DaewooLMS.Controllers
 {
+    [Authorize(Policy = "AdminCookieScheme", Roles = "Admin")]
     public class AdminUsersController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -41,6 +44,7 @@ namespace DaewooLMS.Controllers
         public string ReturnUrl { get; set; }
 
         private List<AuthenticationScheme> ExternalLogins;
+
         // GET: AdminUsers
         public async Task<IActionResult> Index()
         {
@@ -269,6 +273,28 @@ namespace DaewooLMS.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult AdminIndex()
+        {
+
+            AdminIndexVM adminVM = new AdminIndexVM();
+
+            var emp = _context.Employees.Include(a => a.Department).ToList();
+            var chatM = _context.Emp_Chat_M.ToList();
+            var chatReply = _context.Emp_Chat_Replies.ToList();
+            var support = _context.Support.ToList();
+            var eventDB = _context.Events.ToList();
+
+
+            adminVM.employees = emp.OrderByDescending(a => a.UserId).Take(5).ToList();
+            adminVM.chatMaster = chatM.OrderByDescending(a => a.ChatID).Take(5).ToList();
+            adminVM.chatReply = chatReply.OrderByDescending(a => a.Chat_ReplyID).Take(5).ToList();
+            adminVM.support = support.OrderByDescending(a => a.SupportID).Take(5).ToList();
+            adminVM.events = eventDB.OrderByDescending(a => a.EventID).Take(5).ToList();
+
+
+            return View(adminVM);
         }
     }
 }

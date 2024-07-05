@@ -54,14 +54,8 @@ namespace DaewooLMS.Controllers
         {
             return View();
         }
-        public IActionResult DaewooLMS()
-        {
-            return View();
-        }
-        public IActionResult AdminIndex()
-        {
-            return View();
-        }
+  
+ 
 
         [AllowAnonymous]
         public IActionResult Login(string returnUrl = null)

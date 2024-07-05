@@ -516,7 +516,6 @@ D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Home
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Home\Courses.cshtml.g.cs
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Home\CoursesDetail.cshtml.g.cs
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Home\DaewooCommunity.cshtml.g.cs
-D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Home\DaewooLMS.cshtml.g.cs
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Home\Digital_Liberary.cshtml.g.cs
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Home\EmployeeWelBeing.cshtml.g.cs
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Home\Events.cshtml.g.cs
@@ -577,3 +576,10 @@ D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\staticwebassets\
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\staticwebassets\msbuild.buildTransitive.DaewooLMS.props
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\DaewooLMS.csproj.Up2Date
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Home\EditProfile.cshtml.g.cs
+D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Supports\Create.cshtml.g.cs
+D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Supports\Delete.cshtml.g.cs
+D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Supports\Details.cshtml.g.cs
+D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Supports\Edit.cshtml.g.cs
+D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Supports\Index.cshtml.g.cs
+D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Home\AdminIndex.cshtml.g.cs
+D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\AdminUsers\AdminIndex.cshtml.g.cs

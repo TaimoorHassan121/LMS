@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace DaewooLMS.Controllers
 {
     [Authorize(Policy = "AdminCookieScheme", Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class EventsController : Controller
     {
         private readonly ApplicationDbContext _context;

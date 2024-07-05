@@ -94,23 +94,26 @@ namespace DaewooLMS
             {
                 options.ForwardDefaultSelector = context =>
                 {
+                    //string authorization = context.Request.Headers[HeaderNames.Authorization];
+                    //var path = context.Request.Path;
+                    //if (!string.IsNullOrEmpty(authorization) && authorization.StartsWith("Bearer "))
+                    //    return JwtBearerDefaults.AuthenticationScheme;
+                    ////if (path == "/" || path.ToString().Contains("Home"))
+                    ////    return "AdminCookies";
+                    ////else
+                    //return CookieAuthenticationDefaults.AuthenticationScheme;
+
                     string authorization = context.Request.Headers[HeaderNames.Authorization];
-                    var path = context.Request.Path;
                     if (!string.IsNullOrEmpty(authorization) && authorization.StartsWith("Bearer "))
                         return JwtBearerDefaults.AuthenticationScheme;
-                    //if (path == "/" || path.ToString().Contains("Home"))
-                    //    return "AdminCookies";
-                    //else
-                    return CookieAuthenticationDefaults.AuthenticationScheme;
+                    return "UserCookies"; // Default to UserCookies if no Bearer token is found
                 };
             });
             services.AddAuthorization(options =>
             {
                 var defaultAuthorizationPolicyBuilder = new AuthorizationPolicyBuilder(
-                    JwtBearerDefaults.AuthenticationScheme,
-                    CookieAuthenticationDefaults.AuthenticationScheme,
-                    "UserCookies",
-                    "AdminCookies");
+                   "JwtBearer_OR_COOKIE"
+               );
                 defaultAuthorizationPolicyBuilder =
                     defaultAuthorizationPolicyBuilder.RequireAuthenticatedUser();
                 options.DefaultPolicy = defaultAuthorizationPolicyBuilder.Build();
@@ -119,6 +122,7 @@ namespace DaewooLMS
                 options.AddPolicy("UserCookieScheme", userCookieSchemePolicyBuilder
                     .RequireAuthenticatedUser()
                     .Build());
+
                 var adminCookieSchemePolicyBuilder = new AuthorizationPolicyBuilder("AdminCookies");
                 options.AddPolicy("AdminCookieScheme", adminCookieSchemePolicyBuilder
                     .RequireAuthenticatedUser()

@@ -2,10 +2,73 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Index</h1>
+<div class="content-body">
+    <div class="row">
+    </div>
+    <!-- Zero configuration table -->
+    <section id="basic-datatable">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Events List</h5>
+                
+                    </div>
+                    <div class="card-body card-dashboard">
+
+                        <div class="table-responsive">
+                            <table class="table zero-configuration">
+                                <thead>
+                                    <tr>
+                                        <th>Emp ID</th>
+                                        <th>Name</th>
+                                        <th>Subject</th>
+                                        <th>Message</th>
+                                        <th>Date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.Emp_ID</td>
+                                            <td>@item.Emp_Name</td>
+                                            <td>@item.Subject</td>
+                                            <td>@item.Message</td>
+                                            <td>@item.MsgDate.ToString("dd-MM-yyyy")</td>
+                                        
+                                            <td>
+                                                @* <a asp-action="Edit" class="btn btn-success  btn-sm" asp-route-id="@item.SupportID">Edit</a>
+                                                <a asp-action="Details" class="btn btn-info  btn-sm" asp-route-id="@item.SupportID">Details</a> *@
+                                                <a asp-action="Delete" class="btn btn-danger btn-sm" asp-route-id="@item.SupportID">Delete</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/ Zero configuration table -->
+
+</div>
+
+
+
+
+
+
+
+
+@* <h1>Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -63,4 +126,4 @@
         </tr>
 }
     </tbody>
-</table>
+</table> *@
