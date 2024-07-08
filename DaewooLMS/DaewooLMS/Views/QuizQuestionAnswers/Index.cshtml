@@ -72,9 +72,9 @@
                                                 @Html.DisplayFor(modelItem => item.QuizDate)
                                             </td>
                                             <td>
-                                                <a asp-action="Edit" asp-route-id="@item.QuizID">Edit</a> |
-                                                <a asp-action="Details" asp-route-id="@item.QuizID">Details</a> |
-                                                <a asp-action="Delete" asp-route-id="@item.QuizID">Delete</a>
+                                                <a asp-action="Edit" class="btn btn-success btn-sm" asp-route-id="@item.QuizID">Edit</a> 
+                                                <a asp-action="Details" class="btn btn-info btn-sm" asp-route-id="@item.QuizID">Details</a> 
+                                                <a asp-action="Delete" class="btn btn-danger btn-sm" asp-route-id="@item.QuizID">Delete</a>
                                             </td>
                                         </tr>
                                     }
