@@ -256,6 +256,10 @@ namespace DaewooLMS.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("About")
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
+
                     b.Property<int>("DepartmentID")
                         .HasColumnType("int");
 

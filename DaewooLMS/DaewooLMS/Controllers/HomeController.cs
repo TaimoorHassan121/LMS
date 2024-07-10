@@ -20,6 +20,8 @@ using System.Net.Http.Headers;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using DaewooLMS.Models.ViewModel;
+using DinkToPdf.Contracts;
+using DinkToPdf;
 
 namespace DaewooLMS.Controllers
 {
@@ -32,9 +34,10 @@ namespace DaewooLMS.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-        private readonly IHTMLtoWord _htmltoword;
+        //private readonly IHTMLtoWord _htmltoword;
+        private readonly IConverter _converter;
 
-        public HomeController(ApplicationDbContext context, SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, ILogger<RegisterModel> logger, IEmailSender emailSender, IHTMLtoWord hTMLtoWord)
+        public HomeController(ApplicationDbContext context, SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, ILogger<RegisterModel> logger, IEmailSender emailSender,  IConverter converter)
         {
             _context = context;
             _signInManager = signInManager;
@@ -42,7 +45,8 @@ namespace DaewooLMS.Controllers
             _roleManager = roleManager;
             _logger = logger;
             _emailSender = emailSender;
-            _htmltoword = hTMLtoWord;
+            //_htmltoword = hTMLtoWord;
+            _converter = converter;
         }
 
         [BindProperty]
@@ -214,7 +218,7 @@ namespace DaewooLMS.Controllers
             return View(profileVM);
         }
         [HttpGet]
-        public async Task<IActionResult> EditProfile(int id)
+        public async Task<IActionResult> EditProfile(int? id)
         {
             if (id == null)
             {
@@ -232,8 +236,8 @@ namespace DaewooLMS.Controllers
 
             return View(employee);
         }
-
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditProfile(Employee employee, IFormFile profilepic,int id)
         {      
 
@@ -241,11 +245,56 @@ namespace DaewooLMS.Controllers
             {
                 return NotFound();
             }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    if (profilepic != null)
+                    {
+                        var image = ContentDispositionHeaderValue.Parse(profilepic.ContentDisposition).FileName.Trim();
+                        var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Images", profilepic.FileName);
+                        using (System.IO.Stream stream = new FileStream(path, FileMode.Create))
+                        {
+                            profilepic.CopyTo(stream);
+                        }
+                        employee.Emp_Pic = profilepic.FileName;
+                    }
+                    else
+                    {
+                        var profilpic = _context.Employees.Where(a => a.Emp_ID == employee.Emp_ID).SingleOrDefault();
+                        employee.Emp_Pic = profilpic.Emp_Pic;
+                    }
+                    employee.IsActive = true;
+                    employee.Status = true;
+
+                    _context.Update(employee);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Profile));
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!EmployeeExists(employee.UserId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+
+
             ViewData["DepartmentID"] = new SelectList(_context.Departments, "DepartmentID", "DepartmentName", employee.DepartmentID);
             ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", employee.IdentityUserId);
 
 
             return View();
+        }
+        private bool EmployeeExists(int id)
+        {
+            return _context.Employees.Any(e => e.UserId == id);
         }
 
         public IActionResult Courses()
@@ -325,6 +374,7 @@ namespace DaewooLMS.Controllers
             chat.message = message;
             chat.Emp_Pic = emp_pic;
             chat.Status = true;
+            chat.IsSeen = true;
             chat.MsgDate = DateTime.Now;
 
             if (ModelState.IsValid)
@@ -346,7 +396,8 @@ namespace DaewooLMS.Controllers
             chatReply.Reply_Message = message;
             chatReply.Emp_Pic_Reply = Emp_Pic;
             chatReply.Emp_Name = Emp_Name;
-            chatReply.IsSeen = false;
+            //chatReply.IsSeen = false;
+            chatReply.IsSeen = true;
             chatReply.Status = true;
             chatReply.MsgDate = DateTime.Now;
 
@@ -455,6 +506,71 @@ namespace DaewooLMS.Controllers
 
             return View(policyVM);
         }
+        public class HtmlContentModel
+        {
+            public string HtmlContent { get; set; }
+        }
+
+
+        public IActionResult ConvertHtmlToPdf(string HtmlContentModel)
+        {
+
+            var htmlContent = @"
+        <html>
+            <head>
+                <style>
+                    table, th, td {
+                        border: 1px solid black;
+                    }
+                </style>
+            </head>
+            <body>
+                <h1>Hello, World!</h1>
+                <img src='https://via.placeholder.com/150' alt='Sample Image' />
+                <table>
+                    <tr>
+                        <th>Header 1</th>
+                        <th>Header 2</th>
+                    </tr>
+                    <tr>
+                        <td>Data 1</td>
+                        <td>Data 2</td>
+                    </tr>
+                </table>
+            </body>
+        </html>";
+            if (HtmlContentModel == null || string.IsNullOrWhiteSpace(HtmlContentModel))
+            {
+                return BadRequest("Invalid HTML content");
+            }
+
+            var doc = new HtmlToPdfDocument()
+            {
+                GlobalSettings = {
+            ColorMode = ColorMode.Color,
+            Orientation = Orientation.Portrait,
+            PaperSize = PaperKind.A4,
+        },
+                Objects = {
+            new ObjectSettings() {
+                PagesCount = true,
+                HtmlContent = htmlContent,
+                WebSettings = { DefaultEncoding = "utf-8" },
+                HeaderSettings = { FontName = "Arial", FontSize = 9, Right = "Page [page] of [toPage]", Line = true },
+                FooterSettings = { FontName = "Arial", FontSize = 9, Line = true, Center = "Footer" }
+            }
+        }
+            };
+
+            byte[] pdf = _converter.Convert(doc);
+
+            return File(pdf, "application/pdf", "Invoice.pdf");
+        }
+
+    
+
+
+
 
         private async Task CreateCookies(Employee user)
         {

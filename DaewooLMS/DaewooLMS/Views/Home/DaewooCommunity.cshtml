@@ -320,6 +320,7 @@ Safari 7+ */
                     },
                     success: function (response) {
                         Swal.fire('Submitted!', 'Your message has been sent.', 'success');
+                        window.location.reload();
                     },
                     error: function (xhr, status, error) {
                         Swal.fire('Error!', 'There was a problem sending your message.', 'error');
@@ -362,11 +363,13 @@ Safari 7+ */
                 success: function (response) {
                     Swal.fire('Submitted!', 'Your message has been sent.', 'success');
                     $('#message').val('');
+                    window.location.reload();
                 },
                 error: function (xhr, status, error) {
                     Swal.fire('Error!', 'There was a problem sending your message.', 'error');
                 }
              });
+            window.location.reload();
          });
      });
 

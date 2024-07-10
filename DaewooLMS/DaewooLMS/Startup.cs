@@ -1,4 +1,6 @@
 using DaewooLMS.Data;
+using DinkToPdf.Contracts;
+using DinkToPdf;
 using LMSProject.Services.Interface;
 using LMSProject.Services.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -20,6 +22,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Runtime.InteropServices;
+using DaewooLMS.Services.Interface;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Microsoft.AspNetCore.Http.Features;
+//using DaewooLMS.Services.Interface;
 
 namespace DaewooLMS
 {
@@ -130,15 +138,21 @@ namespace DaewooLMS
 
             });
 
+            services.Configure<FormOptions>(options =>
+            {
+                options.MultipartBodyLengthLimit = long.MaxValue; // Set to maximum value, adjust as needed
+            });
 
-
+            var context = new CustomAssemblyLoadContext();
+            context.LoadUnmanagedLibrary(Path.Combine(Directory.GetCurrentDirectory(), "libwkhtmltox.dll"));
+            services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
 
             services.AddControllersWithViews();
             services.AddRazorPages();
 
             services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddScoped<IAuthInterface, AuthService>();
-            services.AddTransient<IHTMLtoWord, HTMLtoWordService>();
+            //services.AddTransient<CustomAssemblyLoadContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -163,6 +177,26 @@ namespace DaewooLMS
             app.UseAuthentication();
             app.UseAuthorization();
 
+            app.UseCookiePolicy();
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                ServeUnknownFileTypes = true,
+                DefaultContentType = "application/octet-stream",
+                OnPrepareResponse = ctx =>
+                {
+                    var path = ctx.File.PhysicalPath;
+                    if (path.EndsWith(".ppt") || path.EndsWith(".pptx"))
+                    {
+                        ctx.Context.Response.ContentType = "application/vnd.openxmlformats-officedocument.presentationml.presentation";
+                    }
+                    else if (path.EndsWith(".doc") || path.EndsWith(".docx"))
+                    {
+                        ctx.Context.Response.ContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                    }
+                }
+            });
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -172,4 +206,7 @@ namespace DaewooLMS
             });
         }
     }
+
+
+
 }

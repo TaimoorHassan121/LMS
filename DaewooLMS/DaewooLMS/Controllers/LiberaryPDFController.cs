@@ -32,5 +32,11 @@ namespace DaewooLMS.Controllers
 
             return View(liberaryDetail);
         }
+
+        public ActionResult GetFileUrl(string fileName)
+        {
+            string fileUrl = Url.Content($"~/CoursePDF/{fileName}");
+            return Json(new { url = fileUrl });
+        }
     }
 }

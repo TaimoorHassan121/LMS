@@ -16,8 +16,6 @@
                                 <h1 class="">Edit Profile</h1>
                             </div>
                             <div class="card-body mt-5">
-                                <form class="form">
-                                    <div class="form-body">
                                         <div class="container-fluid">
                                             <div class="row">
                                                 <div class="col-4"></div>
@@ -42,13 +40,13 @@
                                                                 <div class="col-12">
                                                                     <div class="form-group">
                                                                         <label for="password-vertical">Password</label>
-                                                                        <input type="password" asp-for="User_Passward" id="password-vertical" class="form-control"  placeholder="Password">
+                                                                        <input type="text" asp-for="User_Passward" name="User_Passward" id="" class="form-control" placeholder="Password">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12">
                                                                     <div class="form-group">
                                                                         <label for="contact-info-vertical">Mobile</label>
-                                                                        <input type="number" asp-for="Mobile_No" id="contact-info-vertical" class="form-control" name="contact" placeholder="Mobile">
+                                                                        <input type="text" asp-for="Mobile_No" name="Mobile_No" id="contact-info-vertical" class="form-control"  placeholder="Mobile">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12">
@@ -73,19 +71,48 @@
                                                                     </fieldset>
                                                                 </div>
 
-                                                                <div class="col-6">
+                                                                <div class="col-12">
                                                                     <div class="form-group">
-                                                                        <div class="checkbox">
-                                                                            <input type="checkbox" class="checkbox-input" id="checkbox3">
-                                                                            <label for="checkbox3">Remember me</label>
+                                                                        <label>Designation</label>
+                                                                        <div class="position-relative has-icon-left">
+                                                                            <input asp-for="Designation" type="text" id="first-name-icon" class="form-control" placeholder="Enter Designation" autocomplete="off" required>
+
                                                                         </div>
+                                                                        <span asp-validation-for="Designation" class="text-danger"></span>
                                                                     </div>
                                                                 </div>
 
+                                                                <div class="col-12">
+                                                                    <div class="form-group">
+                                                                        <label class="control-label">Gender</label>
+                                                                        <select asp-for="Gender" class="form-control" id="Department" onchange="changeDepartment(this)">
+                                                                            <option value="Male">Male</option>
+                                                                            <option value="Female">Female</option>
+                                                                        </select>
+
+                                                                    </div>
+                                                                    <span asp-validation-for="Gender" style="color:Red"></span>
+                                                                </div>
+
+                                                                <div class="col-12">
+                                                                    <div class="form-group">
+                                                                        <label class="control-label">Date</label>
+                                                                        <input asp-for="Emp_Date" type="datetime-local" id="qdDate" class="form-control" />
+                                                                        <span asp-validation-for="Emp_Date" class="text-danger"></span>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-12">
+                                                                    <div class="form-group">
+                                                                        <label for="password-vertical">About</label>
+                                                                <textarea type="text" asp-for="About" name="About" id="message" placeholder="Tell me about yourself" rows="5" class="form-control"></textarea>
+                                                                    </div>
+                                                                </div>
+
+                                                          
 
                                                                 <div class="col-12 d-flex justify-content-end">
                                                                     <input type="submit" value="Update" class="btn btn-primary mr-1" />
-
                                                                     <button asp-action="Index" class="btn btn-light-secondary">Back</button>
                                                                 </div>
                                                             </div>
@@ -101,9 +128,6 @@
                                                 <div class="col-4"></div>
                                             </div>
                                         </div>
-                                   
-                                    </div>
-                                </form>
                             </div>
                         </div>
                     </div>
@@ -114,6 +138,7 @@
         </div>
     </div>
 </div>
+<script src="~/js/currentdatetime.js"></script>
 
 
 

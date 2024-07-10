@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace DaewooLMS.Controllers
 {
-    [Authorize(Policy = "AdminCookieScheme", Roles = "Admin")]
+    [Authorize(Policy = "UserCookieScheme", Roles = "Employee")]
     public class TechnicalController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -24,7 +24,7 @@ namespace DaewooLMS.Controllers
 
             var LiberaryDb = _context.LibraryDatas.ToList();
             var depart = _context.Departments.Where(a => a.DepartmentName == deprtname).FirstOrDefault();
-            var PDFTechnical = LiberaryDb.Where(a => a.DepartmentID == depart.DepartmentID && a.Trade == "LiberaryPDF").ToList();
+            var PDFTechnical = LiberaryDb.Where(a => a.DepartmentID == depart.DepartmentID && a.Trade == "TechnicalPDF").ToList();
             var VideoTechnical = _context.Videos.Where(a => a.DepartmentID == depart.DepartmentID && a.Trade == "TechnicalVideo").ToList();
             var quizMain = _context.QuizQuestionAnswer.Where(a => a.DepartmentID == depart.DepartmentID).ToList();
 

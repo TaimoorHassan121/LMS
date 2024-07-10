@@ -31,5 +31,8 @@ namespace DaewooLMS.Models
         public bool IsActive { get; set; }
         public bool Status { get; set; }
         public DateTime Emp_Date { get; set; }
+        [Display(Name = "Department")]
+        [StringLength(200, MinimumLength = 0)]
+        public string? About { get; set; }
     }
 }

@@ -6,8 +6,36 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\wkhtmltopdf-0.12.6\**" />
+    <Content Remove="wwwroot\wkhtmltopdf-0.12.6\**" />
+    <EmbeddedResource Remove="wwwroot\wkhtmltopdf-0.12.6\**" />
+    <None Remove="wwwroot\wkhtmltopdf-0.12.6\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Migrations\20240701043752_eventtoevents.cs" />
     <Compile Remove="Migrations\20240701043752_eventtoevents.Designer.cs" />
+    <Compile Remove="Migrations\20240710090454_aboutinemp.cs" />
+    <Compile Remove="Migrations\20240710090454_aboutinemp.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\mughe\.nuget\packages\libwkhtmltox-32\0.12.6.1\contentFiles\any\any\libwkhtmltox.dll" />
+    <None Remove="libwkhtmltox.dll" />
+    <None Remove="libwkhtmltox.dylib" />
+    <None Remove="libwkhtmltox.so" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="libwkhtmltox.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libwkhtmltox.dylib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="libwkhtmltox.so">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -101,6 +129,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="DinkToPdf" Version="1.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.32" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.31" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.32" />
@@ -113,10 +142,20 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="WkHtmlToPdf" Version="1.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="wwwroot\EventImages\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\wkhtmltopdf\libwkhtmltox.dylib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\wkhtmltopdf\libwkhtmltox.so">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

@@ -581,3 +581,10 @@ D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Supp
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Supports\Index.cshtml.g.cs
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\Home\AdminIndex.cshtml.g.cs
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\obj\Debug\netcoreapp3.1\Razor\Views\AdminUsers\AdminIndex.cshtml.g.cs
+D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\bin\Debug\netcoreapp3.1\DinkToPdf.dll
+D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\bin\Debug\netcoreapp3.1\libwkhtmltox.dylib
+D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\bin\Debug\netcoreapp3.1\libwkhtmltox.so
+D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\bin\Debug\netcoreapp3.1\WkHtmlToPdf.dll
+D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\bin\Debug\netcoreapp3.1\libwkhtmltox.dll
+D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\bin\Debug\netcoreapp3.1\wwwroot\wkhtmltopdf\libwkhtmltox.dylib
+D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\bin\Debug\netcoreapp3.1\wwwroot\wkhtmltopdf\libwkhtmltox.so

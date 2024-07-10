@@ -119,29 +119,63 @@
 <script>
     function downloadWord() {
         var htmlContent = document.getElementById("htmlContent");
-        var htmltext = htmlContent.innerHTML;
+        var htmltext = htmlContent.outerHTML
         var data =  htmltext ;
         var json = JSON.stringify(data, null, 2);
         // var htmlContent = '<h1>HTML to Word Document</h1>' + contentTable + contentImage;
 
-        fetch('/Home/ConvertHtmlToWord?HtmlContentModel=' + htmltext, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
+        $.ajax({
+            url: '/Home/ConvertHtmlToPdf?HtmlContentModel=' + json,
+            type: 'POST',
+            // contentType: 'application/json',
+            // data: JSON.stringify({ HtmlContent: htmlContent }),
+            // xhrFields: {
+            //     responseType: 'blob'
+            // },
+            success: function (data) {
+                var blob = new Blob([data], { type: 'application/pdf' });
+                var link = document.createElement('a');
+                link.href = window.URL.createObjectURL(blob);
+                link.download = 'Invoice.pdf';
+                link.click();
             },
-            // body: JSON.stringify({ htmlContent: htmlContent })
-        }).then(response => response.blob())
-            .then(blob => {
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.style.display = 'none';
-                a.href = url;
-                a.download = 'document.docx';
-                document.body.appendChild(a);
-                a.click();
-                window.URL.revokeObjectURL(url);
-            })
-            .catch(error => console.error('Error:', error));
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(textStatus, errorThrown);
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // fetch('/Home/ConvertHtmlToWord?HtmlContentModel=' + json, {
+        //     method: 'GET',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     // body: JSON.stringify({ htmlContent: htmlContent })
+        // }).then(response => response.blob())
+        //     .then(blob => {
+        //         const url = window.URL.createObjectURL(blob);
+        //         const a = document.createElement('a');
+        //         a.style.display = 'none';
+        //         a.href = url;
+        //         a.download = 'document.docx';
+        //         document.body.appendChild(a);
+        //         a.click();
+        //         window.URL.revokeObjectURL(url);
+        //     })
+        //     .catch(error => console.error('Error:', error));
     }
 </script>
 
