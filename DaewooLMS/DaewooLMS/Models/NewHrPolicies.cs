@@ -7,9 +7,10 @@ namespace DaewooLMS.Models
     {
         [Key]
         public int PolicyID { get; set; }     
-        public string? PolicyName { get; set; } 
+        public string PolicyName { get; set; } 
         public DateTime PolicyDate { get; set; }
         public bool PolicyStatus { get; set; }
+        public long EmpID { get; set; }
 
 
 

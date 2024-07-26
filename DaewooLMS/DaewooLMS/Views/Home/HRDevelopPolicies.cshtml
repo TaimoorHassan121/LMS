@@ -22,12 +22,11 @@
                 <div class="col-xl-9 col-md-8 col-12">
                     <div class="card">
                         <div class="card-body pb-0 mx-25">
-                            <form asp-action="HRDevelopPolicies" method="post" enctype="multipart/form-data">
                                 <!-- header section -->
                                 <div class="row mx-0">
                                     <div class="col-xl-8 col-md-12 d-flex align-items-center pl-0">
                                         <h6 class="invoice-number mb-0 mr-75">Policy Name</h6>
-                                        <input type="text" asp-for="NewHrPolicies.PolicyName" name="NewHrPolicies.PolicyName" class="form-control pt-25 w-50">
+                                        <input type="text" asp-for="NewHrPolicies.PolicyName" name="NewHrPolicies.PolicyName" class="form-control pt-25 w-50" id="policyName">
                                     </div>
                                     <div class="col-xl-4 col-md-12 px-0 pt-xl-0 pt-1">
                                         <div class="invoice-date-picker d-flex align-items-center justify-content-xl-end flex-wrap">
@@ -37,8 +36,6 @@
                                                     <input type="datetime-local" asp-for="NewHrPolicies.PolicyDate" name="NewHrPolicies.PolicyDate" id="qdDate" class="form-control" />
                                                 </fieldset>
                                             </div>
-
-
                                         </div>
                                     </div>
                                 </div>
@@ -47,93 +44,35 @@
                                 <div class="row my-2 py-50">
                                     <div class="col-sm-12 col-12 order-2 order-sm-1">
                                         <div class="form-group row align-items-center">
-                                            <div class="col-lg-2 col-3">
-                                                <label for="last-name" class="col-form-label">Heading :</label>
+                                            <div class="col-lg-2">
+                                                <label for="heading" class="col-form-label">Heading :</label>
                                             </div>
-                                            <div class="col-lg-10 col-9">
-                                                <input type="text" id="last-name" asp-for="AddPolicies.PolicyHeading" name="AddPolicies.PolicyHeading" class="form-control" placeholder="Enter Heading" value="" required/>
+                                            <div class="col-lg-8">
+                                                <input type="text" id="heading" asp-for="AddPolicies.PolicyHeading" name="AddPolicies.PolicyHeading" class="form-control" placeholder="Enter Heading" value="" required />
                                             </div>
                                         </div>
-                                        <textarea class="form-control" rows="17" asp-for="AddPolicies.PolicyDetail" name="AddPolicies.PolicyDetail" id="bulletTextarea" placeholder="Enter Detail" value=""></textarea>
-                                    </div>
-                               @*      <div class="col-sm-2 col-12 order-1 order-sm-1 d-flex justify-content-end">
-                                        <img src="\images\learning___development-removebg-preview.png" height="100" width="100" />
-                                    </div> *@
+                                        <textarea class="form-control" rows="10" asp-for="AddPolicies.PolicyDetail" name="AddPolicies.PolicyDetail" id="bulletTextarea" placeholder="Enter Detail" value="" ></textarea>
+                                    </div>                            
                                 </div>
 
+                                <div class="row" id="addSubHeading">
+                                    <div class="col-12 subheading">
 
-
-                        @*         <div class="row my-2 py-50">
-                                    <div class="col-sm-12 col-12 order-2 order-sm-1">
-                                        <div class="form-group row align-items-center">
-                                            <div class="col-lg-2 col-3">
-                                                <label for="last-name" class="col-form-label">Heading 2:</label>
-                                            </div>
-                                            <div class="col-lg-6 col-9">
-                                                <input type="text" id="last-name" asp-for="Heading2" class="form-control" name="Heading2" placeholder="Enter Heading" />
-                                            </div>
-                                        </div>
-                                        <textarea class="form-control" rows="4" id="bulletTextarea" asp-for="Heading2_Detail" placeholder="Enter Detail"></textarea>
                                     </div>
                                 </div>
 
-                                <div class="row my-2 py-50">
-                                    <div class="col-sm-12 col-12 order-2 order-sm-1">
-                                        <div class="form-group row align-items-center">
-                                            <div class="col-lg-2 col-3">
-                                                <label for="last-name" class="col-form-label">Heading 3:</label>
-                                            </div>
-                                            <div class="col-lg-6 col-9">
-                                                <input type="text" id="last-name" asp-for="Heading3" class="form-control" name="Heading3" placeholder="Enter Heading" />
-                                            </div>
-                                        </div>
-                                        <h4 class="text-primary">Objective</h4>
-                                        <textarea class="form-control" rows="4" id="bulletTextarea" asp-for="Heading3_Detail" placeholder="Enter Detail"></textarea>
-                                    </div>
-                                </div>
+                            <div class="col-12 ">
+                                <button type="button" class="btn btn-success text-dark fw-bold" onclick="addSubHeading()">Add Sub Heading</button>
+                                <button type="button" class="btn btn-primary text-dark ">Add bullets</button>
+                       
+                                <button type="button" class="btn btn-primary">Add bullets</button>
+                                <button type="button" class="btn btn-primary">Add bullets</button>
+                            </div>
 
-                                <div class="row my-2 py-50">
-                                    <div class="col-sm-12 col-12 order-2 order-sm-1">
-                                        <div class="form-group row align-items-center">
-                                            <div class="col-lg-2 col-3">
-                                                <label for="last-name" class="col-form-label">Heading 4:</label>
-                                            </div>
-                                            <div class="col-lg-6 col-9">
-                                                <input type="text" id="last-name" asp-for="Heading4" class="form-control" name="Heading4" placeholder="Enter Heading" />
-                                            </div>
-                                        </div>
-                                        <h4 class="text-primary">Objective</h4>
-                                        <textarea class="form-control" rows="4" id="bulletTextarea" asp-for="Heading4_Detail" placeholder="Enter Detail"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="row my-2 py-50">
-                                    <div class="col-sm-12 col-12 order-2 order-sm-1">
-                                        <div class="form-group row align-items-center">
-                                            <div class="col-lg-2 col-3">
-                                                <label for="last-name" class="col-form-label">Heading 5:</label>
-                                            </div>
-                                            <div class="col-lg-6 col-9">
-                                                <input type="text" id="last-name" asp-for="Heading5" class="form-control" name="Heading5" placeholder="Enter Heading" />
-                                            </div>
-                                        </div>
-                                        <textarea class="form-control" rows="4" id="bulletTextarea" asp-for="Heading5_Detail" placeholder="Enter Detail"></textarea>
-                                    </div>
-                                </div> *@
-
-                        @*         <div class="col-12 " id="addheading">
-                                    <div class="row1">
-                                    </div>
-                                </div> *@
                                 <div class="col-12 d-flex justify-content-end">
-                                    <input type="submit" value="Next " class="btn btn-primary mb-5 mr-1" />
-
+                                    <input type="submit" value="Next " class="btn btn-primary mb-5 mr-1"  onclick="onNext()"/>
                                 </div>
 
-                          @*       <button type="button" class="btn btn-primary mb-5 my-5 float-right" onclick="addHeading()">Add Heading</button>
-                                <button type="button" class="btn btn-danger mb-5 my-5 float-right mr-2" onclick="removeHeading()">Remove Heading</button>
-                         *@
-                            </form>
                           
 
                         </div>
@@ -240,6 +179,59 @@
     //     }
     //     textarea.value = lines.join('\n');
     // });
+
+
+    var onNext = () =>{
+
+        const heading = document.getElementById("heading");
+        const detail = document.getElementById('bulletTextarea');
+        const date = document.getElementById('qdDate');
+        const policyName = document.getElementById('policyName');
+
+        var headvalue = heading.value;
+        var detailvalue = detail.value;
+        var datevalue = date.value;
+        var policyNamevalue = policyName.value;
+
+        var formattedText = detailvalue
+            .replace(/\n/g, "<br>")
+            .replace(/\t/g, "&emsp;");
+
+        if (headvalue == "" ) {
+            return;
+        }
+        $.ajax({
+            type: 'POST',
+            url: '/Home/HRDevelopPolicies?policyname=' + policyNamevalue + '&heading=' + headvalue + '&detail=' + formattedText + '&date=' + datevalue,
+            success: function (response) {
+
+                heading.value = "";
+                detail.value = "";
+            }
+
+        });
+    }
+
+</script>
+
+<script>
+
+    var addSubHeading = () => {
+
+        var subHeading = document.getElementById('addSubHeading');
+        let newDiv = document.createElement("div");
+        newDiv.className = "subheading";
+        var newRow = '<div class="row my-2 py-50"><div class="col-sm-12 col-12"><div class="form-group row align-items-center"><div class="col-lg-1"><label for= "heading" class= "col-form-label">Prefix :</label></div>' +
+            '<div class="col-lg-2"><input type="text" id = "prefix" asp-for= "AddPolicies.PolicyHeading" name = "AddPolicies.PolicyHeading" class= "form-control" placeholder = "Enter (A,a,1,2,#)" value = ""/></div>' +
+            '<div class="col-lg-2"><label for= "heading" class= "col-form-label"> Sub Heading :</label></div><div class="col-lg-7" ><input type="text" id = "heading" asp-for= "AddPolicies.PolicyHeading" name = "AddPolicies.PolicyHeading" class= "form-control" placeholder = "Enter Heading" value = ""/></div>' +
+            '</div><textarea class="form-control" rows = "10" asp -for= "AddPolicies.PolicyDetail" name = "AddPolicies.PolicyDetail" id="subDetail" placeholder = "Enter Detail" value = ""></textarea>' +
+            '<div class="mt-3 d-flex justify-content-end"><input type="submit" value="Sub Heading" class="btn btn-primary mb-5 mr-1"  onclick="addSubHeading()"/></div></div></div>'
+        newDiv.innerHTML = newRow;
+        subHeading.appendChild(newDiv);
+
+    }
+
+
 
 </script>
 

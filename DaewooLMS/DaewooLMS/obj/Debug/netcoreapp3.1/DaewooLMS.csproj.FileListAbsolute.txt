@@ -586,5 +586,3 @@ D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\bin\Debug\netcoreapp3.1\libwkhtmltox.dyl
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\bin\Debug\netcoreapp3.1\libwkhtmltox.so
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\bin\Debug\netcoreapp3.1\WkHtmlToPdf.dll
 D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\bin\Debug\netcoreapp3.1\libwkhtmltox.dll
-D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\bin\Debug\netcoreapp3.1\wwwroot\wkhtmltopdf\libwkhtmltox.dylib
-D:\Taimoor Work\LMS\DaewooLMS\DaewooLMS\bin\Debug\netcoreapp3.1\wwwroot\wkhtmltopdf\libwkhtmltox.so

@@ -457,16 +457,21 @@ namespace DaewooLMS.Controllers
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> HRDevelopPolicies(AddNewPolicyVM policyVM)
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> HRDevelopPolicies(string policyname ,string heading, string detail,DateTime date, NewHrPolicies hrPolicy, AddPolicies addPolicy)
         {
-            var hrPolicy = _context.NewHrPolicies.FirstOrDefault();
-            var addPolicy = _context.AddPolicies.FirstOrDefault();
+            long Emp_ID = HttpContext.User.Claims
+           .Where(x => x.Type == "Emp_ID")
+           .Select(x => Convert.ToInt64(x.Value))
+           .FirstOrDefault();
 
-            hrPolicy = policyVM.NewHrPolicies;
-            addPolicy = policyVM.AddPolicies;
-            var oldPolicy = await _context.NewHrPolicies.Where(a => a.PolicyName == hrPolicy.PolicyName).SingleOrDefaultAsync();
+            hrPolicy.PolicyName = policyname;
+            hrPolicy.PolicyDate = date;
+            hrPolicy.PolicyStatus = true;
+            hrPolicy.EmpID = Emp_ID;
+
+            var oldPolicy = await _context.NewHrPolicies.Where(a => a.PolicyName == hrPolicy.PolicyName).SingleOrDefaultAsync();         
 
             if (oldPolicy == null)
             {
@@ -480,6 +485,8 @@ namespace DaewooLMS.Controllers
 
             var currentPolicy = await _context.NewHrPolicies.Where(a => a.PolicyName == hrPolicy.PolicyName).SingleOrDefaultAsync();
             addPolicy.PolicyID = currentPolicy.PolicyID;
+            addPolicy.PolicyHeading = heading;
+            addPolicy.PolicyDetail = detail;
             if (ModelState.IsValid)
             {
                 _context.Add(addPolicy);

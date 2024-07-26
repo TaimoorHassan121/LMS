@@ -6,50 +6,74 @@
 }
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<style>
+    #htmlContent{
+        margin-top:0rem;
+        /* margin-bottom:5rem; */
+
+    }
+
+    #DownloadWord{
+        /* line-height:20px; */
+        sa
+    }
+    @@media print {
+    .page-break {
+        page-break-before: always;
+        margin: 0;
+        padding: 0;
+    }
+}
+</style>
 
 
-<div class="app-content content">
-    <div class="content-overlay"></div>
-    <div class="content-wrapper">
-        <div class="content-header row">
-        </div>
-        <div class="content-body">
-            <!-- app invoice View Page -->
-            <section class="invoice-edit-wrapper" >
-                <div class="row">
-                    <!-- invoice view page -->
-                    <div class="col-xl-9 col-md-8 col-12" id="htmlContent">
-                        <div class="card" >
-                            <div class="card-body pb-0 mx-25">
+
+        <div class="container">
+    <div class="content-body">
+        <!-- app invoice View Page -->
+        <section class="invoice-edit-wrapper">
+            <div class="row mb-3 mt-5">
+                <div class="col-12">
+
+                    <button class="btn btn-primary  " onclick="generatePDF()">
+                        <span>Download Document</span>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <!-- invoice view page -->
+
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body pb-0 mx-25">
+                            <div id="htmlContent" class="page-break">
                                 <!-- header section -->
-                                <div class="row mx-0">
+                         @*        <div class="row mx-0">
 
                                     <table class="table-bordered">
                                         <tr>
                                             <th class="col-2"><img src="\images\learning___development-removebg-preview.png" width="100" height="100" /></th>
                                             <th class="col-8 text-center">HR Policies & Procedures</th>
-                                            <th>
+                                            <th class="d-flex justify-content-center mt-4">
                                                 Chapter# HR/00/00
                                                 Issue Date: @Model.NewHrPolicies.PolicyDate.ToString("dd-MM-yyyy")
                                             </th>
 
                                         </tr>
                                     </table>
-                                </div>
+                                </div> *@
                                 <!-- logo and title -->
-                                <div class="row my-4 py-50">
-                                
+                                <div class="row my-2 py-50">
+
                                     <h4 class="text-dark text-center fw-bold">@Model.NewHrPolicies.PolicyName</h4>
                                 </div>
                                 <!-- invoice address and contact -->
                                 <div class="row ">
                                     <div class="col-1"></div>
                                     <div class=" col-10" id="DownloadWord" style="font-family:Arial">
-                                        
-                                        @foreach(var item in Model.newaddPolicies)
+                                        @foreach (var item in Model.newaddPolicies)
                                         {
-                                            
-                                            <div >
+                                            <div>
                                                 <span class="fw-bold">@count.</span> &emsp; <span class="fw-bold"><u>@item.PolicyHeading</u></span>&emsp;&emsp;
                                                 <span id="formatted-text" style="white-space: pre-wrap;word-wrap: break-word;">  @Html.Raw(item.PolicyDetail.Replace("\n", "\n"))</span>
                                             </div>
@@ -57,20 +81,20 @@
                                             count++;
                                         }
                                     </div>
-                                
+
 
                                     <div class="col-1"></div>
 
 
 
                                 </div>
-                                <div class="row my-5">
+                                <div class="row my-5 ">
                                     <div class="col-2"></div>
-                                    <div class="col-8">
+                                    <div class="col-8 ">
                                         <table class="table-bordered">
                                             <tr>
                                                 <td class="fw-bold text-center">
-                                                    Prepared By<br/>
+                                                    Prepared By<br />
                                                     Human Resources Department
                                                 </td>
                                                 <td class="fw-bold text-center">
@@ -85,99 +109,111 @@
                                             </tr>
                                         </table>
                                     </div>
-                                    <div class="col-2"></div>
 
                                 </div>
-                                <hr>
                             </div>
-                        </div>
-                    </div>
-                    <!-- invoice action  -->
-                    <div class="col-xl-3 col-md-4 col-12">
-                        <div class="card invoice-action-wrapper shadow-none border">
-                            <div class="card-body">
-                                <div class="invoice-action-btn mb-1">
-                                    <button class="btn btn-primary btn-block"  onclick="downloadWord()">
-                                        <span>Download Document</span>
-                                    </button>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
-            </section>
+                <!-- invoice action  -->
 
-        </div>
+            </div>
+        </section>
+
     </div>
-</div>
+        </div>
+       
+            
+       
+   
 <!-- END: Content-->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pizzip/3.1.1/pizzip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.22.2/docxtemplater.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
+
+
+
+
+
+
+
 
 <script>
-    function downloadWord() {
-        var htmlContent = document.getElementById("htmlContent");
-        var htmltext = htmlContent.outerHTML
-        var data =  htmltext ;
-        var json = JSON.stringify(data, null, 2);
-        // var htmlContent = '<h1>HTML to Word Document</h1>' + contentTable + contentImage;
+    // function generatePDF() {
+    //     const element = document.getElementById('htmlContent');
+    //     html2pdf(element, {
+            
+    //         margin: [10, 10, 10, 10], // Set margins
+    //         filename: 'document.pdf',
+    //         image: { type: 'jpeg', quality: 0.98 },
+    //         html2canvas: { scale: 2, useCORS: true },
+    //         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
 
-        $.ajax({
-            url: '/Home/ConvertHtmlToPdf?HtmlContentModel=' + json,
-            type: 'POST',
-            // contentType: 'application/json',
-            // data: JSON.stringify({ HtmlContent: htmlContent }),
-            // xhrFields: {
-            //     responseType: 'blob'
-            // },
-            success: function (data) {
-                var blob = new Blob([data], { type: 'application/pdf' });
-                var link = document.createElement('a');
-                link.href = window.URL.createObjectURL(blob);
-                link.download = 'Invoice.pdf';
-                link.click();
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.log(textStatus, errorThrown);
+    //     }).then(() => {
+    //         console.log('PDF Generated');
+    //     }).catch(error => {
+    //         console.error('Error generating PDF:', error);
+    //     });
+    // }
+
+
+    function generatePDF() {
+        const element = document.getElementById('htmlContent');
+
+        // Define header content
+        const header = {
+            title: 'HR Policies & Procedures',
+            chapter: 'Chapter# HR/00/00',
+            issueDate: 'Issue Date: 25-07-2024',
+            imgSrc: '/images/learning___development-removebg-preview.png'
+        };
+
+        // Options for html2pdf
+        const opt = {
+            margin: [30, 5, 30, 5],
+            filename: 'document.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2, useCORS: true },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+            html2canvas: {
+                onclone: function (doc) {
+                    // Modify the DOM before html2canvas captures the content
+                    // This is a placeholder if needed
+                }
             }
-        });
+        };
 
+        html2pdf().from(element).set(opt).toPdf().get('pdf').then(function (pdf) {
+            // Add header to each page
+            const totalPages = pdf.internal.getNumberOfPages();
+            for (let i = 1; i <= totalPages; i++) {
+                pdf.setPage(i);
+                // pdf.line(10, 3, 10, pdf.internal.pageSize.getHeight() - 10);
+                // Add image
+                pdf.addImage(header.imgSrc, 'PNG', 10, 5, 16,16 ); // Adjust position and size
 
+                // Add text
+                pdf.setFontSize(14);
+                pdf.text(header.title, 105, 15, { align: 'center' });
+                pdf.setFontSize(8);
+                pdf.text(header.chapter, 177, 11, { align: 'center' });
+                pdf.text(header.issueDate, 180, 16, { align: 'center' });
 
-
-
-
-
-
-
-
-
-
-
-
-
-        // fetch('/Home/ConvertHtmlToWord?HtmlContentModel=' + json, {
-        //     method: 'GET',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     // body: JSON.stringify({ htmlContent: htmlContent })
-        // }).then(response => response.blob())
-        //     .then(blob => {
-        //         const url = window.URL.createObjectURL(blob);
-        //         const a = document.createElement('a');
-        //         a.style.display = 'none';
-        //         a.href = url;
-        //         a.download = 'document.docx';
-        //         document.body.appendChild(a);
-        //         a.click();
-        //         window.URL.revokeObjectURL(url);
-        //     })
-        //     .catch(error => console.error('Error:', error));
+                // Draw line below header
+                pdf.line(10, 22, pdf.internal.pageSize.getWidth() - 10, 22);
+                
+            }
+        }).save();
     }
 </script>
+
+
+
+
+
 
 @* <script>
 

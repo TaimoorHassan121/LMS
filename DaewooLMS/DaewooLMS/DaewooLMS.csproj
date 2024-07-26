@@ -17,6 +17,12 @@
     <Compile Remove="Migrations\20240701043752_eventtoevents.Designer.cs" />
     <Compile Remove="Migrations\20240710090454_aboutinemp.cs" />
     <Compile Remove="Migrations\20240710090454_aboutinemp.Designer.cs" />
+    <Compile Remove="Migrations\20240726054944_Subhead.cs" />
+    <Compile Remove="Migrations\20240726054944_Subhead.Designer.cs" />
+    <Compile Remove="Migrations\20240726055739_SubHead.cs" />
+    <Compile Remove="Migrations\20240726055739_SubHead.Designer.cs" />
+    <Compile Remove="Migrations\20240726120449_First_MIg.cs" />
+    <Compile Remove="Migrations\20240726120449_First_MIg.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -147,15 +153,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\EventImages\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Update="wwwroot\wkhtmltopdf\libwkhtmltox.dylib">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\wkhtmltopdf\libwkhtmltox.so">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
 </Project>

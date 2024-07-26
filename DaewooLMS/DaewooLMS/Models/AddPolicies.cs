@@ -9,11 +9,10 @@ namespace DaewooLMS.Models
         [Key]
         public int PolicyHeadingID { get; set; }
         public string? PolicyHeading { get; set; }
+        [Column(TypeName = "varchar(MAX)")]
+        [MaxLength]
         public string? PolicyDetail { get; set; }
         public int PolicyID { get; set; }
-
-
-
 
     }
 }

@@ -27,7 +27,7 @@ namespace DaewooLMS.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("PolicyDetail")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(MAX)");
 
                     b.Property<string>("PolicyHeading")
                         .HasColumnType("nvarchar(max)");
@@ -428,6 +428,9 @@ namespace DaewooLMS.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<long>("EmpID")
+                        .HasColumnType("bigint");
+
                     b.Property<DateTime>("PolicyDate")
                         .HasColumnType("datetime2");
 
@@ -440,6 +443,30 @@ namespace DaewooLMS.Migrations
                     b.HasKey("PolicyID");
 
                     b.ToTable("NewHrPolicies");
+                });
+
+            modelBuilder.Entity("DaewooLMS.Models.PolicySubHeading", b =>
+                {
+                    b.Property<int>("SubHeadingID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Main_HeadingID")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SubHeading_Title")
+                        .HasColumnType("varchar(150)");
+
+                    b.Property<string>("Sub_Detail")
+                        .HasColumnType("varchar(MAX)");
+
+                    b.HasKey("SubHeadingID");
+
+                    b.ToTable("PolicySubHeadings");
                 });
 
             modelBuilder.Entity("DaewooLMS.Models.QuizAttempt", b =>
